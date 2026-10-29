@@ -2,48 +2,36 @@ export type SkillCategory = {
   id: string;
   label: string;
   items: string[];
-  isPlaceholder?: boolean;
 };
 
 /**
- * Editable skill categories.
- * Do not add proficiency percentages or arbitrary progress bars.
+ * Editable technology stack categories (Frontend, Backend & Hosting, AI, Mobile).
  */
 export const skillCategories: SkillCategory[] = [
   {
-    id: "languages",
-    label: "Languages",
-    items: ["[LANGUAGES]"],
-    isPlaceholder: true,
-  },
-  {
     id: "frontend",
     label: "Frontend",
-    items: ["[FRONTEND TECHNOLOGIES]"],
-    isPlaceholder: true,
+    items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "HTML / CSS"],
   },
   {
-    id: "backend",
-    label: "Backend",
-    items: ["[BACKEND TECHNOLOGIES]"],
-    isPlaceholder: true,
+    id: "backend-hosting",
+    label: "Backend & Hosting",
+    items: ["Node.js", "PostgreSQL", "Supabase", "Firebase", "Vercel"],
   },
   {
-    id: "databases",
-    label: "Databases",
-    items: ["[DATABASES]"],
-    isPlaceholder: true,
+    id: "ai",
+    label: "AI",
+    items: [
+      "OpenAI API",
+      "Gemini API",
+      "LangChain",
+      "AI SDK",
+      "Prompt Engineering",
+    ],
   },
   {
-    id: "ai-llm",
-    label: "AI / LLM",
-    items: ["[AI AND LLM TOOLS]"],
-    isPlaceholder: true,
-  },
-  {
-    id: "tools",
-    label: "Tools & Platforms",
-    items: ["[TOOLS]"],
-    isPlaceholder: true,
+    id: "mobile",
+    label: "Mobile",
+    items: ["React Native", "Expo", "Flutter", "iOS / Android"],
   },
 ];

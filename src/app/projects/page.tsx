@@ -14,20 +14,20 @@ export default function ProjectsPage() {
   return (
     <div className="py-14 sm:py-20">
       <header className="border-b border-[var(--border)] pb-10">
-        <p className="text-xs font-medium tracking-[0.16em] uppercase text-[var(--muted)]">
+        <p className="font-mono text-xs text-[var(--muted)]">
           Selected Archive
         </p>
-        <h1 className="mt-3 font-serif text-[clamp(2rem,4vw,3rem)] font-normal text-[var(--foreground)]">
+        <h1 className="mt-3 text-[clamp(2rem,3.5vw,3rem)] font-semibold tracking-tight text-[var(--foreground)]">
           Projects
         </h1>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--muted)]">
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-[var(--muted)]">
           A manually curated collection of software builds and case studies.
           Entries marked as template placeholders are for layout verification
           until replaced with final project details.
         </p>
       </header>
 
-      <div className="mt-10 grid gap-6 md:grid-cols-2">
+      <div className="mt-8 flex flex-col gap-3.5">
         {portfolioProjects.map((project) => (
           <ProjectCard key={project.slug} project={project} />
         ))}

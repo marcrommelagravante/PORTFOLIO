@@ -9,8 +9,8 @@ export function SiteFooter() {
 
   return (
     <footer className="border-t border-[var(--border)] bg-[var(--background)]">
-      <div className="mx-auto flex max-w-5xl flex-col items-start justify-between gap-4 px-6 py-10 text-xs text-[var(--muted)] sm:flex-row sm:items-center sm:px-8">
-        <p className="tracking-wide">{siteConfig.locationFooterLine}</p>
+      <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-6 py-10 text-sm text-[var(--muted)] sm:flex-row sm:items-center sm:px-8">
+        <p>{siteConfig.locationFooterLine}</p>
 
         <ul className="flex flex-wrap items-center gap-6">
           <li>
@@ -18,7 +18,7 @@ export function SiteFooter() {
               href={siteConfig.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="tracking-wider uppercase transition-colors hover:text-[var(--foreground)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--foreground)]"
+              className="font-medium transition-colors hover:text-[var(--foreground)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--foreground)]"
             >
               GitHub
             </a>
@@ -30,7 +30,7 @@ export function SiteFooter() {
                 href={siteConfig.linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="tracking-wider uppercase transition-colors hover:text-[var(--foreground)]"
+                className="font-medium transition-colors hover:text-[var(--foreground)]"
               >
                 LinkedIn
               </a>
@@ -41,7 +41,7 @@ export function SiteFooter() {
             <li>
               <a
                 href={`mailto:${siteConfig.contactEmail}`}
-                className="tracking-wider uppercase transition-colors hover:text-[var(--foreground)]"
+                className="font-medium transition-colors hover:text-[var(--foreground)]"
               >
                 Email
               </a>
@@ -54,7 +54,7 @@ export function SiteFooter() {
                 href={siteConfig.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="tracking-wider uppercase transition-colors hover:text-[var(--foreground)]"
+                className="font-medium transition-colors hover:text-[var(--foreground)]"
               >
                 Résumé
               </a>

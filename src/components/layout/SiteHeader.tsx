@@ -6,21 +6,21 @@ import { MobileNavigation, type NavItem } from "./MobileNavigation";
 import { PageLoader } from "@/components/motion/PageLoader";
 
 const NAV_ITEMS: NavItem[] = [
-  { label: "WORK", href: "/projects" },
-  { label: "ABOUT", href: "/about" },
-  { label: "GEAR", href: "/gear" },
-  { label: "OUTSIDE THE IDE", href: "/outside-the-ide" },
-  { label: "CONTACT", href: "/contact" },
+  { label: "Work", href: "/projects" },
+  { label: "About", href: "/about" },
+  { label: "Gear", href: "/gear" },
+  { label: "Outside the IDE", href: "/outside-the-ide" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-[var(--background)]/95 backdrop-blur-xs">
-      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6 sm:px-8">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 sm:px-8">
         <Link
           href="/"
           aria-label={`${siteConfig.fullName} home`}
-          className="text-sm font-medium tracking-widest text-[var(--foreground)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--foreground)]"
+          className="text-sm font-semibold tracking-tight text-[var(--foreground)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--foreground)]"
         >
           <PageLoader initials={siteConfig.initials} />
         </Link>
@@ -31,7 +31,7 @@ export function SiteHeader() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="text-xs font-medium tracking-[0.16em] uppercase text-[var(--muted)] transition-colors hover:text-[var(--foreground)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--foreground)]"
+                  className="text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--foreground)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--foreground)]"
                 >
                   {item.label}
                 </Link>

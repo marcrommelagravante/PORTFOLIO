@@ -4,37 +4,37 @@ import { skillCategories } from "@/content/skills";
 export function SkillsPreview() {
   return (
     <section
-      aria-labelledby="skills-heading"
+      aria-labelledby="stack-heading"
       className="border-b border-[var(--border)] py-14 sm:py-16"
     >
       <div className="mb-8">
-        <p className="text-xs font-medium tracking-[0.16em] uppercase text-[var(--muted)]">
-          Technical stack & tools
+        <p className="font-mono text-xs text-[var(--muted)]">
+          Technologies & tools I build with
         </p>
         <h2
-          id="skills-heading"
-          className="mt-2 font-serif text-2xl font-normal text-[var(--foreground)] sm:text-3xl"
+          id="stack-heading"
+          className="mt-2 text-2xl font-semibold tracking-tight text-[var(--foreground)] sm:text-3xl"
         >
-          Skills
+          Stack
         </h2>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {skillCategories.map((group) => (
           <div
             key={group.id}
             className="rounded-lg border border-[var(--border)] bg-[var(--surface)]/40 p-5"
           >
-            <h3 className="text-xs font-medium tracking-[0.14em] uppercase text-[var(--muted)]">
+            <h3 className="font-mono text-xs font-medium text-[var(--muted)]">
               {group.label}
             </h3>
-            <ul className="mt-3 flex flex-wrap gap-2">
-              {group.items.map((skill) => (
+            <ul className="mt-3.5 flex flex-wrap gap-2">
+              {group.items.map((tech) => (
                 <li
-                  key={skill}
-                  className="text-sm text-[var(--foreground)]"
+                  key={tech}
+                  className="rounded border border-[var(--border)] bg-[var(--background)] px-2.5 py-1 font-mono text-xs text-[var(--foreground)]"
                 >
-                  {skill}
+                  {tech}
                 </li>
               ))}
             </ul>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Inter } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -7,16 +7,15 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { CustomCursor } from "@/components/motion/CustomCursor";
 import { createPageMetadata } from "@/lib/metadata";
 
-const inter = Inter({
+const geistSans = Geist({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
 });
 
-const instrumentSerif = Instrument_Serif({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-serif",
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -47,16 +46,16 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${instrumentSerif.variable}`}
+      className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
-      <body className=" flex min-h-screen flex-col antialiased selection:bg-[var(--foreground)] selection:text-[var(--background)]">
+      <body className="flex min-h-screen flex-col antialiased selection:bg-[var(--foreground)] selection:text-[var(--background)]">
         <ThemeProvider>
           <CustomCursor />
           <SiteHeader />
-          <main className="mx-auto w-full max-w-5xl flex-1 px-6 sm:px-8">
+          <main className="mx-auto w-full max-w-6xl flex-1 px-6 sm:px-8">
             {children}
           </main>
           <SiteFooter />

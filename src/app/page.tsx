@@ -21,10 +21,10 @@ export default function HomePage() {
           href="/gear"
           className="group rounded-lg border border-[var(--border)] bg-[var(--surface)]/40 p-6 transition-colors hover:border-[var(--muted)]"
         >
-          <p className="text-xs font-medium tracking-[0.16em] uppercase text-[var(--muted)]">
+          <p className="font-mono text-xs text-[var(--muted)]">
             Tools & Setup
           </p>
-          <h2 className="mt-2 font-serif text-2xl text-[var(--foreground)] group-hover:underline">
+          <h2 className="mt-2 text-xl font-semibold tracking-tight text-[var(--foreground)] group-hover:underline">
             Gear →
           </h2>
           <p className="mt-2 text-sm text-[var(--muted)]">
@@ -36,10 +36,10 @@ export default function HomePage() {
           href="/outside-the-ide"
           className="group rounded-lg border border-[var(--border)] bg-[var(--surface)]/40 p-6 transition-colors hover:border-[var(--muted)]"
         >
-          <p className="text-xs font-medium tracking-[0.16em] uppercase text-[var(--muted)]">
+          <p className="font-mono text-xs text-[var(--muted)]">
             Beyond Code
           </p>
-          <h2 className="mt-2 font-serif text-2xl text-[var(--foreground)] group-hover:underline">
+          <h2 className="mt-2 text-xl font-semibold tracking-tight text-[var(--foreground)] group-hover:underline">
             Outside the IDE →
           </h2>
           <p className="mt-2 text-sm text-[var(--muted)]">

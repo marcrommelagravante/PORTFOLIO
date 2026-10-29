@@ -14,7 +14,7 @@ export function ProjectGallery({
 
   return (
     <section aria-label="Project screenshots" className="mt-10 space-y-6">
-      <h2 className="text-xs font-medium tracking-[0.16em] uppercase text-[var(--muted)]">
+      <h2 className="text-sm font-semibold tracking-tight text-[var(--foreground)]">
         Screenshots & Visuals
       </h2>
       <div className="grid gap-6 sm:grid-cols-2">

@@ -10,11 +10,11 @@ export function GearCard({ item }: { item: GearItem }) {
     <article className="flex flex-col justify-between rounded-lg border border-[var(--border)] bg-[var(--surface)]/40 p-5">
       <div>
         <div className="mb-4 flex items-center justify-between gap-2">
-          <span className="text-[11px] font-medium tracking-[0.16em] uppercase text-[var(--muted)]">
+          <span className="font-mono text-xs text-[var(--muted)]">
             {item.category}
           </span>
           {item.isPlaceholder && (
-            <span className="rounded border border-[var(--border)] px-2 py-0.5 text-[10px] tracking-wider uppercase text-[var(--muted)]">
+            <span className="rounded border border-[var(--border)] px-2 py-0.5 font-mono text-[11px] text-[var(--muted)]">
               Placeholder
             </span>
           )}
@@ -31,12 +31,12 @@ export function GearCard({ item }: { item: GearItem }) {
             />
           </div>
         ) : (
-          <div className="mb-4 flex aspect-[16/9] items-center justify-center rounded border border-dashed border-[var(--border)] bg-[var(--surface)]/60 text-[11px] tracking-widest uppercase text-[var(--muted)]">
+          <div className="mb-4 flex aspect-[16/9] items-center justify-center rounded border border-dashed border-[var(--border)] bg-[var(--surface)]/60 font-mono text-xs text-[var(--muted)]">
             [GEAR PHOTO PLACEHOLDER]
           </div>
         )}
 
-        <h3 className="font-serif text-lg text-[var(--foreground)]">
+        <h3 className="text-lg font-semibold tracking-tight text-[var(--foreground)]">
           {item.name}
         </h3>
         <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
@@ -50,7 +50,7 @@ export function GearCard({ item }: { item: GearItem }) {
             href={item.productUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-medium tracking-wider uppercase text-[var(--foreground)] underline-offset-4 hover:underline"
+            className="text-sm font-medium text-[var(--foreground)] underline-offset-4 hover:underline"
           >
             Product link ↗
           </a>

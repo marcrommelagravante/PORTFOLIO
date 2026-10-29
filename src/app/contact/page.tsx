@@ -20,24 +20,24 @@ export default function ContactPage() {
   return (
     <div className="py-14 sm:py-20">
       <header className="border-b border-[var(--border)] pb-10">
-        <p className="text-xs font-medium tracking-[0.16em] uppercase text-[var(--muted)]">
+        <p className="font-mono text-xs text-[var(--muted)]">
           Get in Touch
         </p>
-        <h1 className="mt-3 font-serif text-[clamp(2rem,4vw,3rem)] font-normal text-[var(--foreground)]">
+        <h1 className="mt-3 text-[clamp(2rem,3.5vw,3rem)] font-semibold tracking-tight text-[var(--foreground)]">
           Contact
         </h1>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--muted)]">
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-[var(--muted)]">
           Have a question, project idea, or opportunity to discuss? Send a
           message below or connect via GitHub.
         </p>
       </header>
 
-      <div className="mt-10 grid gap-12 md:grid-cols-[1.35fr_0.65fr]">
+      <div className="mt-10 grid gap-12 md:grid-cols-[1.5fr_0.5fr]">
         <ContactForm isConfigured={isConfigured} />
 
-        <aside className="space-y-6 rounded-lg border border-[var(--border)] bg-[var(--surface)]/40 p-6 h-fit">
+        <aside className="h-fit space-y-6 rounded-lg border border-[var(--border)] bg-[var(--surface)]/40 p-6">
           <div>
-            <h2 className="text-xs font-medium tracking-[0.16em] uppercase text-[var(--muted)]">
+            <h2 className="font-mono text-xs font-medium text-[var(--muted)]">
               Direct Profiles
             </h2>
             <ul className="mt-3 space-y-2.5 text-sm">

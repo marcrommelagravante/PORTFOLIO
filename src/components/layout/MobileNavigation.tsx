@@ -56,7 +56,7 @@ export function MobileNavigation({ items }: { items: NavItem[] }) {
                 <Link
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="block py-1 text-xs font-medium tracking-[0.16em] uppercase text-[var(--foreground)] hover:text-[var(--muted)]"
+                  className="block py-1 text-sm font-medium text-[var(--foreground)] hover:text-[var(--muted)]"
                 >
                   {item.label}
                 </Link>

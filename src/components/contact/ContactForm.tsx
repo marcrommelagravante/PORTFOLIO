@@ -84,7 +84,7 @@ export function ContactForm({ isConfigured }: { isConfigured: boolean }) {
       <div>
         <label
           htmlFor="contact-name"
-          className="block text-xs font-medium tracking-[0.14em] uppercase text-[var(--foreground)]"
+          className="block text-sm font-medium text-[var(--foreground)]"
         >
           Name
         </label>
@@ -114,7 +114,7 @@ export function ContactForm({ isConfigured }: { isConfigured: boolean }) {
       <div>
         <label
           htmlFor="contact-email"
-          className="block text-xs font-medium tracking-[0.14em] uppercase text-[var(--foreground)]"
+          className="block text-sm font-medium text-[var(--foreground)]"
         >
           Email
         </label>
@@ -144,7 +144,7 @@ export function ContactForm({ isConfigured }: { isConfigured: boolean }) {
       <div>
         <label
           htmlFor="contact-message"
-          className="block text-xs font-medium tracking-[0.14em] uppercase text-[var(--foreground)]"
+          className="block text-sm font-medium text-[var(--foreground)]"
         >
           Message
         </label>
@@ -175,9 +175,9 @@ export function ContactForm({ isConfigured }: { isConfigured: boolean }) {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="inline-flex items-center justify-center rounded-md bg-[var(--foreground)] px-5 py-2.5 text-xs font-medium tracking-[0.14em] uppercase text-[var(--background)] transition-opacity hover:opacity-90 disabled:opacity-50"
+        className="inline-flex items-center justify-center rounded-md bg-[var(--foreground)] px-5 py-2.5 text-sm font-medium text-[var(--background)] transition-opacity hover:opacity-90 disabled:opacity-50"
       >
-        {status === "submitting" ? "Sending..." : "Send Message"}
+        {status === "submitting" ? "Sending..." : "Send message"}
       </button>
 
       {status === "success" && (

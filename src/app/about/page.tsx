@@ -16,15 +16,15 @@ export default function AboutPage() {
   return (
     <div className="py-14 sm:py-20">
       <header className="border-b border-[var(--border)] pb-10">
-        <p className="text-xs font-medium tracking-[0.16em] uppercase text-[var(--muted)]">
+        <p className="font-mono text-xs text-[var(--muted)]">
           Professional Biography
         </p>
-        <h1 className="mt-3 font-serif text-[clamp(2rem,4vw,3rem)] font-normal text-[var(--foreground)]">
+        <h1 className="mt-3 text-[clamp(2rem,3.5vw,3rem)] font-semibold tracking-tight text-[var(--foreground)]">
           About
         </h1>
       </header>
 
-      <div className="mt-10 grid gap-12 md:grid-cols-[1.4fr_0.6fr]">
+      <div className="mt-10 grid gap-12 md:grid-cols-[1.5fr_0.5fr]">
         <section aria-labelledby="bio-heading" className="space-y-5">
           <h2 id="bio-heading" className="sr-only">
             Biography
@@ -44,7 +44,7 @@ export default function AboutPage() {
                 href={siteConfig.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-md bg-[var(--foreground)] px-5 py-2.5 text-xs font-medium tracking-[0.14em] uppercase text-[var(--background)] transition-opacity hover:opacity-90"
+                className="inline-flex items-center justify-center rounded-md bg-[var(--foreground)] px-5 py-2.5 text-sm font-medium text-[var(--background)] transition-opacity hover:opacity-90"
               >
                 Download résumé
               </a>
@@ -54,7 +54,7 @@ export default function AboutPage() {
 
         <aside className="space-y-8 rounded-lg border border-[var(--border)] bg-[var(--surface)]/40 p-6">
           <div>
-            <h2 className="text-xs font-medium tracking-[0.16em] uppercase text-[var(--muted)]">
+            <h2 className="font-mono text-xs font-medium text-[var(--muted)]">
               Current Study / Role
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-[var(--foreground)]">
@@ -63,7 +63,7 @@ export default function AboutPage() {
           </div>
 
           <div className="border-t border-[var(--border)] pt-6">
-            <h2 className="text-xs font-medium tracking-[0.16em] uppercase text-[var(--muted)]">
+            <h2 className="font-mono text-xs font-medium text-[var(--muted)]">
               Focus Areas
             </h2>
             <ul className="mt-3 space-y-2 text-sm text-[var(--foreground)]">
@@ -76,27 +76,30 @@ export default function AboutPage() {
       </div>
 
       <section
-        aria-labelledby="about-skills-heading"
+        aria-labelledby="about-stack-heading"
         className="mt-16 border-t border-[var(--border)] pt-12"
       >
         <h2
-          id="about-skills-heading"
-          className="font-serif text-2xl font-normal text-[var(--foreground)]"
+          id="about-stack-heading"
+          className="text-2xl font-semibold tracking-tight text-[var(--foreground)]"
         >
-          Selected Skills Summary
+          Stack
         </h2>
-        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {skillCategories.map((group) => (
             <div
               key={group.id}
               className="rounded-lg border border-[var(--border)] bg-[var(--surface)]/30 p-5"
             >
-              <h3 className="text-xs font-medium tracking-[0.14em] uppercase text-[var(--muted)]">
+              <h3 className="font-mono text-xs font-medium text-[var(--muted)]">
                 {group.label}
               </h3>
-              <ul className="mt-2.5 flex flex-wrap gap-2">
+              <ul className="mt-3 flex flex-wrap gap-2">
                 {group.items.map((item) => (
-                  <li key={item} className="text-sm text-[var(--foreground)]">
+                  <li
+                    key={item}
+                    className="rounded border border-[var(--border)] bg-[var(--background)] px-2.5 py-1 font-mono text-xs text-[var(--foreground)]"
+                  >
                     {item}
                   </li>
                 ))}

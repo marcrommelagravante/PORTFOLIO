@@ -45,50 +45,38 @@ export default async function ProjectDetailPage({
     notFound();
   }
 
-  const hasGithub = isValidExternalUrl(project.githubUrl);
   const hasLive = isValidExternalUrl(project.liveUrl);
+  const hasGithub = isValidExternalUrl(project.githubUrl);
 
   return (
     <article className="py-14 sm:py-20">
       <Link
         href="/projects"
-        className="text-xs font-medium tracking-[0.14em] uppercase text-[var(--muted)] hover:text-[var(--foreground)]"
+        className="text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
       >
         ← Back to Projects
       </Link>
 
       <header className="mt-6 border-b border-[var(--border)] pb-10">
-        <div className="flex flex-wrap items-center gap-3">
-          {project.status && (
-            <span className="rounded border border-[var(--border)] bg-[var(--surface)] px-2.5 py-0.5 text-[11px] tracking-wider uppercase text-[var(--muted)]">
-              Status: {project.status}
-            </span>
-          )}
-          {project.isPlaceholder && (
-            <span className="rounded border border-[var(--border)] px-2.5 py-0.5 text-[11px] tracking-wider uppercase text-[var(--muted)]">
-              Template Placeholder Entry
-            </span>
-          )}
-        </div>
+        <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-start">
+          <div className="max-w-2xl">
+            <h1 className="text-[clamp(1.85rem,3.5vw,2.75rem)] font-semibold tracking-tight text-[var(--foreground)]">
+              {project.title}
+            </h1>
+            <p className="mt-3 text-base leading-relaxed text-[var(--muted)]">
+              {project.summary}
+            </p>
+          </div>
 
-        <h1 className="mt-4 font-serif text-[clamp(2rem,4vw,3.25rem)] font-normal text-[var(--foreground)]">
-          {project.title}
-        </h1>
-
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-[var(--muted)]">
-          {project.summary}
-        </p>
-
-        {(hasGithub || hasLive) && (
-          <div className="mt-6 flex flex-wrap gap-4">
+          <div className="flex shrink-0 flex-wrap items-center gap-3">
             {hasLive && (
               <a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center rounded-md bg-[var(--foreground)] px-4 py-2 text-xs font-medium tracking-wider uppercase text-[var(--background)]"
+                className="inline-flex items-center justify-center rounded-md bg-[var(--foreground)] px-5 py-2.5 text-sm font-medium text-[var(--background)] transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground)]"
               >
-                Live Demo ↗
+                Visit Landing Page ↗
               </a>
             )}
             {hasGithub && (
@@ -96,13 +84,13 @@ export default async function ProjectDetailPage({
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center rounded-md border border-[var(--border)] bg-[var(--surface)]/50 px-4 py-2 text-xs font-medium tracking-wider uppercase text-[var(--foreground)]"
+                className="inline-flex items-center justify-center rounded-md border border-[var(--border)] bg-[var(--surface)]/50 px-4 py-2.5 text-sm font-medium text-[var(--foreground)] transition-colors hover:bg-[var(--surface)]"
               >
-                GitHub Repository ↗
+                Source Code ↗
               </a>
             )}
           </div>
-        )}
+        </div>
       </header>
 
       {project.coverImage && (
@@ -112,7 +100,7 @@ export default async function ProjectDetailPage({
             alt={`Cover image for ${project.title}`}
             fill
             priority
-            sizes="(max-width: 1024px) 100vw, 960px"
+            sizes="(max-width: 1024px) 100vw, 1088px"
             className="object-cover"
           />
         </div>
@@ -120,78 +108,71 @@ export default async function ProjectDetailPage({
 
       <div className="mt-12 grid gap-10 md:grid-cols-[1.5fr_0.5fr]">
         <div className="space-y-8">
-          {project.description && (
-            <section>
-              <h2 className="text-xs font-medium tracking-[0.16em] uppercase text-[var(--muted)]">
-                Overview
-              </h2>
-              <p className="mt-3 text-sm leading-relaxed text-[var(--foreground)]">
-                {project.description}
-              </p>
-            </section>
-          )}
+          <section>
+            <h2 className="text-base font-semibold tracking-tight text-[var(--foreground)]">
+              Overview
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
+              {project.overview}
+            </p>
+          </section>
 
-          {project.problemContext && (
+          {project.features.length > 0 && (
             <section>
-              <h2 className="text-xs font-medium tracking-[0.16em] uppercase text-[var(--muted)]">
-                Problem & Context
+              <h2 className="text-base font-semibold tracking-tight text-[var(--foreground)]">
+                Features
               </h2>
-              <p className="mt-3 text-sm leading-relaxed text-[var(--foreground)]">
-                {project.problemContext}
-              </p>
-            </section>
-          )}
-
-          {project.goalsAndFeatures && project.goalsAndFeatures.length > 0 && (
-            <section>
-              <h2 className="text-xs font-medium tracking-[0.16em] uppercase text-[var(--muted)]">
-                Goals & Key Features
-              </h2>
-              <ul className="mt-3 list-inside list-disc space-y-2 text-sm text-[var(--foreground)]">
-                {project.goalsAndFeatures.map((feat) => (
+              <ul className="mt-3 list-inside list-disc space-y-2 text-sm leading-relaxed text-[var(--muted)]">
+                {project.features.map((feat) => (
                   <li key={feat}>{feat}</li>
                 ))}
               </ul>
             </section>
           )}
 
-          {project.architectureNotes && (
+          {project.highlights.length > 0 && (
             <section>
-              <h2 className="text-xs font-medium tracking-[0.16em] uppercase text-[var(--muted)]">
-                Technical Implementation
+              <h2 className="text-base font-semibold tracking-tight text-[var(--foreground)]">
+                Highlights
               </h2>
-              <p className="mt-3 text-sm leading-relaxed text-[var(--foreground)]">
-                {project.architectureNotes}
-              </p>
-            </section>
-          )}
-
-          {project.challengesLearned && (
-            <section>
-              <h2 className="text-xs font-medium tracking-[0.16em] uppercase text-[var(--muted)]">
-                Challenges & Lessons Learned
-              </h2>
-              <p className="mt-3 text-sm leading-relaxed text-[var(--foreground)]">
-                {project.challengesLearned}
-              </p>
+              <ul className="mt-3 list-inside list-disc space-y-2 text-sm leading-relaxed text-[var(--muted)]">
+                {project.highlights.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
             </section>
           )}
         </div>
 
-        <aside className="h-fit rounded-lg border border-[var(--border)] bg-[var(--surface)]/40 p-5">
-          <h2 className="text-xs font-medium tracking-[0.16em] uppercase text-[var(--muted)]">
-            Technology Stack
-          </h2>
-          <ul className="mt-3 flex flex-wrap gap-2">
-            {project.technologies.map((tech) => (
-              <li
-                key={tech}
-                className="rounded border border-[var(--border)] bg-[var(--background)] px-2.5 py-1 text-xs text-[var(--foreground)]"
+        <aside className="h-fit space-y-6 rounded-lg border border-[var(--border)] bg-[var(--surface)]/40 p-5">
+          <div>
+            <h2 className="font-mono text-xs font-medium text-[var(--muted)]">
+              Tech Stack
+            </h2>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {project.technologies.map((tech) => (
+                <li
+                  key={tech}
+                  className="rounded border border-[var(--border)] bg-[var(--background)] px-2.5 py-1 font-mono text-xs text-[var(--foreground)]"
+                >
+                  {tech}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {hasLive && (
+            <div className="border-t border-[var(--border)] pt-5">
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center rounded-md bg-[var(--foreground)] px-4 py-2.5 text-sm font-medium text-[var(--background)] transition-opacity hover:opacity-90"
               >
-                {tech}
-              </li>
-            ))}
-          </ul>
+                Visit Landing Page ↗
+              </a>
+            </div>
+          )}
         </aside>
       </div>
 

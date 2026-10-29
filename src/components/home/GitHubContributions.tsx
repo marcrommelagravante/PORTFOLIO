@@ -27,12 +27,12 @@ export async function GitHubContributions() {
     >
       <div className="mb-6 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
         <div>
-          <p className="text-xs font-medium tracking-[0.16em] uppercase text-[var(--muted)]">
+          <p className="font-mono text-xs text-[var(--muted)]">
             Open source & activity
           </p>
           <h2
             id="github-heading"
-            className="mt-2 font-serif text-2xl font-normal text-[var(--foreground)] sm:text-3xl"
+            className="mt-2 text-2xl font-semibold tracking-tight text-[var(--foreground)] sm:text-3xl"
           >
             GitHub Contributions
           </h2>
@@ -42,7 +42,7 @@ export async function GitHubContributions() {
           href={data.profileUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs font-medium tracking-[0.14em] uppercase text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
+          className="font-mono text-xs text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
         >
           @{data.username} ↗
         </a>
@@ -50,7 +50,7 @@ export async function GitHubContributions() {
 
       {data.available && data.weeks ? (
         <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)]/40 p-5 sm:p-6">
-          <div className="mb-4 flex flex-wrap items-center justify-between gap-2 text-xs text-[var(--muted)]">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-[var(--muted)]">
             <span>
               {data.totalContributions ?? 0} contributions in the last year
             </span>
@@ -75,9 +75,9 @@ export async function GitHubContributions() {
             aria-label={`GitHub contribution calendar for ${data.username}`}
             className="overflow-x-auto pb-2"
           >
-            <div className="inline-flex gap-1">
+            <div className="grid w-full min-w-[680px] grid-cols-[repeat(53,minmax(0,1fr))] gap-1.5">
               {data.weeks.map((week, wIdx) => (
-                <div key={wIdx} className="flex flex-col gap-1">
+                <div key={wIdx} className="flex flex-col gap-1.5">
                   {week.map((day) => (
                     <span
                       key={day.date}
@@ -85,7 +85,7 @@ export async function GitHubContributions() {
                         day.count === 1 ? "" : "s"
                       } (${LEVEL_LABELS[day.level]})`}
                       aria-label={`${day.date}: ${day.count} contributions`}
-                      className={`h-2.5 w-2.5 rounded-[2px] border ${
+                      className={`aspect-square w-full rounded-[2px] border ${
                         LEVEL_CLASSES[day.level]
                       }`}
                     />

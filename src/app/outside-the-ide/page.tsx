@@ -13,15 +13,15 @@ export default function OutsideTheIdePage() {
   return (
     <div className="py-14 sm:py-20">
       <header className="border-b border-[var(--border)] pb-10">
-        <p className="text-xs font-medium tracking-[0.16em] uppercase text-[var(--muted)]">
+        <p className="font-mono text-xs text-[var(--muted)]">
           Personal Interests
         </p>
-        <h1 className="mt-3 font-serif text-[clamp(2rem,4vw,3rem)] font-normal text-[var(--foreground)]">
+        <h1 className="mt-3 text-[clamp(2rem,3.5vw,3rem)] font-semibold tracking-tight text-[var(--foreground)]">
           Outside the IDE
         </h1>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--muted)]">
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-[var(--muted)]">
           Activities and interests beyond coding. Edit these cards in{" "}
-          <code className="rounded bg-[var(--surface)] px-1.5 py-0.5 text-xs">
+          <code className="rounded bg-[var(--surface)] px-1.5 py-0.5 font-mono text-xs">
             src/content/interests.ts
           </code>
           .
@@ -35,16 +35,16 @@ export default function OutsideTheIdePage() {
             className="flex flex-col justify-between rounded-lg border border-[var(--border)] bg-[var(--surface)]/40 p-6"
           >
             <div>
-              <div className="mb-4 flex aspect-[16/10] items-center justify-center rounded border border-dashed border-[var(--border)] bg-[var(--surface)]/60 text-[11px] tracking-widest uppercase text-[var(--muted)]">
+              <div className="mb-4 flex aspect-[16/10] items-center justify-center rounded border border-dashed border-[var(--border)] bg-[var(--surface)]/60 font-mono text-xs text-[var(--muted)]">
                 [{interest.title.toUpperCase()} IMAGE PLACEHOLDER]
               </div>
 
               <div className="flex items-center justify-between gap-2">
-                <h2 className="font-serif text-2xl font-normal text-[var(--foreground)]">
+                <h2 className="text-xl font-semibold tracking-tight text-[var(--foreground)]">
                   {interest.title}
                 </h2>
                 {interest.isPlaceholder && (
-                  <span className="rounded border border-[var(--border)] px-2 py-0.5 text-[10px] tracking-wider uppercase text-[var(--muted)]">
+                  <span className="rounded border border-[var(--border)] px-2 py-0.5 font-mono text-[11px] text-[var(--muted)]">
                     Placeholder
                   </span>
                 )}

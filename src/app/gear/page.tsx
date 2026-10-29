@@ -14,16 +14,16 @@ export default function GearPage() {
   return (
     <div className="py-14 sm:py-20">
       <header className="border-b border-[var(--border)] pb-10">
-        <p className="text-xs font-medium tracking-[0.16em] uppercase text-[var(--muted)]">
+        <p className="font-mono text-xs text-[var(--muted)]">
           Hardware & Software
         </p>
-        <h1 className="mt-3 font-serif text-[clamp(2rem,4vw,3rem)] font-normal text-[var(--foreground)]">
+        <h1 className="mt-3 text-[clamp(2rem,3.5vw,3rem)] font-semibold tracking-tight text-[var(--foreground)]">
           Gear
         </h1>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--muted)]">
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-[var(--muted)]">
           Tools, hardware, and environment setup used for software engineering
           and study. Replace the placeholder cards in{" "}
-          <code className="rounded bg-[var(--surface)] px-1.5 py-0.5 text-xs">
+          <code className="rounded bg-[var(--surface)] px-1.5 py-0.5 font-mono text-xs">
             src/content/gear.ts
           </code>{" "}
           with your actual items.
