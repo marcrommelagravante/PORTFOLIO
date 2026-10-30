@@ -8,6 +8,14 @@
   --border: #D0CEC5;
 }
 
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+}
+
 .dark {
   --background: #171715;
   --surface: #22221F;
