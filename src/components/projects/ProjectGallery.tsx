@@ -14,14 +14,14 @@ export function ProjectGallery({
 
   return (
     <section aria-label="Project screenshots" className="mt-10 space-y-6">
-      <h2 className="text-sm font-semibold tracking-tight text-[var(--foreground)]">
+      <h2 className="text-sm font-semibold tracking-tight text-(--foreground)">
         Screenshots & Visuals
       </h2>
       <div className="grid gap-6 sm:grid-cols-2">
         {screenshots.map((src, index) => (
           <div
             key={`${src}-${index}`}
-            className="relative aspect-[16/10] overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)]"
+            className="relative aspect-16/10 overflow-hidden rounded-lg border border-(--border) bg-(--surface)"
           >
             <Image
               src={src}

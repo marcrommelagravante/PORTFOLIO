@@ -13,14 +13,14 @@ export const metadata: Metadata = createPageMetadata({
 export default function ProjectsPage() {
   return (
     <div className="py-14 sm:py-20">
-      <header className="border-b border-[var(--border)] pb-10">
-        <p className="font-mono text-xs text-[var(--muted)]">
+      <header className="border-b border-(--border) pb-10">
+        <p className="font-mono text-xs text-(--muted)">
           Selected Archive
         </p>
-        <h1 className="mt-3 text-[clamp(2rem,3.5vw,3rem)] font-semibold tracking-tight text-[var(--foreground)]">
+        <h1 className="mt-3 text-[clamp(2rem,3.5vw,3rem)] font-semibold tracking-tight text-(--foreground)">
           Projects
         </h1>
-        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-[var(--muted)]">
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-(--muted)">
           A manually curated collection of software builds and case studies.
           Entries marked as template placeholders are for layout verification
           until replaced with final project details.

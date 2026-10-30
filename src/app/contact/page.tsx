@@ -19,14 +19,14 @@ export default function ContactPage() {
 
   return (
     <div className="py-14 sm:py-20">
-      <header className="border-b border-[var(--border)] pb-10">
-        <p className="font-mono text-xs text-[var(--muted)]">
+      <header className="border-b border-(--border) pb-10">
+        <p className="font-mono text-xs text-(--muted)">
           Get in Touch
         </p>
-        <h1 className="mt-3 text-[clamp(2rem,3.5vw,3rem)] font-semibold tracking-tight text-[var(--foreground)]">
+        <h1 className="mt-3 text-[clamp(2rem,3.5vw,3rem)] font-semibold tracking-tight text-(--foreground)">
           Contact
         </h1>
-        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-[var(--muted)]">
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-(--muted)">
           Have a question, project idea, or opportunity to discuss? Send a
           message below or connect via GitHub.
         </p>
@@ -35,9 +35,9 @@ export default function ContactPage() {
       <div className="mt-10 grid gap-12 md:grid-cols-[1.5fr_0.5fr]">
         <ContactForm isConfigured={isConfigured} />
 
-        <aside className="h-fit space-y-6 rounded-lg border border-[var(--border)] bg-[var(--surface)]/40 p-6">
+        <aside className="h-fit space-y-6 rounded-lg border border-(--border) bg-(--surface)/40 p-6">
           <div>
-            <h2 className="font-mono text-xs font-medium text-[var(--muted)]">
+            <h2 className="font-mono text-xs font-medium text-(--muted)">
               Direct Profiles
             </h2>
             <ul className="mt-3 space-y-2.5 text-sm">
@@ -46,7 +46,7 @@ export default function ContactPage() {
                   href={siteConfig.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[var(--foreground)] underline underline-offset-4"
+                  className="text-(--foreground) underline underline-offset-4"
                 >
                   GitHub (@{siteConfig.githubUsername}) ↗
                 </a>
@@ -55,13 +55,13 @@ export default function ContactPage() {
                 <li>
                   <a
                     href={`mailto:${siteConfig.contactEmail}`}
-                    className="text-[var(--foreground)] underline underline-offset-4"
+                    className="text-(--foreground) underline underline-offset-4"
                   >
                     {siteConfig.contactEmail}
                   </a>
                 </li>
               ) : (
-                <li className="text-xs text-[var(--muted)]">
+                <li className="text-xs text-(--muted)">
                   Direct email: <code>[CONTACT EMAIL]</code> (configure in{" "}
                   <code>src/content/site.ts</code>)
                 </li>

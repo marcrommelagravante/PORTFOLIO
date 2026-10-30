@@ -32,7 +32,7 @@ export function CustomCursor() {
       style={{
         transform: `translate3d(${pos.x - 10}px, ${pos.y - 10}px, 0)`,
       }}
-      className="pointer-events-none fixed top-0 left-0 z-50 hidden h-5 w-5 rounded-full border border-[var(--muted)] opacity-50 transition-transform duration-75 ease-out md:block"
+      className="pointer-events-none fixed top-0 left-0 z-50 hidden h-5 w-5 rounded-full border border-(--muted) opacity-50 transition-transform duration-75 ease-out md:block"
     />
   );
 }

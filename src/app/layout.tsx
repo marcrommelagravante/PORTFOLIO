@@ -51,7 +51,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
-      <body className="flex min-h-screen flex-col antialiased selection:bg-[var(--foreground)] selection:text-[var(--background)]">
+      <body className="flex min-h-screen flex-col antialiased selection:bg-(--foreground) selection:text-(--background)">
         <ThemeProvider>
           <CustomCursor />
           <SiteHeader />

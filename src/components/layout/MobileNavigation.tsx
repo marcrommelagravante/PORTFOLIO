@@ -18,7 +18,7 @@ export function MobileNavigation({ items }: { items: NavItem[] }) {
         onClick={() => setOpen((prev) => !prev)}
         aria-expanded={open}
         aria-label={open ? "Close navigation menu" : "Open navigation menu"}
-        className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-[var(--border)] text-[var(--foreground)] transition-colors hover:bg-[var(--surface)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground)]"
+        className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-(--border) text-(--foreground) transition-colors hover:bg-(--surface) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
       >
         {open ? (
           <svg
@@ -48,7 +48,7 @@ export function MobileNavigation({ items }: { items: NavItem[] }) {
       {open && (
         <nav
           aria-label="Mobile navigation"
-          className="absolute top-16 right-0 left-0 z-40 border-b border-[var(--border)] bg-[var(--background)] px-6 py-5"
+          className="absolute top-16 right-0 left-0 z-40 border-b border-(--border) bg-(--background) px-6 py-5"
         >
           <ul className="flex flex-col gap-3">
             {items.map((item) => (
@@ -56,7 +56,7 @@ export function MobileNavigation({ items }: { items: NavItem[] }) {
                 <Link
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="block py-1 text-sm font-medium text-[var(--foreground)] hover:text-[var(--muted)]"
+                  className="block py-1 text-sm font-medium text-(--foreground) hover:text-(--muted)"
                 >
                   {item.label}
                 </Link>

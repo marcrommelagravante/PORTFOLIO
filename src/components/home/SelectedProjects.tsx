@@ -10,16 +10,16 @@ export function SelectedProjects() {
     <section
       id="selected-work"
       aria-labelledby="selected-work-heading"
-      className="border-b border-[var(--border)] py-14 sm:py-16"
+      className="border-b border-(--border) py-14 sm:py-16"
     >
       <div className="mb-8 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
         <div>
-          <p className="font-mono text-xs text-[var(--muted)]">
+          <p className="font-mono text-xs text-(--muted)">
             A few things I&apos;ve been building
           </p>
           <h2
             id="selected-work-heading"
-            className="mt-2 text-2xl font-semibold tracking-tight text-[var(--foreground)] sm:text-3xl"
+            className="mt-2 text-2xl font-semibold tracking-tight text-(--foreground) sm:text-3xl"
           >
             Selected Work
           </h2>
@@ -27,7 +27,7 @@ export function SelectedProjects() {
 
         <Link
           href="/projects"
-          className="text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
+          className="text-sm font-medium text-(--muted) transition-colors hover:text-(--foreground)"
         >
           View all projects →
         </Link>

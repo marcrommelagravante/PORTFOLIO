@@ -65,14 +65,14 @@ export function ContactForm({ isConfigured }: { isConfigured: boolean }) {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="space-y-6 rounded-lg border border-[var(--border)] bg-[var(--surface)]/40 p-6 sm:p-8"
+      className="space-y-6 rounded-lg border border-(--border) bg-(--surface)/40 p-6 sm:p-8"
     >
       {!isConfigured && (
         <div
           role="note"
-          className="rounded border border-dashed border-[var(--border)] bg-[var(--background)] px-4 py-3 text-xs leading-relaxed text-[var(--muted)]"
+          className="rounded border border-dashed border-(--border) bg-(--background) px-4 py-3 text-xs leading-relaxed text-(--muted)"
         >
-          <strong className="font-medium text-[var(--foreground)]">
+          <strong className="font-medium text-(--foreground)">
             [CONTACT DELIVERY PLACEHOLDER]:
           </strong>{" "}
           This form validates inputs accessibly, but will not claim to send
@@ -84,7 +84,7 @@ export function ContactForm({ isConfigured }: { isConfigured: boolean }) {
       <div>
         <label
           htmlFor="contact-name"
-          className="block text-sm font-medium text-[var(--foreground)]"
+          className="block text-sm font-medium text-(--foreground)"
         >
           Name
         </label>
@@ -98,13 +98,13 @@ export function ContactForm({ isConfigured }: { isConfigured: boolean }) {
           aria-invalid={Boolean(errors.name)}
           aria-describedby={errors.name ? "contact-name-error" : undefined}
           placeholder="[YOUR NAME]"
-          className="mt-2 w-full rounded-md border border-[var(--border)] bg-[var(--background)] px-3.5 py-2.5 text-sm text-[var(--foreground)] placeholder:text-[var(--muted)]/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground)]"
+          className="mt-2 w-full rounded-md border border-(--border) bg-(--background) px-3.5 py-2.5 text-sm text-(--foreground) placeholder:text-(--muted)/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
         />
         {errors.name && (
           <p
             id="contact-name-error"
             role="alert"
-            className="mt-1.5 text-xs text-[var(--foreground)]"
+            className="mt-1.5 text-xs text-(--foreground)"
           >
             {errors.name}
           </p>
@@ -114,7 +114,7 @@ export function ContactForm({ isConfigured }: { isConfigured: boolean }) {
       <div>
         <label
           htmlFor="contact-email"
-          className="block text-sm font-medium text-[var(--foreground)]"
+          className="block text-sm font-medium text-(--foreground)"
         >
           Email
         </label>
@@ -128,13 +128,13 @@ export function ContactForm({ isConfigured }: { isConfigured: boolean }) {
           aria-invalid={Boolean(errors.email)}
           aria-describedby={errors.email ? "contact-email-error" : undefined}
           placeholder="[YOUR EMAIL]"
-          className="mt-2 w-full rounded-md border border-[var(--border)] bg-[var(--background)] px-3.5 py-2.5 text-sm text-[var(--foreground)] placeholder:text-[var(--muted)]/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground)]"
+          className="mt-2 w-full rounded-md border border-(--border) bg-(--background) px-3.5 py-2.5 text-sm text-(--foreground) placeholder:text-(--muted)/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
         />
         {errors.email && (
           <p
             id="contact-email-error"
             role="alert"
-            className="mt-1.5 text-xs text-[var(--foreground)]"
+            className="mt-1.5 text-xs text-(--foreground)"
           >
             {errors.email}
           </p>
@@ -144,7 +144,7 @@ export function ContactForm({ isConfigured }: { isConfigured: boolean }) {
       <div>
         <label
           htmlFor="contact-message"
-          className="block text-sm font-medium text-[var(--foreground)]"
+          className="block text-sm font-medium text-(--foreground)"
         >
           Message
         </label>
@@ -159,13 +159,13 @@ export function ContactForm({ isConfigured }: { isConfigured: boolean }) {
             errors.message ? "contact-message-error" : undefined
           }
           placeholder="[YOUR MESSAGE]"
-          className="mt-2 w-full rounded-md border border-[var(--border)] bg-[var(--background)] px-3.5 py-2.5 text-sm text-[var(--foreground)] placeholder:text-[var(--muted)]/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground)]"
+          className="mt-2 w-full rounded-md border border-(--border) bg-(--background) px-3.5 py-2.5 text-sm text-(--foreground) placeholder:text-(--muted)/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
         />
         {errors.message && (
           <p
             id="contact-message-error"
             role="alert"
-            className="mt-1.5 text-xs text-[var(--foreground)]"
+            className="mt-1.5 text-xs text-(--foreground)"
           >
             {errors.message}
           </p>
@@ -175,7 +175,7 @@ export function ContactForm({ isConfigured }: { isConfigured: boolean }) {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="inline-flex items-center justify-center rounded-md bg-[var(--foreground)] px-5 py-2.5 text-sm font-medium text-[var(--background)] transition-opacity hover:opacity-90 disabled:opacity-50"
+        className="inline-flex items-center justify-center rounded-md bg-(--foreground) px-5 py-2.5 text-sm font-medium text-(--background) transition-opacity hover:opacity-90 disabled:opacity-50"
       >
         {status === "submitting" ? "Sending..." : "Send message"}
       </button>
@@ -183,7 +183,7 @@ export function ContactForm({ isConfigured }: { isConfigured: boolean }) {
       {status === "success" && (
         <p
           role="status"
-          className="rounded border border-[var(--border)] bg-[var(--background)] p-3 text-xs text-[var(--foreground)]"
+          className="rounded border border-(--border) bg-(--background) p-3 text-xs text-(--foreground)"
         >
           Thank you — your message was accepted by the delivery service.
         </p>
@@ -192,7 +192,7 @@ export function ContactForm({ isConfigured }: { isConfigured: boolean }) {
       {status === "error" && serverFeedback && (
         <p
           role="alert"
-          className="rounded border border-[var(--border)] bg-[var(--background)] p-3 text-xs text-[var(--muted)]"
+          className="rounded border border-(--border) bg-(--background) p-3 text-xs text-(--muted)"
         >
           {serverFeedback}
         </p>

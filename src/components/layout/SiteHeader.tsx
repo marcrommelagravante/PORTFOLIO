@@ -15,12 +15,12 @@ const NAV_ITEMS: NavItem[] = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-[var(--background)]/95 backdrop-blur-xs">
+    <header className="sticky top-0 z-30 border-b border-(--border) bg-(--background)/95 backdrop-blur-xs">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 sm:px-8">
         <Link
           href="/"
           aria-label={`${siteConfig.fullName} home`}
-          className="text-sm font-semibold tracking-tight text-[var(--foreground)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--foreground)]"
+          className="text-sm font-semibold tracking-tight text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"
         >
           <PageLoader initials={siteConfig.initials} />
         </Link>
@@ -31,7 +31,7 @@ export function SiteHeader() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--foreground)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--foreground)]"
+                  className="text-sm font-medium text-(--muted) transition-colors hover:text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"
                 >
                   {item.label}
                 </Link>

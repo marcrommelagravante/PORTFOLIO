@@ -15,11 +15,11 @@ export default function AboutPage() {
 
   return (
     <div className="py-14 sm:py-20">
-      <header className="border-b border-[var(--border)] pb-10">
-        <p className="font-mono text-xs text-[var(--muted)]">
+      <header className="border-b border-(--border) pb-10">
+        <p className="font-mono text-xs text-(--muted)">
           Professional Biography
         </p>
-        <h1 className="mt-3 text-[clamp(2rem,3.5vw,3rem)] font-semibold tracking-tight text-[var(--foreground)]">
+        <h1 className="mt-3 text-[clamp(2rem,3.5vw,3rem)] font-semibold tracking-tight text-(--foreground)">
           About
         </h1>
       </header>
@@ -32,7 +32,7 @@ export default function AboutPage() {
           {siteConfig.about.professionalBio.map((paragraph, idx) => (
             <p
               key={idx}
-              className="text-base leading-relaxed text-[var(--foreground)]/90"
+              className="text-base leading-relaxed text-(--foreground)/90"
             >
               {paragraph}
             </p>
@@ -44,7 +44,7 @@ export default function AboutPage() {
                 href={siteConfig.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-md bg-[var(--foreground)] px-5 py-2.5 text-sm font-medium text-[var(--background)] transition-opacity hover:opacity-90"
+                className="inline-flex items-center justify-center rounded-md bg-(--foreground) px-5 py-2.5 text-sm font-medium text-(--background) transition-opacity hover:opacity-90"
               >
                 Download résumé
               </a>
@@ -52,21 +52,21 @@ export default function AboutPage() {
           )}
         </section>
 
-        <aside className="space-y-8 rounded-lg border border-[var(--border)] bg-[var(--surface)]/40 p-6">
+        <aside className="space-y-8 rounded-lg border border-(--border) bg-(--surface)/40 p-6">
           <div>
-            <h2 className="font-mono text-xs font-medium text-[var(--muted)]">
+            <h2 className="font-mono text-xs font-medium text-(--muted)">
               Current Study / Role
             </h2>
-            <p className="mt-2 text-sm leading-relaxed text-[var(--foreground)]">
+            <p className="mt-2 text-sm leading-relaxed text-(--foreground)">
               {siteConfig.about.currentStudyOrRole}
             </p>
           </div>
 
-          <div className="border-t border-[var(--border)] pt-6">
-            <h2 className="font-mono text-xs font-medium text-[var(--muted)]">
+          <div className="border-t border-(--border) pt-6">
+            <h2 className="font-mono text-xs font-medium text-(--muted)">
               Focus Areas
             </h2>
-            <ul className="mt-3 space-y-2 text-sm text-[var(--foreground)]">
+            <ul className="mt-3 space-y-2 text-sm text-(--foreground)">
               {siteConfig.about.developmentInterests.map((interest) => (
                 <li key={interest}>{interest}</li>
               ))}
@@ -77,28 +77,28 @@ export default function AboutPage() {
 
       <section
         aria-labelledby="about-stack-heading"
-        className="mt-16 border-t border-[var(--border)] pt-12"
+        className="mt-16 border-t border-(--border) pt-12"
       >
         <h2
           id="about-stack-heading"
-          className="text-2xl font-semibold tracking-tight text-[var(--foreground)]"
+          className="text-2xl font-semibold tracking-tight text-(--foreground)"
         >
           Stack
         </h2>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-6 flex flex-col gap-3.5">
           {skillCategories.map((group) => (
             <div
               key={group.id}
-              className="rounded-lg border border-[var(--border)] bg-[var(--surface)]/30 p-5"
+              className="flex flex-col gap-2.5 rounded-lg border border-(--border) bg-(--surface)/40 p-3.5 sm:flex-row sm:items-center sm:gap-5 sm:p-4"
             >
-              <h3 className="font-mono text-xs font-medium text-[var(--muted)]">
+              <h3 className="shrink-0 font-mono text-xs font-medium text-(--muted) sm:w-36">
                 {group.label}
               </h3>
-              <ul className="mt-3 flex flex-wrap gap-2">
+              <ul className="flex flex-wrap gap-2">
                 {group.items.map((item) => (
                   <li
                     key={item}
-                    className="rounded border border-[var(--border)] bg-[var(--background)] px-2.5 py-1 font-mono text-xs text-[var(--foreground)]"
+                    className="rounded border border-(--border) bg-(--background) px-2.5 py-1 font-mono text-xs text-(--foreground)"
                   >
                     {item}
                   </li>
