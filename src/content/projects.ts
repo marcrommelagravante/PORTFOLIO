@@ -36,7 +36,7 @@ export const portfolioProjects: PortfolioProject[] = [
       "Built a custom token-aware context window manager for reliable prompts",
       "Achieved 99+ Lighthouse performance and accessibility scores",
     ],
-    coverImage: "/images/projects/project-placeholder.svg",
+    coverImage: "/images/projects/project-placeholder-1.svg",
     screenshots: [
       "/images/projects/project-placeholder.svg",
       "/images/projects/project-placeholder.svg",
@@ -64,7 +64,7 @@ export const portfolioProjects: PortfolioProject[] = [
       "Reduced dashboard query times through indexed views and edge caching",
       "Deployed zero-downtime CI/CD pipeline on Vercel",
     ],
-    coverImage: "/images/projects/project-placeholder.svg",
+    coverImage: "/images/projects/project-placeholder-2.svg",
     screenshots: [
       "/images/projects/project-placeholder.svg",
       "/images/projects/project-placeholder.svg",
@@ -92,7 +92,7 @@ export const portfolioProjects: PortfolioProject[] = [
       "Optimized list virtualization for smooth 60fps scrolling on mobile devices",
       "Integrated Firebase Auth and cloud storage for seamless media uploads",
     ],
-    coverImage: "/images/projects/project-placeholder.svg",
+    coverImage: "/images/projects/project-placeholder-3.svg",
     screenshots: [
       "/images/projects/project-placeholder.svg",
       "/images/projects/project-placeholder.svg",
@@ -120,7 +120,7 @@ export const portfolioProjects: PortfolioProject[] = [
       "Created a clean, minimal UI focused on speed and keyboard navigation",
       "Open-sourced with comprehensive documentation and test coverage",
     ],
-    coverImage: "/images/projects/project-placeholder.svg",
+    coverImage: "/images/projects/project-placeholder-4.svg",
     screenshots: [
       "/images/projects/project-placeholder.svg",
       "/images/projects/project-placeholder.svg",

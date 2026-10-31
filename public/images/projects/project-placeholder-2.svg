@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" fill="none">
+  <rect width="1200" height="750" fill="#2A2925"/>
+  <!-- Browser Window Frame (Dark Warm Editorial) -->
+  <rect x="48" y="44" width="1104" height="662" rx="14" fill="#1F1F1C" stroke="#3D3C36" stroke-width="2"/>
+  <path d="M48 58C48 50.268 54.268 44 62 44H1138C1145.73 44 1152 50.268 1152 58V94H48V58Z" fill="#282824"/>
+  <line x1="48" y1="94" x2="1152" y2="94" stroke="#3D3C36" stroke-width="1.5"/>
+  <circle cx="78" cy="69" r="6" fill="#57554D"/>
+  <circle cx="98" cy="69" r="6" fill="#57554D"/>
+  <circle cx="118" cy="69" r="6" fill="#57554D"/>
+  <rect x="440" y="57" width="320" height="24" rx="6" fill="#1F1F1C"/>
+  <!-- Top Metric Cards -->
+  <rect x="96" y="132" width="316" height="116" rx="8" fill="#282824" stroke="#3D3C36"/>
+  <rect x="122" y="158" width="90" height="10" rx="3" fill="#6F6D66"/>
+  <rect x="122" y="184" width="150" height="28" rx="4" fill="#EFECE4"/>
+  <rect x="442" y="132" width="316" height="116" rx="8" fill="#282824" stroke="#3D3C36"/>
+  <rect x="468" y="158" width="90" height="10" rx="3" fill="#6F6D66"/>
+  <rect x="468" y="184" width="130" height="28" rx="4" fill="#EFECE4"/>
+  <rect x="788" y="132" width="316" height="116" rx="8" fill="#282824" stroke="#3D3C36"/>
+  <rect x="814" y="158" width="90" height="10" rx="3" fill="#6F6D66"/>
+  <rect x="814" y="184" width="160" height="28" rx="4" fill="#EFECE4"/>
+  <!-- Main Analytics Panel -->
+  <rect x="96" y="276" width="1008" height="382" rx="10" fill="#252521" stroke="#4A4840" stroke-width="1.5" stroke-dasharray="6 6"/>
+  <text x="600" y="452" text-anchor="middle" fill="#EFECE4" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="600" letter-spacing="4">PROJECT 02</text>
+  <text x="600" y="488" text-anchor="middle" fill="#A09D94" font-family="system-ui, -apple-system, sans-serif" font-size="14" letter-spacing="2">FULL-STACK SAAS — COVER PLACEHOLDER</text>
+</svg>
+

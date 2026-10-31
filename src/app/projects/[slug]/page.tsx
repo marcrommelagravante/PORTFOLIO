@@ -82,13 +82,13 @@ export default async function ProjectDetailPage({
       </header>
 
       {project.coverImage && (
-        <div className="relative mt-8 aspect-16/10 max-w-xl overflow-hidden rounded-lg border border-(--border) bg-(--surface)">
+        <div className="relative mt-8 aspect-16/10 w-full overflow-hidden rounded-lg border border-(--border) bg-(--surface)">
           <Image
             src={project.coverImage}
             alt={`Cover image for ${project.title}`}
             fill
             priority
-            sizes="(max-width: 640px) 100vw, 576px"
+            sizes="(max-width: 1200px) 100vw, 1152px"
             className="object-cover"
           />
         </div>

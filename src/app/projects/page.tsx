@@ -1,7 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import { portfolioProjects } from "@/content/projects";
-import { ProjectCard } from "@/components/projects/ProjectCard";
+import { ProjectCoverflow } from "@/components/projects/ProjectCoverflow";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
@@ -11,6 +11,15 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default function ProjectsPage() {
+  const coverflowProjects = portfolioProjects.map(
+    ({ slug, title, summary, coverImage }) => ({
+      slug,
+      title,
+      summary,
+      coverImage,
+    })
+  );
+
   return (
     <div className="py-14 sm:py-20">
       <header className="border-b border-(--border) pb-10">
@@ -27,11 +36,7 @@ export default function ProjectsPage() {
         </p>
       </header>
 
-      <div className="mt-8 flex flex-col gap-3.5">
-        {portfolioProjects.map((project) => (
-          <ProjectCard key={project.slug} project={project} />
-        ))}
-      </div>
+      <ProjectCoverflow projects={coverflowProjects} />
     </div>
   );
 }

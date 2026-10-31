@@ -1,10 +1,17 @@
 import React from "react";
 import Link from "next/link";
 import { portfolioProjects } from "@/content/projects";
-import { ProjectCard } from "@/components/projects/ProjectCard";
+import { ProjectCoverflow } from "@/components/projects/ProjectCoverflow";
 
 export function SelectedProjects() {
-  const featured = portfolioProjects.filter((p) => p.featured);
+  const featured = portfolioProjects
+    .filter((p) => p.featured)
+    .map(({ slug, title, summary, coverImage }) => ({
+      slug,
+      title,
+      summary,
+      coverImage,
+    }));
 
   return (
     <section
@@ -33,11 +40,7 @@ export function SelectedProjects() {
         </Link>
       </div>
 
-      <div className="flex flex-col gap-3.5">
-        {featured.map((project) => (
-          <ProjectCard key={project.slug} project={project} />
-        ))}
-      </div>
+      <ProjectCoverflow projects={featured} />
     </section>
   );
 }

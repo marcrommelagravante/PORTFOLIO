@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" fill="none">
+  <rect width="1200" height="750" fill="#DDD9CE"/>
+  <!-- Browser Window Frame -->
+  <rect x="48" y="44" width="1104" height="662" rx="14" fill="#F3F1EA" stroke="#C4C0B3" stroke-width="2"/>
+  <path d="M48 58C48 50.268 54.268 44 62 44H1138C1145.73 44 1152 50.268 1152 58V94H48V58Z" fill="#E5E2D9"/>
+  <line x1="48" y1="94" x2="1152" y2="94" stroke="#C4C0B3" stroke-width="1.5"/>
+  <circle cx="78" cy="69" r="6" fill="#B5B1A4"/>
+  <circle cx="98" cy="69" r="6" fill="#B5B1A4"/>
+  <circle cx="118" cy="69" r="6" fill="#B5B1A4"/>
+  <rect x="440" y="57" width="320" height="24" rx="6" fill="#DDD9CE"/>
+  <!-- Sidebar + AI Workspace Layout -->
+  <rect x="49" y="95" width="240" height="610" fill="#EAE7DF"/>
+  <line x1="289" y1="95" x2="289" y2="705" stroke="#D0CEC5" stroke-width="1.5"/>
+  <rect x="76" y="128" width="140" height="14" rx="4" fill="#B5B1A4"/>
+  <rect x="76" y="164" width="184" height="32" rx="6" fill="#DDD9CE"/>
+  <rect x="76" y="208" width="184" height="32" rx="6" fill="#F3F1EA" stroke="#D0CEC5"/>
+  <rect x="76" y="252" width="184" height="32" rx="6" fill="#DDD9CE"/>
+  <!-- Main Canvas -->
+  <rect x="348" y="146" width="740" height="360" rx="10" fill="#E5E2D9" stroke="#D0CEC5" stroke-width="1.5" stroke-dasharray="6 6"/>
+  <text x="718" y="308" text-anchor="middle" fill="#33332F" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="600" letter-spacing="4">PROJECT 01</text>
+  <text x="718" y="344" text-anchor="middle" fill="#6F6D66" font-family="system-ui, -apple-system, sans-serif" font-size="14" letter-spacing="2">AI WORKSPACE — COVER PLACEHOLDER</text>
+  <!-- Prompt Input Mock -->
+  <rect x="348" y="546" width="740" height="104" rx="10" fill="#EAE7DF" stroke="#C4C0B3" stroke-width="1.5"/>
+  <rect x="376" y="574" width="320" height="12" rx="4" fill="#B5B1A4"/>
+  <rect x="980" y="602" width="84" height="28" rx="6" fill="#33332F"/>
+</svg>
+

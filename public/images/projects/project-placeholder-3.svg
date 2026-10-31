@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" fill="none">
+  <rect width="1200" height="750" fill="#D5D2C6"/>
+  <!-- Browser / Showcase Frame -->
+  <rect x="48" y="44" width="1104" height="662" rx="14" fill="#ECE9E0" stroke="#BEB9AA" stroke-width="2"/>
+  <path d="M48 58C48 50.268 54.268 44 62 44H1138C1145.73 44 1152 50.268 1152 58V94H48V58Z" fill="#DFDCD0"/>
+  <line x1="48" y1="94" x2="1152" y2="94" stroke="#BEB9AA" stroke-width="1.5"/>
+  <circle cx="78" cy="69" r="6" fill="#A8A395"/>
+  <circle cx="98" cy="69" r="6" fill="#A8A395"/>
+  <circle cx="118" cy="69" r="6" fill="#A8A395"/>
+  <!-- Left Copy + Right Mobile Device Mockup -->
+  <rect x="112" y="160" width="460" height="476" rx="10" fill="#E2DFD4" stroke="#C4C0B3" stroke-width="1.5" stroke-dasharray="6 6"/>
+  <text x="342" y="384" text-anchor="middle" fill="#33332F" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="600" letter-spacing="4">PROJECT 03</text>
+  <text x="342" y="420" text-anchor="middle" fill="#6F6D66" font-family="system-ui, -apple-system, sans-serif" font-size="13" letter-spacing="2">MOBILE COMPANION APP</text>
+  <!-- Mobile Frame 1 -->
+  <rect x="644" y="138" width="210" height="500" rx="28" fill="#F3F1EA" stroke="#33332F" stroke-width="3"/>
+  <rect x="714" y="154" width="70" height="10" rx="5" fill="#C4C0B3"/>
+  <rect x="668" y="190" width="162" height="96" rx="8" fill="#DFDCD0"/>
+  <rect x="668" y="302" width="162" height="56" rx="8" fill="#E5E2D9"/>
+  <rect x="668" y="372" width="162" height="56" rx="8" fill="#E5E2D9"/>
+  <rect x="668" y="442" width="162" height="56" rx="8" fill="#E5E2D9"/>
+  <!-- Mobile Frame 2 -->
+  <rect x="884" y="178" width="200" height="460" rx="26" fill="#282824" stroke="#3D3C36" stroke-width="2"/>
+  <rect x="952" y="194" width="64" height="8" rx="4" fill="#57554D"/>
+  <rect x="908" y="226" width="152" height="120" rx="8" fill="#32312C"/>
+  <rect x="908" y="362" width="152" height="72" rx="8" fill="#32312C"/>
+  <rect x="908" y="450" width="152" height="72" rx="8" fill="#32312C"/>
+</svg>
+
