@@ -1,9 +1,9 @@
 import React from "react";
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { portfolioProjects } from "@/content/projects";
+import { ProjectGallery } from "@/components/projects/ProjectGallery";
 import { createPageMetadata } from "@/lib/metadata";
 import { isValidExternalUrl } from "@/lib/validation";
 
@@ -45,6 +45,13 @@ export default async function ProjectDetailPage({
   }
 
   const hasLive = isValidExternalUrl(project.liveUrl);
+  const galleryImages = Array.from(
+    new Set(
+      [project.coverImage, ...(project.screenshots ?? [])].filter(
+        (src): src is string => Boolean(src)
+      )
+    )
+  );
 
   return (
     <article className="py-14 sm:py-20">
@@ -81,18 +88,7 @@ export default async function ProjectDetailPage({
         </div>
       </header>
 
-      {project.coverImage && (
-        <div className="relative mt-8 aspect-16/10 w-full overflow-hidden rounded-lg border border-(--border) bg-(--surface)">
-          <Image
-            src={project.coverImage}
-            alt={`Cover image for ${project.title}`}
-            fill
-            priority
-            sizes="(max-width: 1200px) 100vw, 1152px"
-            className="object-cover"
-          />
-        </div>
-      )}
+      <ProjectGallery images={galleryImages} title={project.title} />
 
       <div className="mt-10 max-w-2xl space-y-8">
         <section>
