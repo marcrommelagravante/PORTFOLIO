@@ -23,7 +23,7 @@ export function GearSection({
           id="gear-heading"
           className="text-2xl font-semibold tracking-tight text-(--foreground) sm:text-3xl"
         >
-          Gear
+          The Toolkit
         </HeadingTag>
       </header>
 

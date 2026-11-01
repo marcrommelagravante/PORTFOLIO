@@ -31,7 +31,7 @@ export const siteConfig: SiteConfig = {
   isTemplateMode: true,
   fullName: "[FULL NAME]",
   firstName: "[FIRST NAME]",
-  initials: "[INITIALS]",
+  initials: "MRA.",
   roleEyebrow: "[STUDY/ROLE] · [PROFESSIONAL FOCUS]",
   heroHeadline: "Hi, I'm [FIRST NAME]. I build useful things for the web.",
   shortIntroduction:

@@ -36,6 +36,14 @@ section[id] {
   section[id] {
     scroll-margin-top: 1.5rem;
   }
+
+  .sidebar-content-offset {
+    transition: padding-left 200ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html[data-sidebar-collapsed="true"] .sidebar-content-offset {
+    padding-left: 6rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

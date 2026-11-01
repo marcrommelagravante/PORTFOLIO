@@ -5,7 +5,7 @@ import { AboutSection } from "@/components/sections/AboutSection";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "About",
+  title: "About Me",
   description: `Professional biography and focus areas of ${siteConfig.fullName}.`,
   path: "/about",
 });

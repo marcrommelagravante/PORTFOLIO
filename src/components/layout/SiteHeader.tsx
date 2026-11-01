@@ -2,17 +2,8 @@ import React from "react";
 import Link from "next/link";
 import { siteConfig } from "@/content/site";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
-import { MobileNavigation, type NavItem } from "./MobileNavigation";
+import { MobileNavigation } from "./MobileNavigation";
 import { PageLoader } from "@/components/motion/PageLoader";
-
-const NAV_ITEMS: NavItem[] = [
-  { label: "Home", href: "/#home" },
-  { label: "About", href: "/#about" },
-  { label: "Projects", href: "/#projects" },
-  { label: "Gear", href: "/gear" },
-  { label: "Outside the IDE", href: "/outside-the-ide" },
-  { label: "Contact", href: "/#contact" },
-];
 
 export function SiteHeader() {
   return (
@@ -21,14 +12,14 @@ export function SiteHeader() {
         <Link
           href="/#home"
           aria-label={`${siteConfig.fullName} home`}
-          className="text-sm font-semibold tracking-tight text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"
+          className="text-base font-bold tracking-tight text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"
         >
           <PageLoader initials={siteConfig.initials} />
         </Link>
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <MobileNavigation items={NAV_ITEMS} />
+          <MobileNavigation />
         </div>
       </div>
     </header>

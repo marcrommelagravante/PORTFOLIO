@@ -4,7 +4,7 @@ import { InterestsSection } from "@/components/sections/InterestsSection";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Outside the IDE",
+  title: "Beyond the IDE",
   description: "Personal interests and activities outside software engineering.",
   path: "/outside-the-ide",
 });

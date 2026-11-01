@@ -4,7 +4,7 @@ import { GearSection } from "@/components/sections/GearSection";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Gear",
+  title: "The Toolkit",
   description: "Hardware, peripherals, and software tools used daily.",
   path: "/gear",
 });

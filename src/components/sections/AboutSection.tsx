@@ -26,7 +26,7 @@ export function AboutSection({
           id="about-heading"
           className="text-2xl font-semibold tracking-tight text-(--foreground) sm:text-3xl"
         >
-          About
+          About Me
         </HeadingTag>
       </header>
 

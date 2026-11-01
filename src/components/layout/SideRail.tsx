@@ -7,7 +7,7 @@ import { siteConfig } from "@/content/site";
 import { useTheme } from "@/components/theme/ThemeProvider";
 import { PageLoader } from "@/components/motion/PageLoader";
 
-type RailItemId =
+export type RailItemId =
   | "home"
   | "about"
   | "projects"
@@ -15,12 +15,20 @@ type RailItemId =
   | "outside-the-ide"
   | "contact";
 
-type RailItem = {
+export type RailItem = {
   id: RailItemId;
   label: string;
   href: string;
   icon: React.ReactNode;
 };
+
+export type RailGroup = {
+  id: string;
+  title: string;
+  items: RailItem[];
+};
+
+const SIDEBAR_STORAGE_KEY = "portfolio-sidebar-collapsed";
 
 const SECTION_IDS = [
   "home",
@@ -45,7 +53,7 @@ function HomeIcon() {
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="h-5 w-5 shrink-0"
+      className="h-4.5 w-4.5 shrink-0"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.75"
@@ -63,7 +71,7 @@ function UserIcon() {
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="h-5 w-5 shrink-0"
+      className="h-4.5 w-4.5 shrink-0"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.75"
@@ -81,7 +89,7 @@ function FolderIcon() {
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="h-5 w-5 shrink-0"
+      className="h-4.5 w-4.5 shrink-0"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.75"
@@ -93,42 +101,42 @@ function FolderIcon() {
   );
 }
 
-function CubeIcon() {
+function MonitorIcon() {
   return (
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="h-5 w-5 shrink-0"
+      className="h-4.5 w-4.5 shrink-0"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.75"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-      <path d="M3.27 6.96 12 12.01l8.73-5.05" />
-      <path d="M12 22.08V12" />
+      <rect x="2" y="3" width="20" height="14" rx="2" />
+      <line x1="8" y1="21" x2="16" y2="21" />
+      <line x1="12" y1="17" x2="12" y2="21" />
     </svg>
   );
 }
 
-function GamepadIcon() {
+function CoffeeIcon() {
   return (
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="h-5 w-5 shrink-0"
+      className="h-4.5 w-4.5 shrink-0"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.75"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <line x1="6" y1="12" x2="10" y2="12" />
-      <line x1="8" y1="10" x2="8" y2="14" />
-      <line x1="15" y1="13" x2="15.01" y2="13" />
-      <line x1="18" y1="11" x2="18.01" y2="11" />
-      <rect x="2" y="6" width="20" height="12" rx="4" />
+      <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+      <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z" />
+      <line x1="6" y1="2" x2="6" y2="4" />
+      <line x1="10" y1="2" x2="10" y2="4" />
+      <line x1="14" y1="2" x2="14" y2="4" />
     </svg>
   );
 }
@@ -138,7 +146,7 @@ function MailIcon() {
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="h-5 w-5 shrink-0"
+      className="h-4.5 w-4.5 shrink-0"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.75"
@@ -151,24 +159,81 @@ function MailIcon() {
   );
 }
 
-export const RAIL_ITEMS: RailItem[] = [
-  { id: "home", label: "Home", href: "/#home", icon: <HomeIcon /> },
-  { id: "about", label: "About", href: "/#about", icon: <UserIcon /> },
+function SidebarToggleIcon({ collapsed }: { collapsed: boolean }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-4.5 w-4.5 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <path d="M9 3v18" />
+      {collapsed ? (
+        <path d="m13 9 3 3-3 3" />
+      ) : (
+        <path d="m16 9-3 3 3 3" />
+      )}
+    </svg>
+  );
+}
+
+export const RAIL_GROUPS: RailGroup[] = [
   {
-    id: "projects",
-    label: "Projects",
-    href: "/#projects",
-    icon: <FolderIcon />,
+    id: "general",
+    title: "General",
+    items: [
+      { id: "home", label: "Home", href: "/#home", icon: <HomeIcon /> },
+      { id: "about", label: "About Me", href: "/#about", icon: <UserIcon /> },
+    ],
   },
-  { id: "gear", label: "Gear", href: "/gear", icon: <CubeIcon /> },
   {
-    id: "outside-the-ide",
-    label: "Outside the IDE",
-    href: "/outside-the-ide",
-    icon: <GamepadIcon />,
+    id: "portfolio",
+    title: "Portfolio",
+    items: [
+      {
+        id: "projects",
+        label: "Projects",
+        href: "/#projects",
+        icon: <FolderIcon />,
+      },
+    ],
   },
-  { id: "contact", label: "Contact", href: "/#contact", icon: <MailIcon /> },
+  {
+    id: "workspace",
+    title: "My Workspace",
+    items: [
+      { id: "gear", label: "The Toolkit", href: "/gear", icon: <MonitorIcon /> },
+    ],
+  },
+  {
+    id: "beyond",
+    title: "Beyond Development",
+    items: [
+      {
+        id: "outside-the-ide",
+        label: "Beyond the IDE",
+        href: "/outside-the-ide",
+        icon: <CoffeeIcon />,
+      },
+    ],
+  },
+  {
+    id: "connect",
+    title: "Let's Connect",
+    items: [
+      { id: "contact", label: "Contact", href: "/#contact", icon: <MailIcon /> },
+    ],
+  },
 ];
+
+export const RAIL_ITEMS: RailItem[] = RAIL_GROUPS.flatMap(
+  (group) => group.items
+);
 
 function getPathnameRailId(pathname: string): RailItemId {
   if (pathname.startsWith("/about")) return "about";
@@ -183,6 +248,35 @@ export function SideRail() {
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
   const [activeId, setActiveId] = useState<RailItemId>("home");
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(SIDEBAR_STORAGE_KEY);
+      const collapsed = stored === "true";
+      setIsCollapsed(collapsed);
+      document.documentElement.dataset.sidebarCollapsed = collapsed
+        ? "true"
+        : "false";
+    } catch {
+      // Ignore storage errors in restricted environments
+    }
+  }, []);
+
+  const toggleSidebar = () => {
+    setIsCollapsed((prev) => {
+      const next = !prev;
+      try {
+        localStorage.setItem(SIDEBAR_STORAGE_KEY, String(next));
+      } catch {
+        // Ignore storage errors
+      }
+      document.documentElement.dataset.sidebarCollapsed = next
+        ? "true"
+        : "false";
+      return next;
+    });
+  };
 
   useEffect(() => {
     if (pathname !== "/") {
@@ -236,94 +330,181 @@ export function SideRail() {
     };
   }, [pathname]);
 
+  const themeLabel =
+    theme === "dark" ? "Switch to light theme" : "Switch to dark theme";
+
   return (
     <aside
       aria-label="Editorial side navigation"
-      className="fixed top-6 bottom-6 left-6 z-40 my-auto hidden max-h-195 w-56 flex-col justify-between rounded-3xl border border-(--border) bg-(--surface)/55 py-8 backdrop-blur-xs lg:flex"
+      className={`fixed top-6 bottom-6 left-6 z-40 my-auto hidden max-h-195 flex-col justify-between rounded-3xl border border-(--border) bg-(--surface)/55 py-5 backdrop-blur-xs transition-[width] duration-200 ease-out lg:flex ${
+        isCollapsed ? "w-16" : "w-56"
+      }`}
     >
-      <div className="border-b border-(--border)/80 px-6 pb-7 text-center">
-        <Link
-          href="/#home"
-          onClick={() => setActiveId("home")}
-          aria-label={`${siteConfig.fullName} home`}
-          className="inline-block text-xl font-semibold tracking-tight text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"
+      {/* Header */}
+      <div
+        className={` flex items-center border-b border-(--border)/80 pb-4 ${
+          isCollapsed ? "justify-center px-2" : "justify-between px-5"
+        }`}
+      >
+        {!isCollapsed && (
+          <Link
+            href="/#home"
+            onClick={() => setActiveId("home")}
+            aria-label={`${siteConfig.fullName} home`}
+            className="inline-block text-lg font-bold tracking-tight text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"
+          >
+            <PageLoader initials={siteConfig.initials} />
+          </Link>
+        )}
+
+        <button
+          type="button"
+          onClick={toggleSidebar}
+          aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+          aria-expanded={!isCollapsed}
+          className="group relative inline-flex h-8 w-8 items-center justify-center rounded-lg text-(--muted) transition-colors hover:bg-(--foreground)/8 hover:text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
         >
-          <PageLoader initials={siteConfig.initials} />
-        </Link>
+          <SidebarToggleIcon collapsed={isCollapsed} />
+          {isCollapsed && (
+            <span
+              role="tooltip"
+              className="pointer-events-none absolute top-1/2 left-full z-50 ml-3 -translate-y-1/2 whitespace-nowrap rounded-lg border border-(--border) bg-(--surface) px-2.5 py-1 text-xs font-medium text-(--foreground) opacity-0 shadow-sm transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+            >
+              Expand sidebar
+            </span>
+          )}
+        </button>
       </div>
 
-      <nav aria-label="Main navigation" className="my-auto py-4">
-        <ul className="flex flex-col gap-2.5">
-          {RAIL_ITEMS.map((item) => {
-            const isActive = activeId === item.id;
-            return (
-              <li key={item.id} className="relative">
-                {isActive && (
-                  <span
-                    aria-hidden="true"
-                    className="absolute top-2 bottom-2 left-0 w-1 rounded-r-full bg-(--foreground)"
-                  />
-                )}
-                <Link
-                  href={item.href}
-                  aria-current={isActive ? "true" : undefined}
-                  onClick={() => setActiveId(item.id)}
-                  className={`flex items-center gap-3.5 px-6 py-3 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--foreground) ${
-                    isActive
-                      ? "font-semibold text-(--foreground)"
-                      : "font-normal text-(--muted) hover:text-(--foreground)"
-                  }`}
-                >
-                  {item.icon}
-                  <span className="truncate">{item.label}</span>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+      {/* Grouped Navigation */}
+      <nav
+        aria-label="Main navigation"
+        className="my-auto flex flex-col py-2"
+      >
+        {RAIL_GROUPS.map((group, groupIndex) => (
+          <div
+            key={group.id}
+            className={
+              groupIndex > 0
+                ? `border-t border-(--border)/60 ${
+                    isCollapsed ? "mt-2 pt-2" : "mt-2.5 pt-2.5"
+                  }`
+                : ""
+            }
+          >
+            <p
+              className={
+                isCollapsed
+                  ? "sr-only"
+                  : "mb-1 px-5 font-mono text-[10px] font-semibold tracking-wider text-(--muted) uppercase"
+              }
+            >
+              {group.title}
+            </p>
+            <ul className="flex flex-col gap-0.5">
+              {group.items.map((item) => {
+                const isActive = activeId === item.id;
+                return (
+                  <li key={item.id} className="relative px-2.5">
+                    {isActive && (
+                      <span
+                        aria-hidden="true"
+                        className="absolute top-1.5 bottom-1.5 left-0 w-1 rounded-r-full bg-(--foreground)"
+                      />
+                    )}
+                    <Link
+                      href={item.href}
+                      aria-current={isActive ? "true" : undefined}
+                      aria-label={isCollapsed ? item.label : undefined}
+                      onClick={() => setActiveId(item.id)}
+                      className={`group relative flex items-center rounded-xl text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--foreground) ${
+                        isCollapsed
+                          ? "justify-center p-2.5"
+                          : "gap-3 px-3 py-2"
+                      } ${
+                        isActive
+                          ? "bg-(--foreground)/8 font-semibold text-(--foreground)"
+                          : "font-normal text-(--muted) hover:bg-(--foreground)/5 hover:text-(--foreground)"
+                      }`}
+                    >
+                      {item.icon}
+                      {!isCollapsed && (
+                        <span className="truncate">{item.label}</span>
+                      )}
+                      {isCollapsed && (
+                        <span
+                          role="tooltip"
+                          className="pointer-events-none absolute top-1/2 left-full z-50 ml-3 -translate-y-1/2 whitespace-nowrap rounded-lg border border-(--border) bg-(--surface) px-2.5 py-1 text-xs font-medium text-(--foreground) opacity-0 shadow-sm transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+                        >
+                          {item.label}
+                        </span>
+                      )}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))}
       </nav>
 
-      <div className="border-t border-(--border)/80 px-6 pt-6">
+      {/* Footer Theme Toggle */}
+      <div
+        className={`border-t border-(--border)/80 pt-4 ${
+          isCollapsed ? "px-2" : "px-5"
+        }`}
+      >
         <button
           type="button"
           onClick={toggleTheme}
-          aria-label={
-            theme === "dark" ? "Switch to light theme" : "Switch to dark theme"
-          }
-          className="mx-auto flex items-center justify-center gap-4 rounded-xl px-4 py-2.5 text-(--muted) transition-colors hover:bg-(--background)/50 hover:text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
+          aria-label={themeLabel}
+          className={`group relative mx-auto flex items-center justify-center rounded-xl text-(--muted) transition-colors hover:bg-(--foreground)/8 hover:text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) ${
+            isCollapsed ? "p-2.5" : "gap-4 px-4 py-2"
+          }`}
         >
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 24 24"
-            className={`h-5 w-5 transition-opacity ${
-              theme === "light"
-                ? "text-(--foreground) opacity-100"
-                : "opacity-45"
-            }`}
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.75"
-          >
-            <circle cx="12" cy="12" r="4" />
-            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
-          </svg>
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 24 24"
-            className={`h-5 w-5 transition-opacity ${
-              theme === "dark"
-                ? "text-(--foreground) opacity-100"
-                : "opacity-45"
-            }`}
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.75"
-          >
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-          </svg>
+          {(!isCollapsed || theme === "light") && (
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              className={`h-4.5 w-4.5 transition-opacity ${
+                theme === "light"
+                  ? "text-(--foreground) opacity-100"
+                  : "opacity-45"
+              }`}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.75"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+            </svg>
+          )}
+          {(!isCollapsed || theme === "dark") && (
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              className={`h-4.5 w-4.5 transition-opacity ${
+                theme === "dark"
+                  ? "text-(--foreground) opacity-100"
+                  : "opacity-45"
+              }`}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.75"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          )}
+          {isCollapsed && (
+            <span
+              role="tooltip"
+              className="pointer-events-none absolute top-1/2 left-full z-50 ml-3 -translate-y-1/2 whitespace-nowrap rounded-lg border border-(--border) bg-(--surface) px-2.5 py-1 text-xs font-medium text-(--foreground) opacity-0 shadow-sm transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+            >
+              {themeLabel}
+            </span>
+          )}
         </button>
       </div>
     </aside>
   );
 }
-

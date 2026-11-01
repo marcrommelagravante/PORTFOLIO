@@ -22,7 +22,7 @@ export function InterestsSection({
           id="outside-the-ide-heading"
           className="text-2xl font-semibold tracking-tight text-(--foreground) sm:text-3xl"
         >
-          Outside the IDE
+          Beyond the IDE
         </HeadingTag>
       </header>
 
