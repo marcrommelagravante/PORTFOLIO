@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1100" fill="none">
+  <rect width="1000" height="1100" fill="#DCD8CC"/>
+  <rect x="60" y="60" width="880" height="980" rx="28" fill="#E7E4DA" stroke="#C5C0B2" stroke-width="2"/>
+  <!-- Desk horizon line -->
+  <line x1="120" y1="740" x2="880" y2="740" stroke="#B5B0A1" stroke-width="3"/>
+  <!-- Monitor Stand Arm & Base -->
+  <rect x="468" y="556" width="64" height="148" rx="6" fill="#5E5C55" stroke="#33332F" stroke-width="3"/>
+  <rect x="350" y="696" width="300" height="24" rx="10" fill="#3B3A35" stroke="#262522" stroke-width="3"/>
+  <!-- Monitor Outer Bezel -->
+  <rect x="136" y="160" width="728" height="412" rx="18" fill="#262522" stroke="#33332F" stroke-width="4"/>
+  <!-- Monitor Display Panel -->
+  <rect x="156" y="180" width="688" height="368" rx="8" fill="#3B3A35"/>
+  <!-- Subtle workspace window layout inside screen -->
+  <rect x="188" y="210" width="400" height="308" rx="8" fill="#484742" stroke="#6E6B63" stroke-width="2"/>
+  <line x1="216" y1="248" x2="360" y2="248" stroke="#ACA798" stroke-width="6" stroke-linecap="round"/>
+  <line x1="216" y1="278" x2="520" y2="278" stroke="#8C887C" stroke-width="5" stroke-linecap="round"/>
+  <line x1="216" y1="304" x2="480" y2="304" stroke="#8C887C" stroke-width="5" stroke-linecap="round"/>
+  <line x1="216" y1="330" x2="540" y2="330" stroke="#8C887C" stroke-width="5" stroke-linecap="round"/>
+  <line x1="216" y1="370" x2="420" y2="370" stroke="#ACA798" stroke-width="5" stroke-linecap="round"/>
+  <line x1="216" y1="396" x2="500" y2="396" stroke="#8C887C" stroke-width="5" stroke-linecap="round"/>
+  <!-- Secondary panel on right side of display -->
+  <rect x="608" y="210" width="204" height="146" rx="8" fill="#42413C" stroke="#6E6B63" stroke-width="2"/>
+  <rect x="608" y="372" width="204" height="146" rx="8" fill="#42413C" stroke="#6E6B63" stroke-width="2"/>
+  <!-- Subtle screen reflection -->
+  <path d="M164 188 L340 188 L220 540 L164 540 Z" fill="#EAE6DC" fill-opacity="0.06"/>
+  <!-- Monitor Chin Indicator Dot -->
+  <circle cx="500" cy="562" r="3" fill="#ACA798"/>
+</svg>
+

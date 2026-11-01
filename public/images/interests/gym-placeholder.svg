@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" fill="none">
+  <rect width="1200" height="800" fill="#D8D4C8"/>
+  <rect x="72" y="64" width="1056" height="672" rx="24" fill="#E4E0D5" stroke="#C2BDB0" stroke-width="2"/>
+  <!-- Power rack uprights -->
+  <rect x="290" y="120" width="28" height="560" rx="4" fill="#B5B0A1"/>
+  <rect x="882" y="120" width="28" height="560" rx="4" fill="#B5B0A1"/>
+  <line x1="200" y1="680" x2="1000" y2="680" stroke="#9E998B" stroke-width="8" stroke-linecap="round"/>
+  <!-- Barbell shaft -->
+  <rect x="120" y="388" width="960" height="24" rx="12" fill="#6E6B63"/>
+  <!-- Left weight plates -->
+  <rect x="210" y="230" width="44" height="340" rx="10" fill="#33332F"/>
+  <rect x="262" y="266" width="36" height="268" rx="8" fill="#484742"/>
+  <rect x="306" y="306" width="28" height="188" rx="6" fill="#5E5C55"/>
+  <rect x="178" y="366" width="24" height="68" rx="5" fill="#8C887C"/>
+  <!-- Right weight plates -->
+  <rect x="946" y="230" width="44" height="340" rx="10" fill="#33332F"/>
+  <rect x="902" y="266" width="36" height="268" rx="8" fill="#484742"/>
+  <rect x="866" y="306" width="28" height="188" rx="6" fill="#5E5C55"/>
+  <rect x="998" y="366" width="24" height="68" rx="5" fill="#8C887C"/>
+  <!-- Dumbbell pair on floor -->
+  <g transform="translate(470, 566)">
+    <rect x="36" y="28" width="188" height="16" rx="8" fill="#6E6B63"/>
+    <rect x="0" y="0" width="42" height="72" rx="8" fill="#3B3A35"/>
+    <rect x="218" y="0" width="42" height="72" rx="8" fill="#3B3A35"/>
+  </g>
+</svg>
+

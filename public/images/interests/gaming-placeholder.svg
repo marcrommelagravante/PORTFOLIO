@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" fill="none">
+  <rect width="1200" height="800" fill="#DCD8CC"/>
+  <rect x="72" y="64" width="1056" height="672" rx="24" fill="#E7E4DA" stroke="#C5C0B2" stroke-width="2"/>
+  <!-- Ambient monitor frame in background -->
+  <rect x="260" y="128" width="680" height="340" rx="16" fill="#DEDAD0" stroke="#C5C0B2" stroke-width="2"/>
+  <rect x="284" y="152" width="632" height="292" rx="8" fill="#D2CEC2"/>
+  <rect x="540" y="468" width="120" height="36" fill="#C5C0B2"/>
+  <rect x="460" y="504" width="280" height="14" rx="7" fill="#B5B0A1"/>
+  <!-- Game controller silhouette in foreground -->
+  <g transform="translate(360, 390)">
+    <path d="M96 48C56 48 28 78 18 124L4 196C-4 236 22 268 58 268C86 268 108 248 126 218L152 176H328L354 218C372 248 394 268 422 268C458 268 484 236 476 196L462 124C452 78 424 48 384 48H96Z" fill="#3B3A35" stroke="#262522" stroke-width="4" stroke-linejoin="round"/>
+    <!-- D-Pad -->
+    <rect x="86" y="102" width="22" height="62" rx="4" fill="#ACA798"/>
+    <rect x="66" y="122" width="62" height="22" rx="4" fill="#ACA798"/>
+    <!-- Action buttons -->
+    <circle cx="382" cy="106" r="11" fill="#D2CEC2"/>
+    <circle cx="382" cy="158" r="11" fill="#ACA798"/>
+    <circle cx="356" cy="132" r="11" fill="#ACA798"/>
+    <circle cx="408" cy="132" r="11" fill="#D2CEC2"/>
+    <!-- Analog sticks -->
+    <circle cx="176" cy="154" r="26" fill="#262522" stroke="#6E6B63" stroke-width="3"/>
+    <circle cx="176" cy="154" r="14" fill="#52504A"/>
+    <circle cx="304" cy="154" r="26" fill="#262522" stroke="#6E6B63" stroke-width="3"/>
+    <circle cx="304" cy="154" r="14" fill="#52504A"/>
+    <!-- Touchpad bar -->
+    <rect x="192" y="64" width="96" height="44" rx="6" fill="#2E2D29" stroke="#52504A" stroke-width="2"/>
+  </g>
+</svg>
+

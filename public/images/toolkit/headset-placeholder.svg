@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 750" fill="none">
+  <rect width="1400" height="750" fill="#DDD9CE"/>
+  <rect x="68" y="54" width="1264" height="642" rx="24" fill="#EAE6DC" stroke="#C5C0B2" stroke-width="2"/>
+  <!-- Studio Headset Illustration centered for wide card -->
+  <g transform="translate(460, 102)">
+    <!-- Outer Headband Arc -->
+    <path d="M76 236 C76 74, 404 74, 404 236" stroke="#33332F" stroke-width="28" stroke-linecap="round" fill="none"/>
+    <!-- Inner Padded Headband Cushion -->
+    <path d="M106 210 C106 96, 374 96, 374 210" stroke="#52504A" stroke-width="14" stroke-linecap="round" fill="none"/>
+    <!-- Headband Yoke Sliders -->
+    <rect x="64" y="218" width="24" height="52" rx="8" fill="#6E6B63"/>
+    <rect x="392" y="218" width="24" height="52" rx="8" fill="#6E6B63"/>
+    <!-- Left Earcup Cushion & Shell -->
+    <g transform="translate(26, 246)">
+      <rect x="44" y="10" width="38" height="136" rx="18" fill="#52504A" stroke="#33332F" stroke-width="3"/>
+      <rect x="0" y="0" width="62" height="156" rx="30" fill="#33332F" stroke="#22221F" stroke-width="4"/>
+      <rect x="14" y="26" width="20" height="104" rx="10" fill="#484742"/>
+    </g>
+    <!-- Right Earcup Cushion & Shell -->
+    <g transform="translate(372, 246)">
+      <rect x="0" y="10" width="38" height="136" rx="18" fill="#52504A" stroke="#33332F" stroke-width="3"/>
+      <rect x="20" y="0" width="62" height="156" rx="30" fill="#33332F" stroke="#22221F" stroke-width="4"/>
+      <rect x="48" y="26" width="20" height="104" rx="10" fill="#484742"/>
+    </g>
+    <!-- Detachable Boom Microphone Arm -->
+    <path d="M56 378 C56 436, 130 456, 206 446" stroke="#33332F" stroke-width="10" stroke-linecap="round" fill="none"/>
+    <rect x="196" y="432" width="44" height="26" rx="13" fill="#262522" stroke="#6E6B63" stroke-width="3"/>
+  </g>
+</svg>
+

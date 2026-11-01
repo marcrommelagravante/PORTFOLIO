@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" fill="none">
+  <rect width="1200" height="750" fill="#D8D4C8"/>
+  <rect x="64" y="54" width="1072" height="642" rx="24" fill="#E4E0D5" stroke="#C2BDB0" stroke-width="2"/>
+  <!-- Desk surface line -->
+  <line x1="160" y1="560" x2="1040" y2="560" stroke="#B5B0A1" stroke-width="3"/>
+  <!-- Desktop PC Tower Case (3/4 minimal silhouette) -->
+  <g transform="translate(410, 96)">
+    <!-- Case feet -->
+    <rect x="28" y="446" width="44" height="16" rx="4" fill="#262522"/>
+    <rect x="308" y="446" width="44" height="16" rx="4" fill="#262522"/>
+    <!-- Main Chassis Body -->
+    <rect x="0" y="0" width="380" height="450" rx="16" fill="#33332F" stroke="#22221F" stroke-width="4"/>
+    <!-- Front Mesh Panel (Right section) -->
+    <rect x="276" y="18" width="86" height="414" rx="8" fill="#2A2926" stroke="#484742" stroke-width="2"/>
+    <!-- Front I/O Power Button -->
+    <circle cx="319" cy="48" r="8" fill="#52504A" stroke="#ACA798" stroke-width="2"/>
+    <!-- Front panel ventilation lines -->
+    <line x1="296" y1="88" x2="342" y2="88" stroke="#484742" stroke-width="3" stroke-linecap="round"/>
+    <line x1="296" y1="108" x2="342" y2="108" stroke="#484742" stroke-width="3" stroke-linecap="round"/>
+    <line x1="296" y1="128" x2="342" y2="128" stroke="#484742" stroke-width="3" stroke-linecap="round"/>
+    <line x1="296" y1="148" x2="342" y2="148" stroke="#484742" stroke-width="3" stroke-linecap="round"/>
+    <line x1="296" y1="168" x2="342" y2="168" stroke="#484742" stroke-width="3" stroke-linecap="round"/>
+    <line x1="296" y1="188" x2="342" y2="188" stroke="#484742" stroke-width="3" stroke-linecap="round"/>
+    <line x1="296" y1="208" x2="342" y2="208" stroke="#484742" stroke-width="3" stroke-linecap="round"/>
+    <!-- Tempered Glass Side Panel -->
+    <rect x="20" y="18" width="240" height="320" rx="8" fill="#262522" stroke="#5E5C55" stroke-width="2"/>
+    <!-- Internal Motherboard & Cooler Silhouette -->
+    <rect x="44" y="42" width="148" height="176" rx="6" fill="#3B3A35" stroke="#52504A" stroke-width="2"/>
+    <!-- CPU Cooler Circle -->
+    <circle cx="118" cy="112" r="38" fill="#262522" stroke="#8C887C" stroke-width="3"/>
+    <circle cx="118" cy="112" r="18" fill="#484742"/>
+    <!-- RAM Sticks -->
+    <rect x="168" y="68" width="6" height="64" rx="2" fill="#ACA798"/>
+    <rect x="178" y="68" width="6" height="64" rx="2" fill="#ACA798"/>
+    <!-- GPU Horizontal Card -->
+    <rect x="40" y="200" width="196" height="44" rx="6" fill="#484742" stroke="#8C887C" stroke-width="2"/>
+    <line x1="56" y1="222" x2="140" y2="222" stroke="#D2CEC2" stroke-width="3" stroke-linecap="round"/>
+    <!-- PSU Shroud at bottom -->
+    <rect x="20" y="352" width="240" height="80" rx="8" fill="#2A2926" stroke="#484742" stroke-width="2"/>
+  </g>
+</svg>
+

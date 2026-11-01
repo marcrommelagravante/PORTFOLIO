@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" fill="none">
+  <rect width="1200" height="750" fill="#DCD8CC"/>
+  <rect x="64" y="54" width="1072" height="642" rx="24" fill="#E7E4DA" stroke="#C5C0B2" stroke-width="2"/>
+  <!-- Desk Mat Surface Frame -->
+  <rect x="260" y="106" width="680" height="460" rx="24" fill="#DEDAD0" stroke="#C5C0B2" stroke-width="2"/>
+  <!-- Wireless Ergonomic Mouse Silhouette -->
+  <g transform="translate(490, 144)">
+    <!-- Outer Mouse Shell -->
+    <rect x="0" y="0" width="220" height="376" rx="110" fill="#33332F" stroke="#22221F" stroke-width="4"/>
+    <!-- Inner Subtle Highlight Contour -->
+    <rect x="14" y="14" width="192" height="348" rx="96" fill="#3B3A35"/>
+    <!-- Left / Right Click Split Seam -->
+    <line x1="110" y1="6" x2="110" y2="148" stroke="#22221F" stroke-width="4"/>
+    <path d="M18 148 Q110 166 202 148" stroke="#22221F" stroke-width="3.5" fill="none"/>
+    <!-- Scroll Wheel Housing & Wheel -->
+    <rect x="92" y="38" width="36" height="84" rx="18" fill="#22221F" stroke="#52504A" stroke-width="2"/>
+    <rect x="98" y="48" width="24" height="64" rx="12" fill="#ACA798"/>
+    <line x1="102" y1="66" x2="118" y2="66" stroke="#52504A" stroke-width="2"/>
+    <line x1="102" y1="80" x2="118" y2="80" stroke="#52504A" stroke-width="2"/>
+    <line x1="102" y1="94" x2="118" y2="94" stroke="#52504A" stroke-width="2"/>
+    <!-- DPI Indicator Pill -->
+    <rect x="104" y="130" width="12" height="10" rx="5" fill="#6E6B63"/>
+    <!-- Side Thumb Buttons (Left Edge) -->
+    <rect x="-6" y="136" width="8" height="42" rx="4" fill="#52504A"/>
+    <rect x="-6" y="186" width="8" height="38" rx="4" fill="#52504A"/>
+  </g>
+</svg>
+

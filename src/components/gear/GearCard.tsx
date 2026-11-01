@@ -1,61 +1,109 @@
-import React from "react";
-import Image from "next/image";
-import type { GearItem } from "@/content/gear";
-import { isValidExternalUrl } from "@/lib/validation";
+"use client";
 
-export function GearCard({ item }: { item: GearItem }) {
-  const hasUrl = isValidExternalUrl(item.productUrl);
+import React, { useState } from "react";
+import Image from "next/image";
+import type { ToolkitItem } from "@/content/gear";
+
+export function GearCard({
+  item,
+  index = 0,
+  headingLevel = "h2",
+  className = "",
+}: {
+  item: ToolkitItem;
+  index?: number;
+  headingLevel?: "h2" | "h3";
+  className?: string;
+}) {
+  const [imageFailed, setImageFailed] = useState(false);
+  const ItemHeading = headingLevel;
+  const hasImage = Boolean(item.image?.trim()) && !imageFailed;
+  const isHeroCard = item.layoutClass === "toolkit-monitor";
 
   return (
-    <article className="flex flex-col justify-between rounded-lg border border-(--border) bg-(--surface)/40 p-5">
-      <div>
-        <div className="mb-4 flex items-center justify-between gap-2">
-          <span className="font-mono text-xs text-(--muted)">
-            {item.category}
+    <article
+      id={`toolkit-${item.id}`}
+      style={{ animationDelay: `${(index + 1) * 65}ms` }}
+      className={`animate-gallery-enter group relative flex min-h-64 flex-col justify-between overflow-hidden rounded-2xl border border-(--border) bg-(--surface) p-5 transition-[transform,border-color,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:border-(--foreground)/35 hover:shadow-md lg:min-h-0 ${
+        isHeroCard ? "sm:min-h-72" : "sm:min-h-64"
+      } ${className}`}
+    >
+      {hasImage ? (
+        <>
+          <Image
+            src={item.image}
+            alt={item.alt}
+            fill
+            priority={index < 2}
+            sizes={
+              isHeroCard
+                ? "(max-width: 1024px) 100vw, 540px"
+                : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 480px"
+            }
+            style={{
+              objectPosition: item.objectPosition ?? "center",
+            }}
+            onError={() => setImageFailed(true)}
+            className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+          />
+          {/* Contrast overlay strictly inside the product card */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/84 via-black/34 to-black/20 transition-opacity duration-300 group-hover:from-black/88"
+          />
+        </>
+      ) : (
+        <div
+          aria-hidden="true"
+          className=" pointer-events-none absolute inset-0 flex items-center justify-center bg-(--surface) p-6 text-center"
+        >
+          <span className="font-mono text-xs tracking-wider text-(--muted) uppercase">
+            [{item.category} photo placeholder]
           </span>
-          {item.isPlaceholder && (
-            <span className="rounded border border-(--border) px-2 py-0.5 font-mono text-[11px] text-(--muted)">
-              Placeholder
-            </span>
-          )}
-        </div>
-
-        {item.image ? (
-          <div className="relative mb-4 aspect-16/10 w-full overflow-hidden rounded border border-(--border) bg-(--surface)">
-            <Image
-              src={item.image}
-              alt={item.name}
-              fill
-              sizes="(max-width: 768px) 100vw, 33vw"
-              className="object-cover"
-            />
-          </div>
-        ) : (
-          <div className="mb-4 flex aspect-video items-center justify-center rounded border border-dashed border-(--border) bg-(--surface)/60 font-mono text-xs text-(--muted)">
-            [GEAR PHOTO PLACEHOLDER]
-          </div>
-        )}
-
-        <h3 className="text-lg font-semibold tracking-tight text-(--foreground)">
-          {item.name}
-        </h3>
-        <p className="mt-2 text-sm leading-relaxed text-(--muted)">
-          {item.usage}
-        </p>
-      </div>
-
-      {hasUrl && (
-        <div className="mt-4 border-t border-(--border) pt-3">
-          <a
-            href={item.productUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm font-medium text-(--foreground) underline-offset-4 hover:underline"
-          >
-            Product link ↗
-          </a>
         </div>
       )}
+
+      {/* Top row: Category label */}
+      <div className="relative z-10 flex w-full items-start justify-between">
+        <span
+          className={`inline-flex items-center rounded-full border px-3 py-1 font-mono text-[11px] font-medium tracking-wide ${
+            hasImage
+              ? "border-white/20 bg-black/45 text-white backdrop-blur-xs"
+              : "border-(--border) bg-(--background)/85 text-(--foreground)"
+          }`}
+        >
+          {item.category}
+        </span>
+      </div>
+
+      {/* Bottom row: Model name, optional short specs, and concise usage description */}
+      <div className="relative z-10 mt-auto pt-14">
+        <ItemHeading
+          className={`text-lg font-semibold tracking-tight sm:text-xl ${
+            hasImage ? "text-white drop-shadow-xs" : "text-(--foreground)"
+          }`}
+        >
+          {item.name}
+        </ItemHeading>
+
+        {item.specs && (
+          <p
+            className={`mt-1 font-mono text-[11px] tracking-wide ${
+              hasImage ? "text-white/75" : "text-(--muted)"
+            }`}
+          >
+            {item.specs}
+          </p>
+        )}
+
+        <p
+          className={`mt-1.5 text-sm leading-relaxed ${
+            hasImage ? "text-white/88" : "text-(--muted)"
+          }`}
+        >
+          {item.description}
+        </p>
+      </div>
     </article>
   );
 }

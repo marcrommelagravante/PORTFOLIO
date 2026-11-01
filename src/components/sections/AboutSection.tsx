@@ -30,52 +30,28 @@ export function AboutSection({
         </HeadingTag>
       </header>
 
-      <div className="mt-6 grid gap-10 md:grid-cols-[1.45fr_0.55fr] md:gap-12">
-        <div className="space-y-5">
-          {siteConfig.about.professionalBio.map((paragraph, idx) => (
-            <p
-              key={idx}
-              className="text-base leading-relaxed text-(--foreground)/90"
+      <div className="mt-6 space-y-5">
+        {siteConfig.about.professionalBio.map((paragraph, idx) => (
+          <p
+            key={idx}
+            className="text-base leading-relaxed text-(--foreground)/90"
+          >
+            {paragraph}
+          </p>
+        ))}
+
+        {hasResume && (
+          <div className="pt-4">
+            <a
+              href={siteConfig.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-md bg-(--foreground) px-5 py-2.5 text-sm font-medium text-(--background) transition-opacity hover:opacity-90"
             >
-              {paragraph}
-            </p>
-          ))}
-
-          {hasResume && (
-            <div className="pt-4">
-              <a
-                href={siteConfig.resumeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-md bg-(--foreground) px-5 py-2.5 text-sm font-medium text-(--background) transition-opacity hover:opacity-90"
-              >
-                Download résumé
-              </a>
-            </div>
-          )}
-        </div>
-
-        <aside className="space-y-8 rounded-lg border border-(--border) bg-(--surface)/40 p-6">
-          <div>
-            <h3 className="font-mono text-xs font-medium text-(--muted)">
-              Current Study / Role
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-(--foreground)">
-              {siteConfig.about.currentStudyOrRole}
-            </p>
+              Download résumé
+            </a>
           </div>
-
-          <div className="border-t border-(--border) pt-6">
-            <h3 className="font-mono text-xs font-medium text-(--muted)">
-              Focus Areas
-            </h3>
-            <ul className="mt-3 space-y-2 text-sm text-(--foreground)">
-              {siteConfig.about.developmentInterests.map((interest) => (
-                <li key={interest}>{interest}</li>
-              ))}
-            </ul>
-          </div>
-        </aside>
+        )}
       </div>
 
       {showStack && (

@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" fill="none">
+  <rect width="1200" height="750" fill="#DAD6CA"/>
+  <rect x="64" y="54" width="1072" height="642" rx="24" fill="#E6E3D8" stroke="#C2BDB0" stroke-width="2"/>
+  <!-- Mechanical Keyboard Case -->
+  <g transform="translate(210, 170)">
+    <!-- Outer Aluminum Frame -->
+    <rect x="0" y="0" width="780" height="296" rx="20" fill="#33332F" stroke="#22221F" stroke-width="4"/>
+    <rect x="18" y="18" width="744" height="260" rx="12" fill="#262522" stroke="#484742" stroke-width="2"/>
+    <!-- Row 1: Esc + Function / Number Row + Rotary Knob -->
+    <rect x="34" y="34" width="44" height="38" rx="6" fill="#6E6B63"/>
+    <rect x="86" y="34" width="42" height="38" rx="6" fill="#D2CEC2"/>
+    <rect x="136" y="34" width="42" height="38" rx="6" fill="#D2CEC2"/>
+    <rect x="186" y="34" width="42" height="38" rx="6" fill="#D2CEC2"/>
+    <rect x="236" y="34" width="42" height="38" rx="6" fill="#D2CEC2"/>
+    <rect x="286" y="34" width="42" height="38" rx="6" fill="#D2CEC2"/>
+    <rect x="336" y="34" width="42" height="38" rx="6" fill="#D2CEC2"/>
+    <rect x="386" y="34" width="42" height="38" rx="6" fill="#D2CEC2"/>
+    <rect x="436" y="34" width="42" height="38" rx="6" fill="#D2CEC2"/>
+    <rect x="486" y="34" width="42" height="38" rx="6" fill="#D2CEC2"/>
+    <rect x="536" y="34" width="42" height="38" rx="6" fill="#D2CEC2"/>
+    <rect x="586" y="34" width="42" height="38" rx="6" fill="#D2CEC2"/>
+    <rect x="636" y="34" width="58" height="38" rx="6" fill="#52504A"/>
+    <circle cx="724" cy="53" r="18" fill="#484742" stroke="#ACA798" stroke-width="3"/>
+    <!-- Row 2: Tab + QWERTY -->
+    <rect x="34" y="80" width="62" height="38" rx="6" fill="#52504A"/>
+    <rect x="104" y="80" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="154" y="80" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="204" y="80" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="254" y="80" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="304" y="80" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="354" y="80" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="404" y="80" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="454" y="80" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="504" y="80" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="554" y="80" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="604" y="80" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="654" y="80" width="40" height="38" rx="6" fill="#52504A"/>
+    <rect x="704" y="80" width="42" height="38" rx="6" fill="#52504A"/>
+    <!-- Row 3: Caps + Home Row + Enter -->
+    <rect x="34" y="126" width="74" height="38" rx="6" fill="#52504A"/>
+    <rect x="116" y="126" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="166" y="126" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="216" y="126" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="266" y="126" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="316" y="126" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="366" y="126" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="416" y="126" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="466" y="126" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="516" y="126" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="566" y="126" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="616" y="126" width="78" height="38" rx="6" fill="#6E6B63"/>
+    <rect x="704" y="126" width="42" height="38" rx="6" fill="#52504A"/>
+    <!-- Row 4: Shift + Bottom Alphas -->
+    <rect x="34" y="172" width="96" height="38" rx="6" fill="#52504A"/>
+    <rect x="138" y="172" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="188" y="172" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="238" y="172" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="288" y="172" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="338" y="172" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="388" y="172" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="438" y="172" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="488" y="172" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="538" y="172" width="42" height="38" rx="6" fill="#EAE6DC"/>
+    <rect x="588" y="172" width="58" height="38" rx="6" fill="#52504A"/>
+    <rect x="654" y="172" width="42" height="38" rx="6" fill="#6E6B63"/>
+    <rect x="704" y="172" width="42" height="38" rx="6" fill="#52504A"/>
+    <!-- Row 5: Modifiers + Spacebar + Arrows -->
+    <rect x="34" y="218" width="54" height="40" rx="6" fill="#52504A"/>
+    <rect x="96" y="218" width="54" height="40" rx="6" fill="#52504A"/>
+    <rect x="158" y="218" width="54" height="40" rx="6" fill="#52504A"/>
+    <rect x="220" y="218" width="276" height="40" rx="6" fill="#ACA798"/>
+    <rect x="504" y="218" width="46" height="40" rx="6" fill="#52504A"/>
+    <rect x="558" y="218" width="40" height="40" rx="6" fill="#52504A"/>
+    <rect x="606" y="218" width="42" height="40" rx="6" fill="#6E6B63"/>
+    <rect x="654" y="218" width="42" height="40" rx="6" fill="#6E6B63"/>
+    <rect x="704" y="218" width="42" height="40" rx="6" fill="#6E6B63"/>
+  </g>
+</svg>
+
