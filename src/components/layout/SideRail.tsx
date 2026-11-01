@@ -49,7 +49,7 @@ function HomeIcon() {
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="h-4 w-4 shrink-0"
+      className="h-5 w-5 shrink-0"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.75"
@@ -67,7 +67,7 @@ function UserIcon() {
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="h-4 w-4 shrink-0"
+      className="h-5 w-5 shrink-0"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.75"
@@ -85,7 +85,7 @@ function FolderIcon() {
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="h-4 w-4 shrink-0"
+      className="h-5 w-5 shrink-0"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.75"
@@ -102,7 +102,7 @@ function CubeIcon() {
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="h-4 w-4 shrink-0"
+      className="h-5 w-5 shrink-0"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.75"
@@ -121,7 +121,7 @@ function GamepadIcon() {
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="h-4 w-4 shrink-0"
+      className="h-5 w-5 shrink-0"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.75"
@@ -142,7 +142,7 @@ function MailIcon() {
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="h-4 w-4 shrink-0"
+      className="h-5 w-5 shrink-0"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.75"
@@ -243,21 +243,21 @@ export function SideRail() {
   return (
     <aside
       aria-label="Editorial side navigation"
-      className="fixed top-4 bottom-4 left-4 z-40 my-auto hidden max-h-145 w-38 flex-col justify-between rounded-2xl border border-(--border) bg-(--surface)/55 py-6 backdrop-blur-xs lg:flex"
+      className="fixed top-6 bottom-6 left-6 z-40 my-auto hidden max-h-195 w-56 flex-col justify-between rounded-3xl border border-(--border) bg-(--surface)/55 py-8 backdrop-blur-xs lg:flex"
     >
-      <div className="border-b border-(--border)/80 px-4 pb-5 text-center">
+      <div className="border-b border-(--border)/80 px-6 pb-7 text-center">
         <Link
           href="/#home"
           onClick={() => setActiveId("home")}
           aria-label={`${siteConfig.fullName} home`}
-          className="inline-block text-base font-semibold tracking-tight text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"
+          className="inline-block text-xl font-semibold tracking-tight text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"
         >
           <PageLoader initials={siteConfig.initials} />
         </Link>
       </div>
 
-      <nav aria-label="Main navigation" className="my-auto py-3">
-        <ul className="flex flex-col gap-1.5">
+      <nav aria-label="Main navigation" className="my-auto py-4">
+        <ul className="flex flex-col gap-2.5">
           {RAIL_ITEMS.map((item) => {
             const isActive = activeId === item.id;
             return (
@@ -265,14 +265,14 @@ export function SideRail() {
                 {isActive && (
                   <span
                     aria-hidden="true"
-                    className="absolute top-1.5 bottom-1.5 left-0 w-[3px] rounded-r-full bg-(--foreground)"
+                    className="absolute top-2 bottom-2 left-0 w-1 rounded-r-full bg-(--foreground)"
                   />
                 )}
                 <Link
                   href={item.href}
                   aria-current={isActive ? "true" : undefined}
                   onClick={() => setActiveId(item.id)}
-                  className={`flex items-center gap-2.5 px-4 py-2 text-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--foreground) ${
+                  className={`flex items-center gap-3.5 px-6 py-3 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--foreground) ${
                     isActive
                       ? "font-semibold text-(--foreground)"
                       : "font-normal text-(--muted) hover:text-(--foreground)"
@@ -287,19 +287,19 @@ export function SideRail() {
         </ul>
       </nav>
 
-      <div className="border-t border-(--border)/80 px-4 pt-4">
+      <div className="border-t border-(--border)/80 px-6 pt-6">
         <button
           type="button"
           onClick={toggleTheme}
           aria-label={
             theme === "dark" ? "Switch to light theme" : "Switch to dark theme"
           }
-          className="mx-auto flex items-center justify-center gap-3 rounded-lg px-3 py-1.5 text-(--muted) transition-colors hover:bg-(--background)/50 hover:text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
+          className="mx-auto flex items-center justify-center gap-4 rounded-xl px-4 py-2.5 text-(--muted) transition-colors hover:bg-(--background)/50 hover:text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
         >
           <svg
             aria-hidden="true"
             viewBox="0 0 24 24"
-            className={`h-4 w-4 transition-opacity ${
+            className={`h-5 w-5 transition-opacity ${
               theme === "light"
                 ? "text-(--foreground) opacity-100"
                 : "opacity-45"
@@ -314,7 +314,7 @@ export function SideRail() {
           <svg
             aria-hidden="true"
             viewBox="0 0 24 24"
-            className={`h-4 w-4 transition-opacity ${
+            className={`h-5 w-5 transition-opacity ${
               theme === "dark"
                 ? "text-(--foreground) opacity-100"
                 : "opacity-45"

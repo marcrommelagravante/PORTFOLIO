@@ -8,7 +8,7 @@ import React from "react";
  */
 export function PageLoader({ initials }: { initials: string }) {
   return (
-    <span className="inline-block font-mono text-sm font-semibold tracking-tight transition-opacity duration-300">
+    <span className="inline-block font-mono font-semibold tracking-tight transition-opacity duration-300">
       {initials}
     </span>
   );
