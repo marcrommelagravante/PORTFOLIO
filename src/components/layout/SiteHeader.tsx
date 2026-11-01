@@ -9,8 +9,8 @@ const NAV_ITEMS: NavItem[] = [
   { label: "Home", href: "/#home" },
   { label: "About", href: "/#about" },
   { label: "Projects", href: "/#projects" },
-  { label: "Gear", href: "/#gear" },
-  { label: "Outside the IDE", href: "/#outside-the-ide" },
+  { label: "Gear", href: "/gear" },
+  { label: "Outside the IDE", href: "/outside-the-ide" },
   { label: "Contact", href: "/#contact" },
 ];
 

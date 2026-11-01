@@ -28,8 +28,6 @@ const SECTION_IDS = [
   "projects",
   "skills",
   "github",
-  "gear",
-  "outside-the-ide",
   "contact",
 ] as const;
 
@@ -39,8 +37,6 @@ const SECTION_TO_RAIL: Record<(typeof SECTION_IDS)[number], RailItemId> = {
   projects: "projects",
   skills: "projects",
   github: "projects",
-  gear: "gear",
-  "outside-the-ide": "outside-the-ide",
   contact: "contact",
 };
 
@@ -164,11 +160,11 @@ export const RAIL_ITEMS: RailItem[] = [
     href: "/#projects",
     icon: <FolderIcon />,
   },
-  { id: "gear", label: "Gear", href: "/#gear", icon: <CubeIcon /> },
+  { id: "gear", label: "Gear", href: "/gear", icon: <CubeIcon /> },
   {
     id: "outside-the-ide",
     label: "Outside the IDE",
-    href: "/#outside-the-ide",
+    href: "/outside-the-ide",
     icon: <GamepadIcon />,
   },
   { id: "contact", label: "Contact", href: "/#contact", icon: <MailIcon /> },
