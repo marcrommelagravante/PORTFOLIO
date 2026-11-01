@@ -4,6 +4,7 @@ import { skillCategories } from "@/content/skills";
 export function SkillsPreview() {
   return (
     <section
+      id="skills"
       aria-labelledby="stack-heading"
       className="border-b border-(--border) py-14 sm:py-16"
     >

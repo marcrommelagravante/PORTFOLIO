@@ -11,7 +11,7 @@ export function SiteFooter() {
 
   return (
     <footer className="border-t border-(--border) bg-(--background)">
-      <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-6 py-10 text-sm text-(--muted) sm:flex-row sm:items-center sm:px-8">
+      <div className="mx-auto flex max-w-4xl flex-col items-start justify-between gap-4 px-6 py-10 text-sm text-(--muted) sm:flex-row sm:items-center sm:px-8">
         <p>{siteConfig.locationFooterLine}</p>
 
         <ul className="flex flex-wrap items-center gap-6">

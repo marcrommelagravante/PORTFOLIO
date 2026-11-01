@@ -7,10 +7,11 @@ import { MagneticButton } from "@/components/motion/MagneticButton";
 export function Hero() {
   return (
     <section
+      id="home"
       aria-labelledby="hero-heading"
       className="border-b border-(--border) py-14 sm:py-20"
     >
-      <div className="grid items-center gap-10 md:grid-cols-[1fr_280px] md:gap-12 lg:grid-cols-[1fr_310px]">
+      <div className="grid items-center gap-10 md:grid-cols-[1fr_240px] md:gap-12">
         <div>
           <p className="font-mono text-xs text-(--muted)">
             {siteConfig.roleEyebrow}
@@ -24,14 +25,14 @@ export function Hero() {
             <br />I build useful things for the web.
           </h1>
 
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-(--muted)">
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-(--muted)">
             {siteConfig.shortIntroduction}
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <MagneticButton>
               <Link
-                href="#selected-work"
+                href="#projects"
                 className="inline-flex items-center justify-center rounded-md bg-(--foreground) px-5 py-2.5 text-sm font-medium text-(--background) transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
               >
                 Explore my work
@@ -40,7 +41,7 @@ export function Hero() {
 
             <MagneticButton>
               <Link
-                href="/about"
+                href="#about"
                 className="inline-flex items-center justify-center rounded-md border border-(--border) bg-(--surface)/50 px-5 py-2.5 text-sm font-medium text-(--foreground) transition-colors hover:bg-(--surface) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
               >
                 About me
@@ -49,15 +50,19 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="mx-auto w-full max-w-70 md:max-w-none">
-          <div className="relative aspect-4/5 w-full overflow-hidden rounded-lg border border-(--border) bg-(--surface)">
+        <div className="relative mx-auto w-45 md:w-60">
+          <span className="absolute -top-1 -right-2 z-10 rounded-full border border-(--border) bg-(--background)/95 px-3 py-1 font-mono text-xs font-medium text-(--foreground) shadow-xs backdrop-blur-xs">
+            {"// Developer"}
+          </span>
+
+          <div className="relative aspect-square w-full overflow-hidden rounded-full border border-(--border) bg-(--surface)">
             {siteConfig.profilePhoto ? (
               <Image
                 src={siteConfig.profilePhoto}
                 alt={siteConfig.profilePhotoAlt}
                 fill
                 priority
-                sizes="(max-width: 768px) 280px, 360px"
+                sizes="(max-width: 768px) 180px, 240px"
                 className="object-cover"
               />
             ) : (

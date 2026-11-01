@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SideRail } from "@/components/layout/SideRail";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { CustomCursor } from "@/components/motion/CustomCursor";
 import { createPageMetadata } from "@/lib/metadata";
@@ -55,10 +56,13 @@ export default function RootLayout({
         <ThemeProvider>
           <CustomCursor />
           <SiteHeader />
-          <main className="mx-auto w-full max-w-6xl flex-1 px-6 sm:px-8">
-            {children}
-          </main>
-          <SiteFooter />
+          <SideRail />
+          <div className="flex flex-1 flex-col lg:pl-44">
+            <main className="mx-auto w-full max-w-4xl flex-1 px-6 sm:px-8">
+              {children}
+            </main>
+            <SiteFooter />
+          </div>
         </ThemeProvider>
       </body>
     </html>

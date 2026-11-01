@@ -1,8 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" fill="none">
-  <rect width="600" height="750" fill="#E5E2D9"/>
-  <rect x="24" y="24" width="552" height="702" stroke="#D0CEC5" stroke-width="1.5" stroke-dasharray="6 6"/>
-  <circle cx="300" cy="310" r="64" stroke="#6F6D66" stroke-width="1.5"/>
-  <path d="M190 510C190 449.249 239.249 400 300 400C360.751 400 410 449.249 410 510" stroke="#6F6D66" stroke-width="1.5"/>
-  <text x="300" y="590" text-anchor="middle" fill="#6F6D66" font-family="sans-serif" font-size="14" letter-spacing="3">[PROFILE PHOTO]</text>
-  <text x="300" y="618" text-anchor="middle" fill="#6F6D66" font-family="sans-serif" font-size="11" letter-spacing="1.5">REPLACE IN PUBLIC/IMAGES/</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" fill="none">
+  <rect width="600" height="600" fill="#E5E2D9"/>
+  <circle cx="300" cy="300" r="276" stroke="#D0CEC5" stroke-width="2" stroke-dasharray="6 6"/>
+  <circle cx="300" cy="240" r="64" stroke="#6F6D66" stroke-width="2"/>
+  <path d="M186 435C186 372.04 237.04 321 300 321C362.96 321 414 372.04 414 435" stroke="#6F6D66" stroke-width="2" stroke-linecap="round"/>
+  <text x="300" y="495" text-anchor="middle" fill="#6F6D66" font-family="sans-serif" font-size="14" letter-spacing="3">[PROFILE PHOTO]</text>
 </svg>

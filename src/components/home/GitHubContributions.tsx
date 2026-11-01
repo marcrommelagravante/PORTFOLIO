@@ -22,6 +22,7 @@ export async function GitHubContributions() {
 
   return (
     <section
+      id="github"
       aria-labelledby="github-heading"
       className="border-b border-(--border) py-14 sm:py-16"
     >
