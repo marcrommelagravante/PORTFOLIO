@@ -23,23 +23,16 @@ export function ProjectsSection({
     <section
       id="projects"
       aria-labelledby="projects-heading"
-      className={`py-14 sm:py-20 ${
-        isStandalone ? "" : "border-b border-(--border)"
-      }`}
+      className={`py-10 sm:py-12 ${isStandalone ? "" : "border-b border-(--border)"
+        }`}
     >
-      <header className="border-b border-(--border) pb-8">
-        <p className="font-mono text-xs text-(--muted)">Selected Archive</p>
+      <header>
         <HeadingTag
           id="projects-heading"
-          className="mt-2 text-2xl font-semibold tracking-tight text-(--foreground) sm:text-3xl"
+          className="text-2xl font-semibold tracking-tight text-(--foreground) sm:text-3xl"
         >
           Projects
         </HeadingTag>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-(--muted)">
-          A manually curated collection of software builds and case studies.
-          Entries marked as template placeholders are for layout verification
-          until replaced with final project details.
-        </p>
       </header>
 
       <ProjectCoverflow projects={coverflowProjects} />

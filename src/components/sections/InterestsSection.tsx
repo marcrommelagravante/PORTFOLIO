@@ -14,28 +14,19 @@ export function InterestsSection({
     <section
       id="outside-the-ide"
       aria-labelledby="outside-the-ide-heading"
-      className={`py-14 sm:py-20 ${
-        isStandalone ? "" : "border-b border-(--border)"
-      }`}
+      className={`py-10 sm:py-12 ${isStandalone ? "" : "border-b border-(--border)"
+        }`}
     >
-      <header className="border-b border-(--border) pb-8">
-        <p className="font-mono text-xs text-(--muted)">Personal Interests</p>
+      <header>
         <HeadingTag
           id="outside-the-ide-heading"
-          className="mt-2 text-2xl font-semibold tracking-tight text-(--foreground) sm:text-3xl"
+          className="text-2xl font-semibold tracking-tight text-(--foreground) sm:text-3xl"
         >
           Outside the IDE
         </HeadingTag>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-(--muted)">
-          Activities and interests beyond coding. Edit these cards in{" "}
-          <code className="rounded bg-(--surface) px-1.5 py-0.5 font-mono text-xs">
-            src/content/interests.ts
-          </code>
-          .
-        </p>
       </header>
 
-      <div className="mt-10 grid gap-6 sm:grid-cols-3">
+      <div className="mt-6 grid gap-6 sm:grid-cols-3">
         {personalInterests.map((interest) => (
           <article
             key={interest.id}

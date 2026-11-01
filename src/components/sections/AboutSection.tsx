@@ -18,23 +18,19 @@ export function AboutSection({
     <section
       id="about"
       aria-labelledby="about-heading"
-      className={`py-14 sm:py-20 ${
-        isStandalone ? "" : "border-b border-(--border)"
-      }`}
+      className={`py-10 sm:py-12 ${isStandalone ? "" : "border-b border-(--border)"
+        }`}
     >
-      <header className="border-b border-(--border) pb-8">
-        <p className="font-mono text-xs text-(--muted)">
-          Professional Biography
-        </p>
+      <header>
         <HeadingTag
           id="about-heading"
-          className="mt-2 text-2xl font-semibold tracking-tight text-(--foreground) sm:text-3xl"
+          className="text-2xl font-semibold tracking-tight text-(--foreground) sm:text-3xl"
         >
           About
         </HeadingTag>
       </header>
 
-      <div className="mt-10 grid gap-10 md:grid-cols-[1.45fr_0.55fr] md:gap-12">
+      <div className="mt-6 grid gap-10 md:grid-cols-[1.45fr_0.55fr] md:gap-12">
         <div className="space-y-5">
           {siteConfig.about.professionalBio.map((paragraph, idx) => (
             <p
@@ -85,7 +81,7 @@ export function AboutSection({
       {showStack && (
         <div
           aria-labelledby="about-stack-heading"
-          className="mt-16 border-t border-(--border) pt-12"
+          className="mt-10 border-t border-(--border) pt-10"
         >
           <h2
             id="about-stack-heading"

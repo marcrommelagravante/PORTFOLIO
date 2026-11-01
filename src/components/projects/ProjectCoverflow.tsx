@@ -110,7 +110,7 @@ export function ProjectCoverflow({
       aria-roledescription="carousel"
       aria-label="Featured projects showcase"
       onKeyDown={handleKeyDown}
-      className="group/carousel relative mt-10 select-none sm:mt-14"
+      className="group/carousel relative mt-6 select-none"
     >
       {/* Live region announces project changes only after user interaction */}
       <div className="sr-only" aria-live={interacted ? "polite" : "off"} aria-atomic="true">

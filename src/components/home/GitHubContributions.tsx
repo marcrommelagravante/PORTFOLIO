@@ -24,20 +24,15 @@ export async function GitHubContributions() {
     <section
       id="github"
       aria-labelledby="github-heading"
-      className="border-b border-(--border) py-14 sm:py-16"
+      className="border-b border-(--border) py-10 sm:py-12"
     >
       <div className="mb-6 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
-        <div>
-          <p className="font-mono text-xs text-(--muted)">
-            Open source & activity
-          </p>
-          <h2
-            id="github-heading"
-            className="mt-2 text-2xl font-semibold tracking-tight text-(--foreground) sm:text-3xl"
-          >
-            GitHub Contributions
-          </h2>
-        </div>
+        <h2
+          id="github-heading"
+          className="text-2xl font-semibold tracking-tight text-(--foreground) sm:text-3xl"
+        >
+          GitHub Contributions
+        </h2>
 
         <a
           href={data.profileUrl}
@@ -82,13 +77,11 @@ export async function GitHubContributions() {
                   {week.map((day) => (
                     <span
                       key={day.date}
-                      title={`${day.date}: ${day.count} contribution${
-                        day.count === 1 ? "" : "s"
-                      } (${LEVEL_LABELS[day.level]})`}
+                      title={`${day.date}: ${day.count} contribution${day.count === 1 ? "" : "s"
+                        } (${LEVEL_LABELS[day.level]})`}
                       aria-label={`${day.date}: ${day.count} contributions`}
-                      className={`aspect-square w-full rounded-xs border ${
-                        LEVEL_CLASSES[day.level]
-                      }`}
+                      className={`aspect-square w-full rounded-xs border ${LEVEL_CLASSES[day.level]
+                        }`}
                     />
                   ))}
                 </div>

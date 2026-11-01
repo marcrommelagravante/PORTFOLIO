@@ -15,29 +15,19 @@ export function GearSection({
     <section
       id="gear"
       aria-labelledby="gear-heading"
-      className={`py-14 sm:py-20 ${
-        isStandalone ? "" : "border-b border-(--border)"
-      }`}
+      className={`py-10 sm:py-12 ${isStandalone ? "" : "border-b border-(--border)"
+        }`}
     >
-      <header className="border-b border-(--border) pb-8">
-        <p className="font-mono text-xs text-(--muted)">Hardware & Software</p>
+      <header>
         <HeadingTag
           id="gear-heading"
-          className="mt-2 text-2xl font-semibold tracking-tight text-(--foreground) sm:text-3xl"
+          className="text-2xl font-semibold tracking-tight text-(--foreground) sm:text-3xl"
         >
           Gear
         </HeadingTag>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-(--muted)">
-          Tools, hardware, and environment setup used for software engineering
-          and study. Replace the placeholder cards in{" "}
-          <code className="rounded bg-(--surface) px-1.5 py-0.5 font-mono text-xs">
-            src/content/gear.ts
-          </code>{" "}
-          with your actual items.
-        </p>
       </header>
 
-      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {gearItems.map((item) => (
           <GearCard key={item.id} item={item} />
         ))}

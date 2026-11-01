@@ -6,15 +6,12 @@ export function SkillsPreview() {
     <section
       id="skills"
       aria-labelledby="stack-heading"
-      className="border-b border-(--border) py-14 sm:py-16"
+      className="border-b border-(--border) py-10 sm:py-12"
     >
-      <div className="mb-8">
-        <p className="font-mono text-xs text-(--muted)">
-          Technologies & tools I build with
-        </p>
+      <div className="mb-6">
         <h2
           id="stack-heading"
-          className="mt-2 text-2xl font-semibold tracking-tight text-(--foreground) sm:text-3xl"
+          className="text-2xl font-semibold tracking-tight text-(--foreground) sm:text-3xl"
         >
           Stack
         </h2>

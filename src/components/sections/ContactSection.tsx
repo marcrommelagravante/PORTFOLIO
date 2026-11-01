@@ -60,22 +60,18 @@ export function ContactSection({
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="mx-auto max-w-3xl py-16 sm:py-24"
+      className="py-10 sm:py-12"
     >
-      <header className="text-center">
+      <header>
         <HeadingTag
           id="contact-heading"
-          className="text-[clamp(2.25rem,5vw,3.75rem)] font-semibold tracking-tight text-(--foreground)"
+          className="text-2xl font-semibold tracking-tight text-(--foreground) sm:text-3xl"
         >
           Let&apos;s Work Together
         </HeadingTag>
-        <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-(--muted) sm:text-base">
-          Have a project in mind or want to discuss an opportunity? Feel free
-          to reach out through any of the platforms below.
-        </p>
       </header>
 
-      <div className="mt-12 grid gap-5 sm:grid-cols-2">
+      <div className="mt-6 grid gap-5 sm:grid-cols-2">
         {cards.map((card) => (
           <ContactCard key={card.label} {...card} />
         ))}
