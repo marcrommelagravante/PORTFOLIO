@@ -1,8 +1,15 @@
 import React from "react";
 import type { Metadata } from "next";
 import { siteConfig } from "@/content/site";
-import { ContactForm } from "@/components/contact/ContactForm";
+import { ContactCard, type ContactCardProps } from "@/components/contact/ContactCard";
+import {
+  DiscordIcon,
+  EmailIcon,
+  FacebookIcon,
+  LinkedInIcon,
+} from "@/components/contact/ContactIcons";
 import { createPageMetadata } from "@/lib/metadata";
+import { isValidExternalUrl } from "@/lib/validation";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Contact",
@@ -11,64 +18,60 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default function ContactPage() {
-  const isConfigured = Boolean(
-    process.env.CONTACT_PROVIDER_API_KEY?.trim() &&
-      process.env.CONTACT_TO_EMAIL?.trim()
-  );
-  const hasEmail = Boolean(siteConfig.contactEmail?.trim());
+  const email = siteConfig.contactEmail?.trim();
+  const cards: ContactCardProps[] = [
+    {
+      label: "Email",
+      description: "Send me an email anytime.",
+      href: email ? `mailto:${email}` : undefined,
+      icon: <EmailIcon />,
+      external: false,
+    },
+    {
+      label: "LinkedIn",
+      description: "Connect and let's discuss opportunities.",
+      href: isValidExternalUrl(siteConfig.linkedinUrl)
+        ? siteConfig.linkedinUrl
+        : undefined,
+      icon: <LinkedInIcon />,
+      external: true,
+    },
+    {
+      label: "Discord",
+      description: "Chat with me directly.",
+      href: isValidExternalUrl(siteConfig.discordUrl)
+        ? siteConfig.discordUrl
+        : undefined,
+      icon: <DiscordIcon />,
+      external: true,
+    },
+    {
+      label: "Facebook",
+      description: "Say hi or follow along.",
+      href: isValidExternalUrl(siteConfig.facebookUrl)
+        ? siteConfig.facebookUrl
+        : undefined,
+      icon: <FacebookIcon />,
+      external: true,
+    },
+  ];
 
   return (
-    <div className="py-14 sm:py-20">
-      <header className="border-b border-(--border) pb-10">
-        <p className="font-mono text-xs text-(--muted)">
-          Get in Touch
-        </p>
-        <h1 className="mt-3 text-[clamp(2rem,3.5vw,3rem)] font-semibold tracking-tight text-(--foreground)">
-          Contact
+    <div className="mx-auto max-w-3xl py-16 sm:py-24">
+      <header className="text-center">
+        <h1 className="text-[clamp(2.25rem,5vw,3.75rem)] font-semibold tracking-tight text-(--foreground)">
+          Let&apos;s Work Together
         </h1>
-        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-(--muted)">
-          Have a question, project idea, or opportunity to discuss? Send a
-          message below or connect via GitHub.
+        <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-(--muted) sm:text-base">
+          Have a project in mind or want to discuss an opportunity? Feel free
+          to reach out through any of the platforms below.
         </p>
       </header>
 
-      <div className="mt-10 grid gap-12 md:grid-cols-[1.5fr_0.5fr]">
-        <ContactForm isConfigured={isConfigured} />
-
-        <aside className="h-fit space-y-6 rounded-lg border border-(--border) bg-(--surface)/40 p-6">
-          <div>
-            <h2 className="font-mono text-xs font-medium text-(--muted)">
-              Direct Profiles
-            </h2>
-            <ul className="mt-3 space-y-2.5 text-sm">
-              <li>
-                <a
-                  href={siteConfig.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-(--foreground) underline underline-offset-4"
-                >
-                  GitHub (@{siteConfig.githubUsername}) ↗
-                </a>
-              </li>
-              {hasEmail ? (
-                <li>
-                  <a
-                    href={`mailto:${siteConfig.contactEmail}`}
-                    className="text-(--foreground) underline underline-offset-4"
-                  >
-                    {siteConfig.contactEmail}
-                  </a>
-                </li>
-              ) : (
-                <li className="text-xs text-(--muted)">
-                  Direct email: <code>[CONTACT EMAIL]</code> (configure in{" "}
-                  <code>src/content/site.ts</code>)
-                </li>
-              )}
-            </ul>
-          </div>
-        </aside>
+      <div className="mt-12 grid gap-5 sm:grid-cols-2">
+        {cards.map((card) => (
+          <ContactCard key={card.label} {...card} />
+        ))}
       </div>
     </div>
   );

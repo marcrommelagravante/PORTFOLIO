@@ -13,6 +13,8 @@ export type SiteConfig = {
   githubUrl: string;
   contactEmail?: string;
   linkedinUrl?: string;
+  discordUrl?: string;
+  facebookUrl?: string;
   resumeUrl?: string;
   about: {
     professionalBio: string[];
@@ -39,9 +41,16 @@ export const siteConfig: SiteConfig = {
   locationFooterLine: "[LOCATION OR SHORT FOOTER LINE]",
   githubUsername: "marcrommelagravante",
   githubUrl: "https://github.com/marcrommelagravante",
-  // Leave optional links undefined until real URLs/files are provided
+  // Leave optional links undefined until real URLs/files are provided.
+  // Expected formats:
+  //   contactEmail: "you@example.com"
+  //   linkedinUrl: "https://www.linkedin.com/in/your-handle"
+  //   discordUrl: "https://discord.com/users/<your-user-id>"
+  //   facebookUrl: "https://www.facebook.com/your-handle"
   contactEmail: undefined,
   linkedinUrl: undefined,
+  discordUrl: undefined,
+  facebookUrl: undefined,
   resumeUrl: undefined,
   about: {
     professionalBio: [
