@@ -1,26 +1,14 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import {
   interestGallery,
   interestPageHeader,
-  type InterestGalleryItem,
+  interestStack,
 } from "@/content/interests";
 
-const GRID_SPAN_BY_CLASS: Record<string, string> = {
-  "gallery-gaming": "lg:col-start-1 lg:row-start-1",
-  "gallery-gym": "lg:col-start-2 lg:row-start-1",
-  "gallery-volleyball": "lg:col-start-3 lg:row-start-1 lg:row-span-2",
-  "gallery-other": "lg:col-start-1 lg:col-span-2 lg:row-start-2",
-};
-
-function getGridPlacementClass(item: InterestGalleryItem): string {
-  if (item.className && GRID_SPAN_BY_CLASS[item.className]) {
-    return GRID_SPAN_BY_CLASS[item.className];
-  }
-  return "";
-}
+const DRAG_THRESHOLD_PX = 80;
 
 export function InterestsSection({
   headingLevel = "h2",
@@ -31,100 +19,94 @@ export function InterestsSection({
 }) {
   const HeadingTag = headingLevel;
   const count = interestGallery.length;
+  const isSingle = count <= 1;
 
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [active, setActive] = useState(0);
+  const [interacted, setInteracted] = useState(false);
+  const [dragX, setDragX] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
 
-  const cardButtonRefs = useRef<Array<HTMLButtonElement | null>>([]);
-  const dialogRef = useRef<HTMLDivElement | null>(null);
-  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
-  const lastActiveIndexRef = useRef<number | null>(null);
-
-  const closeLightbox = useCallback(() => {
-    const returnIndex = lastActiveIndexRef.current;
-    setActiveIndex(null);
-    if (returnIndex !== null) {
-      window.requestAnimationFrame(() => {
-        cardButtonRefs.current[returnIndex]?.focus();
-      });
-    }
-  }, []);
+  const pointerStartX = useRef<number | null>(null);
+  const activePointerId = useRef<number | null>(null);
 
   const stepBy = useCallback(
     (delta: number) => {
-      if (count <= 1) return;
-      setActiveIndex((prev) => {
-        if (prev === null) return null;
-        const next = (((prev + delta) % count) + count) % count;
-        lastActiveIndexRef.current = next;
-        return next;
-      });
+      if (isSingle) return;
+      setInteracted(true);
+      setActive((prev) => (((prev + delta) % count) + count) % count);
     },
-    [count]
+    [count, isSingle]
   );
 
-  const openLightbox = (index: number) => {
-    lastActiveIndexRef.current = index;
-    setActiveIndex(index);
+  if (count === 0) {
+    return null;
+  }
+
+  const activeItem = interestGallery[active];
+  const maxBackCards = Math.min(interestStack.visible, Math.max(count - 1, 0));
+  const topStackSpace = maxBackCards * interestStack.peek;
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+    if (isSingle) return;
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      stepBy(-1);
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      stepBy(1);
+    }
   };
 
-  useEffect(() => {
-    if (activeIndex === null) return;
+  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (isSingle || event.button !== 0) return;
+    pointerStartX.current = event.clientX;
+    activePointerId.current = event.pointerId;
+    event.currentTarget.setPointerCapture(event.pointerId);
+    setIsDragging(true);
+    setDragX(0);
+  };
 
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging || pointerStartX.current === null) return;
+    setDragX(event.clientX - pointerStartX.current);
+  };
 
-    const focusTimer = window.requestAnimationFrame(() => {
-      closeButtonRef.current?.focus();
-    });
+  const finishDrag = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging || pointerStartX.current === null) return;
+    const dx = event.clientX - pointerStartX.current;
+    if (
+      activePointerId.current !== null &&
+      event.currentTarget.hasPointerCapture(activePointerId.current)
+    ) {
+      event.currentTarget.releasePointerCapture(activePointerId.current);
+    }
+    pointerStartX.current = null;
+    activePointerId.current = null;
+    setIsDragging(false);
+    setDragX(0);
 
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        closeLightbox();
-      } else if (event.key === "ArrowLeft") {
-        event.preventDefault();
-        stepBy(-1);
-      } else if (event.key === "ArrowRight") {
-        event.preventDefault();
-        stepBy(1);
-      } else if (event.key === "Tab" && dialogRef.current) {
-        const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
-          'button:not([disabled]), [tabindex]:not([tabindex="-1"])'
-        );
-        if (focusable.length === 0) return;
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
+    if (Math.abs(dx) >= DRAG_THRESHOLD_PX) {
+      stepBy(dx < 0 ? 1 : -1);
+    }
+  };
 
-        if (event.shiftKey && document.activeElement === first) {
-          event.preventDefault();
-          last.focus();
-        } else if (!event.shiftKey && document.activeElement === last) {
-          event.preventDefault();
-          first.focus();
-        }
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.cancelAnimationFrame(focusTimer);
-      window.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [activeIndex, closeLightbox, stepBy]);
+  const cancelDrag = () => {
+    pointerStartX.current = null;
+    activePointerId.current = null;
+    setIsDragging(false);
+    setDragX(0);
+  };
 
   const markImageFailed = (id: string) => {
     setFailedImages((prev) => (prev[id] ? prev : { ...prev, [id]: true }));
   };
 
-  const activeItem =
-    activeIndex !== null ? interestGallery[activeIndex] ?? null : null;
-
   return (
     <section
       id="outside-the-ide"
       aria-labelledby="outside-the-ide-heading"
+      onKeyDown={handleKeyDown}
       className={`py-8 sm:py-10 ${
         isStandalone ? "" : "border-b border-(--border)"
       }`}
@@ -145,202 +127,137 @@ export function InterestsSection({
       </header>
 
       <div
-        aria-label="Personal interests photo gallery"
-        className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-[1fr_1fr_0.95fr] lg:grid-rows-[250px_260px]"
+        className="sr-only"
+        aria-live={interacted ? "polite" : "off"}
+        aria-atomic="true"
       >
-        {interestGallery.map((item, index) => {
-          const placementClass = getGridPlacementClass(item);
-          const hasImage = Boolean(item.image?.trim()) && !failedImages[item.id];
-          const isTallCard = item.className === "gallery-volleyball";
+        {`Showing interest ${active + 1} of ${count}: ${activeItem.title} — ${activeItem.caption}`}
+      </div>
 
-          return (
-            <article
-              key={item.id}
-              id={`interest-${item.id}`}
-              style={{ animationDelay: `${(index + 1) * 65}ms` }}
-              className={`animate-gallery-enter relative min-h-60 sm:min-h-64 lg:min-h-0 ${placementClass}`}
-            >
-              <button
-                ref={(el) => {
-                  cardButtonRefs.current[index] = el;
-                }}
-                type="button"
-                onClick={() => openLightbox(index)}
-                aria-label={`${item.title} — ${item.caption}. Open image preview`}
-                className="group relative flex h-full w-full cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border border-(--border) bg-(--surface) p-5 text-left transition-[border-color,box-shadow] duration-200 hover:border-(--foreground)/35 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-(--foreground)"
-              >
-                {hasImage ? (
-                  <>
+      {/* Stack Stage */}
+      <div
+        aria-roledescription="carousel"
+        aria-label="Personal interests photo stack"
+        className="animate-gallery-enter mt-8 select-none sm:mt-10"
+      >
+        <div
+          style={{ paddingTop: `${topStackSpace}px` }}
+          className="mx-auto w-[70%] max-w-80 sm:w-80"
+        >
+          <div
+            style={{ perspective: "800px" }}
+            className="relative aspect-3/4 w-full"
+          >
+            {interestGallery.map((item, index) => {
+              const pos = (((index - active) % count) + count) % count;
+              const isFront = pos === 0;
+              const isVisible = pos <= interestStack.visible;
+              const hasImage =
+                Boolean(item.image?.trim()) && !failedImages[item.id];
+
+              const yOffset = -pos * interestStack.peek;
+              const zOffset = -pos * interestStack.depth;
+              const transform =
+                isFront && isDragging
+                  ? `translate3d(${dragX}px, 0px, 0px) rotate(${dragX * 0.04}deg)`
+                  : `translate3d(0px, ${yOffset}px, ${zOffset}px) rotate(0deg)`;
+
+              return (
+                <div
+                  key={item.id}
+                  role={isFront ? "group" : undefined}
+                  aria-roledescription={isFront ? "slide" : undefined}
+                  aria-label={
+                    isFront
+                      ? `${active + 1} of ${count}: ${item.title} — ${item.caption}`
+                      : undefined
+                  }
+                  aria-hidden={!isFront ? "true" : undefined}
+                  tabIndex={isFront ? 0 : -1}
+                  onPointerDown={isFront ? handlePointerDown : undefined}
+                  onPointerMove={isFront ? handlePointerMove : undefined}
+                  onPointerUp={isFront ? finishDrag : undefined}
+                  onPointerCancel={isFront ? cancelDrag : undefined}
+                  style={{
+                    transform,
+                    zIndex: count - pos,
+                    filter: isFront
+                      ? "none"
+                      : `brightness(${Math.max(1 - pos * 0.06, 0.76)})`,
+                  }}
+                  className={`interest-stack-card absolute inset-0 overflow-hidden rounded-2xl border border-(--border) bg-(--surface) shadow-xl ${
+                    isFront && isDragging
+                      ? "cursor-grabbing transition-none"
+                      : "transition-[transform,opacity,filter] duration-450 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                  } ${
+                    isFront
+                      ? "cursor-grab touch-pan-y focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"
+                      : "pointer-events-none"
+                  } ${isVisible ? "opacity-100" : "opacity-0"}`}
+                >
+                  {hasImage ? (
                     <Image
                       src={item.image}
                       alt={item.alt}
                       fill
                       priority={index < 2}
-                      sizes={
-                        isTallCard
-                          ? "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
-                          : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 560px"
-                      }
+                      draggable={false}
+                      sizes="(max-width: 640px) 70vw, 320px"
                       style={{
                         objectPosition: item.objectPosition ?? "center",
                       }}
                       onError={() => markImageFailed(item.id)}
-                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] group-focus-visible:scale-[1.03]"
+                      className="object-cover select-none"
                     />
-                    {/* Contrast overlay strictly inside the photograph card */}
-                    <div
-                      aria-hidden="true"
-                      className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/72 via-black/18 to-black/28 transition-opacity duration-300 group-hover:from-black/78"
-                    />
-                  </>
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center bg-(--surface) p-6 text-center">
-                    <span className="font-mono text-xs tracking-wider text-(--muted) uppercase">
-                      [{item.title} photo placeholder]
-                    </span>
-                  </div>
-                )}
-
-                {/* Top row: Category label (left) and arrow affordance (right) */}
-                <div className="relative z-10 flex w-full items-start justify-between gap-3">
-                  <span
-                    className={`inline-flex items-center rounded-full border px-3 py-1 font-mono text-[11px] font-medium tracking-wide ${
-                      hasImage
-                        ? "border-white/20 bg-black/45 text-white backdrop-blur-xs"
-                        : "border-(--border) bg-(--background)/85 text-(--foreground)"
-                    }`}
-                  >
-                    {item.title}
-                  </span>
-
-                  <span
-                    aria-hidden="true"
-                    className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-xs transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5 ${
-                      hasImage
-                        ? "border-white/20 bg-black/45 text-white backdrop-blur-xs"
-                        : "border-(--border) bg-(--background)/85 text-(--foreground)"
-                    }`}
-                  >
-                    ↗
-                  </span>
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center bg-(--surface) p-6 text-center">
+                      <span className="font-mono text-xs tracking-wider text-(--muted) uppercase">
+                        [{item.title} photo placeholder]
+                      </span>
+                    </div>
+                  )}
                 </div>
-
-                {/* Bottom row: Short caption */}
-                <div className="relative z-10 mt-auto pt-12">
-                  <p
-                    className={`text-base font-medium tracking-tight sm:text-lg ${
-                      hasImage
-                        ? "text-white drop-shadow-xs"
-                        : "text-(--foreground)"
-                    }`}
-                  >
-                    {item.caption}
-                  </p>
-                </div>
-              </button>
-            </article>
-          );
-        })}
-      </div>
-
-      {/* Accessible Lightbox Modal */}
-      {activeItem && activeIndex !== null && (
-        <div
-          ref={dialogRef}
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="interest-lightbox-title"
-          aria-describedby="interest-lightbox-caption"
-          onClick={(event) => {
-            if (event.target === event.currentTarget) {
-              closeLightbox();
-            }
-          }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-xs sm:p-6"
-        >
-          <div className="relative flex w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-(--border) bg-(--background) shadow-2xl">
-            <div className="flex items-center justify-between border-b border-(--border) px-5 py-3.5">
-              <div className="flex items-center gap-3">
-                <h2
-                  id="interest-lightbox-title"
-                  className="font-mono text-xs font-semibold tracking-wider text-(--foreground) uppercase"
-                >
-                  {activeItem.title}
-                </h2>
-                <span className="font-mono text-xs text-(--muted)">
-                  {activeIndex + 1} / {count}
-                </span>
-              </div>
-
-              <button
-                ref={closeButtonRef}
-                type="button"
-                onClick={closeLightbox}
-                aria-label="Close preview"
-                className="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg border border-(--border) bg-(--surface)/60 text-sm text-(--foreground) transition-colors hover:bg-(--surface) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
-              >
-                ✕
-              </button>
-            </div>
-
-            <div className="relative aspect-16/10 w-full bg-(--surface)">
-              {Boolean(activeItem.image?.trim()) &&
-              !failedImages[activeItem.id] ? (
-                <Image
-                  src={activeItem.image}
-                  alt={activeItem.alt}
-                  fill
-                  sizes="(max-width: 896px) 100vw, 896px"
-                  style={{
-                    objectPosition: activeItem.objectPosition ?? "center",
-                  }}
-                  onError={() => markImageFailed(activeItem.id)}
-                  className="object-cover"
-                />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center p-6 text-center">
-                  <span className="font-mono text-xs tracking-wider text-(--muted) uppercase">
-                    [{activeItem.title} photo placeholder]
-                  </span>
-                </div>
-              )}
-
-              {count > 1 && (
-                <>
-                  <button
-                    type="button"
-                    onClick={() => stepBy(-1)}
-                    aria-label="Previous interest photo"
-                    className="absolute top-1/2 left-3 z-10 inline-flex h-9 w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-(--border) bg-(--background)/90 text-sm text-(--foreground) shadow-sm transition-colors hover:bg-(--background) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
-                  >
-                    ←
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => stepBy(1)}
-                    aria-label="Next interest photo"
-                    className="absolute top-1/2 right-3 z-10 inline-flex h-9 w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-(--border) bg-(--background)/90 text-sm text-(--foreground) shadow-sm transition-colors hover:bg-(--background) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
-                  >
-                    →
-                  </button>
-                </>
-              )}
-            </div>
-
-            <div className="flex items-center justify-between gap-4 border-t border-(--border) px-5 py-4">
-              <p
-                id="interest-lightbox-caption"
-                className="text-sm font-medium text-(--foreground) sm:text-base"
-              >
-                {activeItem.caption}
-              </p>
-              <span className="shrink-0 font-mono text-xs text-(--muted)">
-                Use ← → or Esc
-              </span>
-            </div>
+              );
+            })}
           </div>
         </div>
-      )}
+
+        {/* Active Card Details & Controls Below */}
+        <div className="mx-auto mt-7 max-w-md text-center">
+          <div key={activeItem.id} className="animate-coverflow-text">
+            <h2 className="text-xl font-semibold tracking-tight text-(--foreground) sm:text-2xl">
+              {activeItem.title}
+            </h2>
+            <p className="mt-1.5 text-sm leading-relaxed text-(--muted) sm:text-base">
+              {activeItem.caption}
+            </p>
+          </div>
+
+          {!isSingle && (
+            <div className="mt-5 flex items-center justify-center gap-4">
+              <button
+                type="button"
+                onClick={() => stepBy(-1)}
+                aria-label="Previous interest"
+                className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-(--border) bg-(--background)/90 text-sm text-(--foreground) shadow-xs transition-colors hover:bg-(--surface) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
+              >
+                ←
+              </button>
+              <span className="font-mono text-xs text-(--muted) tabular-nums">
+                {active + 1} / {count}
+              </span>
+              <button
+                type="button"
+                onClick={() => stepBy(1)}
+                aria-label="Next interest"
+                className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-(--border) bg-(--background)/90 text-sm text-(--foreground) shadow-xs transition-colors hover:bg-(--surface) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
+              >
+                →
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
     </section>
   );
 }

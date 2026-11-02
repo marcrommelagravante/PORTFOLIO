@@ -5,7 +5,6 @@ import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SideRail } from "@/components/layout/SideRail";
 import { SiteFooter } from "@/components/layout/SiteFooter";
-import { CustomCursor } from "@/components/motion/CustomCursor";
 import { createPageMetadata } from "@/lib/metadata";
 
 const geistSans = Geist({
@@ -58,7 +57,6 @@ export default function RootLayout({
       </head>
       <body className="flex min-h-screen flex-col antialiased selection:bg-(--foreground) selection:text-(--background)">
         <ThemeProvider>
-          <CustomCursor />
           <SiteHeader />
           <SideRail />
           <div className="sidebar-content-offset flex flex-1 flex-col lg:pl-64">

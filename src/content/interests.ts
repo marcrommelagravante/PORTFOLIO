@@ -10,9 +10,14 @@ export type InterestGalleryItem = {
   image: string;
   alt: string;
   caption: string;
-  className?: string;
   objectPosition?: string;
   isPlaceholder: boolean;
+};
+
+export const interestStack = {
+  peek: 32,
+  depth: 36,
+  visible: 4,
 };
 
 /**
@@ -38,7 +43,6 @@ export const interestGallery: InterestGalleryItem[] = [
     image: "/images/interests/gaming-placeholder.svg",
     alt: "Temporary image representing gaming",
     caption: "Game. Chill. Repeat.",
-    className: "gallery-gaming",
     objectPosition: "center",
     isPlaceholder: true,
   },
@@ -48,7 +52,6 @@ export const interestGallery: InterestGalleryItem[] = [
     image: "/images/interests/gym-placeholder.svg",
     alt: "Temporary image representing gym training",
     caption: "Train harder.",
-    className: "gallery-gym",
     objectPosition: "center",
     isPlaceholder: true,
   },
@@ -58,7 +61,6 @@ export const interestGallery: InterestGalleryItem[] = [
     image: "/images/interests/volleyball-placeholder.svg",
     alt: "Temporary image representing volleyball",
     caption: "Play with passion.",
-    className: "gallery-volleyball",
     objectPosition: "center 35%",
     isPlaceholder: true,
   },
@@ -68,7 +70,6 @@ export const interestGallery: InterestGalleryItem[] = [
     image: "/images/interests/other-interests-placeholder.svg",
     alt: "Temporary image representing other interests",
     caption: "More beyond the usual.",
-    className: "gallery-other",
     objectPosition: "center",
     isPlaceholder: true,
   },
