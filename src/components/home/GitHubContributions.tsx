@@ -24,7 +24,7 @@ export async function GitHubContributions() {
     <section
       id="github"
       aria-labelledby="github-heading"
-      className="border-b border-(--border) py-10 sm:py-12"
+      className="py-10 sm:py-12"
     >
       <div className="mb-6 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
         <h2

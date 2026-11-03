@@ -68,16 +68,15 @@ DESKTOP VIEWPORT (≥ 1024px)
 |  | [MRA.]  [<]  |  |                                                         |  |
 |  |              |  |   MAIN CONTENT WELL (max-w-4xl, centered)               |  |
 |  | GENERAL      |  |                                                         |  |
-|  | • Home       |  |   [ Hero Section ]                                      |  |
-|  | • About Me   |  |   [ About Me Section ]                                  |  |
-|  |              |  |   [ Projects Ledger + Preview ]                         |  |
-|  | PORTFOLIO    |  |   [ Tech Stack Grid ]                                   |  |
-|  | • Projects   |  |   [ GitHub Monochrome Heatmap ]                         |  |
-|  |              |  |   [ Let's Connect Cards ]                               |  |
-|  | MY WORKSPACE |  |                                                         |  |
-|  | • The Toolkit|  +---------------------------------------------------------+  |
-|  |              |  |   GLOBAL FOOTER                                         |  |
-|  | BEYOND DEV   |  +---------------------------------------------------------+  |
+|  | • About Me   |  |   [ Hero Section ]                                      |  |
+|  |              |  |   [ About Me Section ]                                  |  |
+|  | PORTFOLIO    |  |   [ Projects Ledger + Preview ]                         |  |
+|  | • Projects   |  |   [ Tech Stack Grid ]                                   |  |
+|  |              |  |   [ GitHub Monochrome Heatmap ]                         |  |
+|  | MY WORKSPACE |  +---------------------------------------------------------+  |
+|  | • The Toolkit|  |   GLOBAL FOOTER                                         |  |
+|  |              |  +---------------------------------------------------------+  |
+|  | BEYOND DEV   |                                                               |
 |  | • Beyond IDE |                                                               |
 |  |              |                                                               |
 |  | LET'S CONNECT|                                                               |
@@ -94,21 +93,20 @@ DESKTOP VIEWPORT (≥ 1024px)
   - **Expanded (`w-56`):** Displays branding monogram, toggle button, group headings, item icons, and textual labels.
   - **Collapsed (`w-16`):** Shrinks to an icon-only dock. Displays floating tooltip pills (`role="tooltip"`) on hover and focus.
   - State is saved in `localStorage["portfolio-sidebar-collapsed"]` and set on `document.documentElement[data-sidebar-collapsed="true"]` with inline zero-FOUC hydration scripts.
-- **Scroll Spy:** Automatically detects the visible section on the homepage (`#home`, `#about`, `#projects`, `#skills`, `#github`, `#contact`) and activates the corresponding rail item.
+- **Route-Based Active State:** Active rail item is derived directly from `pathname` (with no scroll-based switching).
 - **Active State Indicator:** A vertical pill bar `w-1 rounded-r-full bg-(--foreground)` at the left border edge, paired with `bg-(--foreground)/8` and bold text.
 - **In-Sidebar Theme Toggle:** Bottom dock control switches between Light and Dark themes with Sun/Moon SVGs.
 
 ### 2. Grouped Navigation Taxonomy
 Navigation is strictly organized into 5 thematic groups across both desktop and mobile:
 
-| Group Title | Item Label | Route / Anchor | Icon |
+| Group Title | Item Label | Route | Icon |
 | :--- | :--- | :--- | :--- |
-| **GENERAL** | Home | `/#home` | Minimalist House outline |
-| | About Me | `/#about` (or `/about`) | User circle avatar outline |
-| **PORTFOLIO** | Projects | `/#projects` (or `/projects`) | Folder tab outline |
+| **GENERAL** | About Me | `/` | User circle avatar outline |
+| **PORTFOLIO** | Projects | `/projects` | Folder tab outline |
 | **MY WORKSPACE** | The Toolkit | `/gear` | Computer display monitor |
 | **BEYOND DEVELOPMENT** | Beyond the IDE | `/outside-the-ide` | Warm coffee mug outline |
-| **LET'S CONNECT** | Contact | `/#contact` (or `/contact`) | Envelope mail outline |
+| **LET'S CONNECT** | Contact | `/contact` | Envelope mail outline |
 
 ### 3. Mobile / Tablet Header (`SiteHeader.tsx` & `MobileNavigation.tsx`)
 - On screens `< 1024px`, the desktop sidebar is hidden.
@@ -136,8 +134,8 @@ The homepage serves as a comprehensive, scrollable editorial index of the creato
   - Headline: "Hi, I'm [First Name]. I build useful things for the web."
   - Short intro paragraph with high line-height.
   - Two magnetic action buttons:
-    - Primary: Filled `bg-(--foreground)` with `text-(--background)` ("Explore my work" -> `#projects`).
-    - Secondary: Outlined border `border-(--border) bg-(--surface)/50` ("About me" -> `#about`).
+    - Primary: Filled `bg-(--foreground)` with `text-(--background)` ("Explore my work" -> `/projects`).
+    - Secondary: Outlined border `border-(--border) bg-(--surface)/50` ("Contact" -> `/contact`).
 - **Right Column:**
   - Circular framed portrait (`aspect-square rounded-full border border-(--border) bg-(--surface)`).
   - Floating badge attached to the top-right of the avatar: `// Developer` in a pill container with blur.

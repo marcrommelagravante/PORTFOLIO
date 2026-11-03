@@ -8,7 +8,6 @@ import { useTheme } from "@/components/theme/ThemeProvider";
 import { PageLoader } from "@/components/motion/PageLoader";
 
 export type RailItemId =
-  | "home"
   | "about"
   | "projects"
   | "gear"
@@ -29,42 +28,6 @@ export type RailGroup = {
 };
 
 const SIDEBAR_STORAGE_KEY = "portfolio-sidebar-collapsed";
-
-const SECTION_IDS = [
-  "home",
-  "about",
-  "projects",
-  "skills",
-  "github",
-  "contact",
-] as const;
-
-const SECTION_TO_RAIL: Record<(typeof SECTION_IDS)[number], RailItemId> = {
-  home: "home",
-  about: "about",
-  projects: "projects",
-  skills: "projects",
-  github: "projects",
-  contact: "contact",
-};
-
-function HomeIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      className="h-4.5 w-4.5 shrink-0"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.75"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M3 10.5 12 3l9 7.5" />
-      <path d="M5 9v11h5v-6h4v6h5V9" />
-    </svg>
-  );
-}
 
 function UserIcon() {
   return (
@@ -187,8 +150,7 @@ export const RAIL_GROUPS: RailGroup[] = [
     id: "general",
     title: "General",
     items: [
-      { id: "home", label: "Home", href: "/#home", icon: <HomeIcon /> },
-      { id: "about", label: "About Me", href: "/#about", icon: <UserIcon /> },
+      { id: "about", label: "About Me", href: "/", icon: <UserIcon /> },
     ],
   },
   {
@@ -198,7 +160,7 @@ export const RAIL_GROUPS: RailGroup[] = [
       {
         id: "projects",
         label: "Projects",
-        href: "/#projects",
+        href: "/projects",
         icon: <FolderIcon />,
       },
     ],
@@ -226,7 +188,7 @@ export const RAIL_GROUPS: RailGroup[] = [
     id: "connect",
     title: "Let's Connect",
     items: [
-      { id: "contact", label: "Contact", href: "/#contact", icon: <MailIcon /> },
+      { id: "contact", label: "Contact", href: "/contact", icon: <MailIcon /> },
     ],
   },
 ];
@@ -236,18 +198,17 @@ export const RAIL_ITEMS: RailItem[] = RAIL_GROUPS.flatMap(
 );
 
 function getPathnameRailId(pathname: string): RailItemId {
-  if (pathname.startsWith("/about")) return "about";
   if (pathname.startsWith("/projects")) return "projects";
   if (pathname.startsWith("/gear")) return "gear";
   if (pathname.startsWith("/outside-the-ide")) return "outside-the-ide";
   if (pathname.startsWith("/contact")) return "contact";
-  return "home";
+  return "about";
 }
 
 export function SideRail() {
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
-  const [activeId, setActiveId] = useState<RailItemId>("home");
+  const activeId = getPathnameRailId(pathname);
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   useEffect(() => {
@@ -278,58 +239,6 @@ export function SideRail() {
     });
   };
 
-  useEffect(() => {
-    if (pathname !== "/") {
-      setActiveId(getPathnameRailId(pathname));
-      return;
-    }
-
-    let rafId = 0;
-
-    const updateActiveSection = () => {
-      const scrollBottom = window.innerHeight + window.scrollY;
-      const docHeight = document.documentElement.scrollHeight;
-      if (docHeight - scrollBottom <= 40) {
-        setActiveId("contact");
-        return;
-      }
-
-      const triggerLine = window.innerHeight * 0.32;
-      let currentSection: (typeof SECTION_IDS)[number] = "home";
-
-      for (const secId of SECTION_IDS) {
-        const el = document.getElementById(secId);
-        if (!el) continue;
-        const rect = el.getBoundingClientRect();
-        if (rect.top <= triggerLine) {
-          currentSection = secId;
-        }
-      }
-
-      setActiveId(SECTION_TO_RAIL[currentSection]);
-    };
-
-    const onScroll = () => {
-      if (rafId) return;
-      rafId = window.requestAnimationFrame(() => {
-        rafId = 0;
-        updateActiveSection();
-      });
-    };
-
-    updateActiveSection();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
-
-    return () => {
-      if (rafId) {
-        window.cancelAnimationFrame(rafId);
-      }
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, [pathname]);
-
   const themeLabel =
     theme === "dark" ? "Switch to light theme" : "Switch to dark theme";
 
@@ -348,8 +257,7 @@ export function SideRail() {
       >
         {!isCollapsed && (
           <Link
-            href="/#home"
-            onClick={() => setActiveId("home")}
+            href="/"
             aria-label={`${siteConfig.fullName} home`}
             className="inline-block text-lg font-bold tracking-tight text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"
           >
@@ -414,9 +322,8 @@ export function SideRail() {
                     )}
                     <Link
                       href={item.href}
-                      aria-current={isActive ? "true" : undefined}
+                      aria-current={isActive ? "page" : undefined}
                       aria-label={isCollapsed ? item.label : undefined}
-                      onClick={() => setActiveId(item.id)}
                       className={`group relative flex items-center rounded-xl text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--foreground) ${
                         isCollapsed
                           ? "justify-center p-2.5"

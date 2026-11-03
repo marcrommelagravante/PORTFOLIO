@@ -32,7 +32,7 @@ export function Hero() {
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <MagneticButton>
               <Link
-                href="#projects"
+                href="/projects"
                 className="inline-flex items-center justify-center rounded-md bg-(--foreground) px-5 py-2.5 text-sm font-medium text-(--background) transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
               >
                 Explore my work
@@ -41,10 +41,10 @@ export function Hero() {
 
             <MagneticButton>
               <Link
-                href="#about"
+                href="/contact"
                 className="inline-flex items-center justify-center rounded-md border border-(--border) bg-(--surface)/50 px-5 py-2.5 text-sm font-medium text-(--foreground) transition-colors hover:bg-(--surface) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
               >
-                About me
+                Contact
               </Link>
             </MagneticButton>
           </div>

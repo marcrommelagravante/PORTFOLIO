@@ -10,7 +10,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-30 border-b border-(--border) bg-(--background)/95 backdrop-blur-xs lg:hidden">
       <div className="mx-auto flex h-16 max-w-4xl items-center justify-between px-6 sm:px-8">
         <Link
-          href="/#home"
+          href="/"
           aria-label={`${siteConfig.fullName} home`}
           className="text-base font-bold tracking-tight text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"
         >

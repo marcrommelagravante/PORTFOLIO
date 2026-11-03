@@ -18,8 +18,10 @@ export type PortfolioProject = {
 };
 
 export const projectsSectionCopy = {
-  eyebrow: "Selected work",
+  eyebrow: "SELECTED WORK",
   title: "Projects",
+  description:
+    "A curated selection of web, mobile, and AI applications I've designed and built. Select a project to explore the case study.",
   groupLabel: "Personal projects",
   hint: "Hover a project to preview. Click to read the case study.",
   ctaLabel: "View Project",

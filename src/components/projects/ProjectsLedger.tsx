@@ -64,21 +64,18 @@ export function ProjectsLedger({
   return (
     <div>
       {/* Section Header */}
-      <header className="mb-12 flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
-        <div>
-          <p className="font-mono text-xs tracking-wider text-(--muted) uppercase">
-            {`${projectsSectionCopy.eyebrow} · ${paddedTotal}`}
-          </p>
-          <HeadingTag
-            id="projects-heading"
-            className="mt-2 text-3xl font-semibold tracking-tight text-(--foreground) sm:text-4xl"
-          >
-            {projectsSectionCopy.title}
-          </HeadingTag>
-        </div>
-
-        <p className="hidden max-w-[340px] text-sm leading-relaxed text-(--muted) lg:block">
-          {projectsSectionCopy.hint}
+      <header className="animate-gallery-enter mb-10 max-w-2xl">
+        <p className="font-mono text-xs font-medium tracking-wider text-(--muted) uppercase">
+          {projectsSectionCopy.eyebrow}
+        </p>
+        <HeadingTag
+          id="projects-heading"
+          className="mt-2.5 text-3xl font-semibold tracking-tight text-(--foreground) sm:text-4xl"
+        >
+          {projectsSectionCopy.title}
+        </HeadingTag>
+        <p className="mt-3 text-base leading-relaxed text-(--muted)">
+          {projectsSectionCopy.description}
         </p>
       </header>
 

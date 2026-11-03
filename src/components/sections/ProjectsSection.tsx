@@ -13,7 +13,7 @@ export function ProjectsSection({
     <section
       id="projects"
       aria-labelledby="projects-heading"
-      className={`py-10 sm:py-12 ${
+      className={`py-8 sm:py-10 ${
         isStandalone ? "" : "border-b border-(--border)"
       }`}
     >
