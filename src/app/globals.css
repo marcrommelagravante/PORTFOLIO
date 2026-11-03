@@ -6,6 +6,10 @@
   --foreground: #33332F;
   --muted: #6F6D66;
   --border: #D0CEC5;
+  --device-bg: #22221F;
+  --device-border: #32312C;
+  --device-fg: #EFECE4;
+  --device-muted: #A09D94;
 }
 
 @theme inline {
@@ -14,6 +18,10 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --color-device-bg: var(--device-bg);
+  --color-device-border: var(--device-border);
+  --color-device-fg: var(--device-fg);
+  --color-device-muted: var(--device-muted);
 }
 
 .dark {
@@ -51,7 +59,7 @@ section[id] {
     scroll-behavior: auto;
   }
 
-  *:not(.coverflow-slide):not(.animate-coverflow-text),
+  *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
@@ -72,7 +80,7 @@ body {
   font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
-@keyframes coverflow-fade-up {
+@keyframes fade-rise {
   from {
     opacity: 0;
     transform: translateY(6px);
@@ -83,8 +91,21 @@ body {
   }
 }
 
-.animate-coverflow-text {
-  animation: coverflow-fade-up 250ms cubic-bezier(0.22, 1, 0.36, 1) both;
+.animate-fade-rise {
+  animation: fade-rise 250ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes crossfade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-crossfade {
+  animation: crossfade 200ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes gallery-fade-up {

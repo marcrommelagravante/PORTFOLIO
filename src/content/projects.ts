@@ -5,6 +5,9 @@ export type PortfolioProject = {
   overview: string;
   features: string[];
   highlights: string[];
+  tag: string;
+  status?: "beta" | "soon";
+  thumbnail?: string;
   coverImage?: string;
   screenshots?: string[];
   technologies: string[];
@@ -14,6 +17,15 @@ export type PortfolioProject = {
   isPlaceholder?: boolean;
 };
 
+export const projectsSectionCopy = {
+  eyebrow: "Selected work",
+  title: "Projects",
+  groupLabel: "Personal projects",
+  hint: "Hover a project to preview. Click to read the case study.",
+  ctaLabel: "View Project",
+  coverPlaceholderLabel: "Cover screenshot goes here",
+} as const;
+
 /**
  * Manually curated portfolio projects.
  * Replace placeholder entries with real project details and URLs before launch.
@@ -22,6 +34,7 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "project-one",
     title: "[PROJECT 01 — AI WORKSPACE]",
+    tag: "AI app",
     summary:
       "A concise one-line description of this AI web application and the core problem it solves for users.",
     overview:
@@ -51,6 +64,7 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "project-two",
     title: "[PROJECT 02 — FULL-STACK SAAS]",
+    tag: "SaaS",
     summary:
       "A brief description of this full-stack platform highlighting its main workflow and target audience.",
     overview:
@@ -80,6 +94,7 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "project-three",
     title: "[PROJECT 03 — MOBILE COMPANION APP]",
+    tag: "Mobile",
     summary:
       "A short description of this cross-platform mobile application and how it helps users on the go.",
     overview:
@@ -109,6 +124,7 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "project-four",
     title: "[PROJECT 04 — DEVELOPER TOOLKIT]",
+    tag: "Dev tool",
     summary:
       "A short summary of this developer tool or automation utility and how it speeds up engineering workflows.",
     overview:
