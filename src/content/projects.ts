@@ -96,8 +96,8 @@ export const portfolioProjects: PortfolioProject[] = [
           "Arduino Uno R3 (ATmega328P), L298N Dual H-Bridge, SG90 Servo, HC-SR04 Ultrasonic, 16x2 LCD",
       },
     ],
-    coverImage: "/images/projects/ar-duino/ar-duino-cover.jpg",
-    thumbnail: "/images/projects/ar-duino/ar-duino-cover.jpg",
+    coverImage: "/images/projects/ar-duino/ar-duino-cover.png",
+    thumbnail: "/images/projects/ar-duino/ar-duino-cover.png",
     screenshots: [
       "/images/projects/ar-duino/ar-duino-01.jpg",
       "/images/projects/ar-duino/ar-duino-02.jpg",
@@ -314,34 +314,92 @@ export const portfolioProjects: PortfolioProject[] = [
     isPlaceholder: false,
   },
   {
-    slug: "project-four",
-    title: "[PROJECT 04 — DEVELOPER TOOLKIT]",
-    tag: "Dev tool",
+    slug: "salo-sa-antipolo",
+    title: "Salo sa Antipolo",
+    tag: "Restaurant POS & Management",
     summary:
-      "A short summary of this developer tool or automation utility and how it speeds up engineering workflows.",
-    overview:
-      "[PROJECT OVERVIEW — Replace with an overview of your fourth project, focusing on developer experience and technical execution.]",
+      "A comprehensive, end-to-end Restaurant Management and Point-of-Sale (POS) system custom-built for Salo sa Antipolo's front-of-house staff, kitchen team, cashier counter, and restaurant management.",
+    overview: [
+      "A comprehensive, end-to-end Restaurant Management and Point-of-Sale (POS) system custom-built for Salo sa Antipolo's front-of-house staff, kitchen team, cashier counter, and restaurant management. It consolidates tableside ordering, kitchen ticket fulfillment, cash & digital tender settlement, and floor operations into a unified real-time platform, eliminating paper chits, reducing order turnaround time, and preventing billing discrepancies during peak service hours.",
+      "Orders originate tableside from waiters on mobile devices or fast-track takeout counters. From there, tickets instantly propagate via Firebase Firestore real-time snapshot listeners to the kitchen and admin operations board for food prep and expo dispatch, sync to the cashier register for one-touch settlement with automated RA 9994 Senior Citizen/PWD discounts and VAT exemptions, and aggregate directly into live executive sales reports, table turnover analytics, and daily inventory limits.",
+    ],
     features: [
-      "One-click code generation and schema validation",
-      "Interactive live preview sandbox in the browser",
-      "Exportable templates and CLI integration",
+      "**Mobile-First Tableside Ordering**: Touch-optimized interface for floor staff with quick switching between **Dine-In** (table-assigned) and **Takeout** channels.",
+      "**Interactive Dining Floor Plan**: Real-time visual matrix displaying table occupancy states (`Available`, `Occupied`, `Preparing`, `Served`, `Walk-in`) across all dining zones with seating capacity tracking.",
+      "**Dynamic Menu & Serve Limit Controls**: Categorized dish catalog featuring live stock counters, daily serve caps (e.g., 50 servings/day limit on Pork Sisig), and automated lunch-hour gates (e.g., Bento specials restricted to 11:00 AM – 3:00 PM).",
+      "**Multi-Stage Kitchen & Operations Kanban**: Live operational display streaming tickets across all order lifecycle states (`Pending`, `Preparing`, `Served [Unpaid]`, `Paid [Unserved]`, `Served [Paid]`, `Completed`, `Cancelled`) with elapsed wait-time indicators.",
+      "**Omni-Channel Cashier Settlement POS**: Dedicated cashier terminal supporting Cash, GCash QR, Maya, and Debit/Credit Card tenders with automatic change computation and receipt printing.",
+      "**Automated Philippine Statutory Discounts**: One-touch legal compliance engine implementing RA 9994 (Senior Citizen) and RA 10754 (PWD) discounts (20% discount on qualified food items + automatic 12% VAT exemption).",
+      "**Settled Invoices Ledger & Audit History**: Shift summary banner displaying daily revenue, settled slips count, applied tax deductions, itemized receipts, and one-click CSV export for shift balancing.",
+      "**Admin Catalog & Floor Layout Management**: Centralized management consoles to add/edit menu items, configure prices, upload dish assets, adjust table seating capacities, and perform end-of-day table resets.",
+      "**Executive Revenue & Dish Analytics**: High-level business intelligence dashboard with custom date range filtering, volume and revenue sales leaderboards, and payment method share distribution.",
     ],
     highlights: [
-      "Built a zero-dependency parser for fast client-side validation",
-      "Created a clean, minimal UI focused on speed and keyboard navigation",
-      "Open-sourced with comprehensive documentation and test coverage",
+      "**Multi-Portal Role-Based Access Control (RBAC)**: Dedicated authentication barriers for Waiter, Cashier, and Admin portals powered by Firebase Auth, with strict client-side role guards (`rbac.js`, `admin-auth.js`), session integrity checks, and automatic route redirection.",
+      "**Event-Driven Realtime Synchronization**: Zero-polling architecture utilizing Google Cloud Firestore reactive listeners (`onSnapshot`) for instant, bi-directional cross-device state updates between dining floor servers, kitchen displays, and cashier counters within milliseconds.",
+      "**Production-Grade Statutory Compliance & Zero-Build Stack**: Native vanilla JavaScript (ES6+ Modules) and custom responsive CSS design system with zero bundler overhead, integrated with Philippine BIR/statutory discount calculation logic and deployed to global edge infrastructure via Firebase Hosting.",
     ],
-    coverImage: "/images/projects/project-placeholder-4.svg",
+    techStackTable: [
+      {
+        category: "Frontend",
+        technologies:
+          "Vanilla JavaScript (ES6+ Modules), HTML5 Semantic Architecture, Custom Responsive CSS3 (CSS Grid, Flexbox, CSS Variables)",
+      },
+      {
+        category: "Backend & Infrastructure",
+        technologies:
+          "Google Firebase Platform, Firebase Hosting, Global Edge CDN",
+      },
+      {
+        category: "Database & Realtime Engine",
+        technologies:
+          "Google Cloud Firestore (v9 Modular SDK), Reactive `onSnapshot` Bi-directional Sync",
+      },
+      {
+        category: "Authentication & Security",
+        technologies:
+          "Firebase Authentication (`firebase/auth`), Role-Based Access Control (RBAC), Route Guards",
+      },
+      {
+        category: "Design, Icons & Typography",
+        technologies:
+          "Lucide Icons, FontAwesome 6, Google Fonts (*Playfair Display*, *Inter*), Custom Gold-on-Dark Luxury Theme",
+      },
+      {
+        category: "Calculations & Data Export",
+        technologies:
+          "Philippine RA 9994 / RA 10754 Statutory Discount & VAT Exemption Engine, Client-side CSV Export",
+      },
+    ],
+    coverImage: "/images/projects/salo-pos/salo-pos-cover.png",
+    thumbnail: "/images/projects/salo-pos/salo-pos-cover.png",
     screenshots: [
-      "/images/projects/project-placeholder-1.svg",
-      "/images/projects/project-placeholder-2.svg",
-      "/images/projects/project-placeholder-3.svg",
+      "/images/projects/salo-pos/salo-pos-01.png",
+      "/images/projects/salo-pos/salo-pos-02.png",
+      "/images/projects/salo-pos/salo-pos-03.png",
+      "/images/projects/salo-pos/salo-pos-04.png",
+      "/images/projects/salo-pos/salo-pos-05.png",
+      "/images/projects/salo-pos/salo-pos-06.png",
+      "/images/projects/salo-pos/salo-pos-07.png",
+      "/images/projects/salo-pos/salo-pos-08.png",
+      "/images/projects/salo-pos/salo-pos-09.png",
+      "/images/projects/salo-pos/salo-pos-10.png",
+      "/images/projects/salo-pos/salo-pos-11.png",
+      "/images/projects/salo-pos/salo-pos-12.png",
+      "/images/projects/salo-pos/salo-pos-13.png",
     ],
-    galleryAspectRatio: "16/10",
-    technologies: ["TypeScript", "Next.js", "Tailwind CSS", "Gemini API"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/marcrommelagravante",
+    galleryAspectRatio: "16/9",
+    technologies: [
+      "Vanilla JavaScript",
+      "Firebase Auth",
+      "Cloud Firestore",
+      "HTML5 / CSS3",
+      "Firebase Hosting",
+      "RBAC Security",
+    ],
+    liveUrl: "https://salo-sa-antipolo.web.app",
+    githubUrl: "https://github.com/marcrommelagravante/Salo-sa-SD",
     featured: true,
-    isPlaceholder: true,
+    isPlaceholder: false,
   },
 ];
