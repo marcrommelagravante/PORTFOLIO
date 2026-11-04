@@ -131,37 +131,6 @@ export const portfolioProjects: PortfolioProject[] = [
     isPlaceholder: false,
   },
   {
-    slug: "project-two",
-    title: "[PROJECT 02 — FULL-STACK SAAS]",
-    tag: "SaaS",
-    summary:
-      "A brief description of this full-stack platform highlighting its main workflow and target audience.",
-    overview:
-      "[PROJECT OVERVIEW — Replace with a clear summary of your second project's purpose, architecture, and user experience.]",
-    features: [
-      "Role-based authentication and team workspace management",
-      "Interactive analytics dashboard with live data filtering",
-      "Automated background jobs and webhook integrations",
-    ],
-    highlights: [
-      "Architected end-to-end relational schema in PostgreSQL with row-level security",
-      "Reduced dashboard query times through indexed views and edge caching",
-      "Deployed zero-downtime CI/CD pipeline on Vercel",
-    ],
-    coverImage: "/images/projects/project-placeholder-2.svg",
-    screenshots: [
-      "/images/projects/project-placeholder-3.svg",
-      "/images/projects/project-placeholder-4.svg",
-      "/images/projects/project-placeholder-1.svg",
-    ],
-    galleryAspectRatio: "16/10",
-    technologies: ["React", "Next.js", "Node.js", "PostgreSQL", "Vercel"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/marcrommelagravante",
-    featured: true,
-    isPlaceholder: true,
-  },
-  {
     slug: "personamail",
     title: "PersonaMail",
     tag: "AI Email Assistant",
@@ -250,6 +219,97 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     liveUrl: "https://github.com/marcrommelagravante",
     githubUrl: "https://github.com/marcrommelagravante",
+    featured: true,
+    isPlaceholder: false,
+  },
+  {
+    slug: "satori",
+    title: "Satori",
+    tag: "AI Knowledge Workspace",
+    summary:
+      "A grounded AI knowledge and document intelligence workspace built for teams, organizations, and small businesses to ingest, vectorize, and search operational documents with verifiable source citations.",
+    overview: [
+      "A grounded AI knowledge and document intelligence workspace built for teams, organizations, and small businesses. It brings scattered operational documents—such as bylaws, handbooks, policies, and guidelines—into a single platform, eliminating manual file searching and cutting admin overhead so teams find verified answers instantly.",
+      "Files come in as PDFs, Word documents, and text files. Satori parses, cleans, chunks, and vectorizes them using Google Gemini embeddings stored directly in PostgreSQL with `pgvector`. From there, team members ask natural language questions in a multi-turn chat, inspect exact source passage citations with page numbers to eliminate AI hallucinations, generate analytical cross-document reports, and benchmark retrieval accuracy through a live RAG evaluation playground.",
+    ],
+    features: [
+      "**Multi-Format Ingestion Pipeline**: Automated text extraction, sanitization, and sentence-aware chunking with sliding-window overlap for PDF, DOCX, and TXT files.",
+      "**Grounded Conversational RAG Chat**: Multi-turn chat powered by Google Gemini 3.6 Flash, maintaining conversation context with server-side history persistence in PostgreSQL.",
+      "**Verifiable Source Provenance**: Interactive inline citation chips (`[1]`, `[2]`) mapping every claim directly to exact source excerpts, document page numbers, and similarity scores.",
+      "**Scoped Document Queries**: Ability to target queries across the entire workspace knowledge base or constrain them to specific selected documents.",
+      "**Knowledge Hub & Category Browser**: Semantic search and exploration across organizational categories (*Policies & Procedures*, *Technical Docs*, *Reports & Analytics*) with vector index diagnostics.",
+      "**Automated AI Reports**: One-click generation of executive document summaries, cross-document policy comparisons, and structured gap analyses.",
+      "**RAG Evaluation Playground**: Dedicated experimentation suite tracking real-time telemetry: request latency (p50/p95), cumulative token usage, and automated retrieval accuracy benchmarks.",
+      "**Multi-Tenant Workspaces**: Team workspaces with role-based access control (`owner`, `admin`, `member`), one-click workspace switching, and automated default onboarding.",
+      "**Dark / Light Responsive Interface**: Accessible UI featuring custom Indigo/Violet design tokens, smooth scroll-reveal animations via Motion, and mobile-friendly layouts.",
+    ],
+    highlights: [
+      "**Custom RAG without Black-Box Abstractions**: Built from first principles directly on PostgreSQL with `pgvector` and `@google/genai`—completely avoiding bloated frameworks like LangChain while maintaining full control over chunking, cosine distance thresholds, and context construction.",
+      "**Zero-Trust Multi-Tenant Isolation**: Database and service-level tenant separation enforced on every single query and vector search through server-side authorization guards (`requireWorkspaceMember`).",
+      "**Defensive AI Engineering**: In-house prompt-injection sanitization boundaries, magic-byte file signature validation, and sliding-window rate limiters (60 req/min).",
+      "**Resilient Model Fallback Architecture**: Primary inference on `gemini-3.6-flash`, automatic failover to `gemini-3.1-flash-lite`, and deterministic local n-gram vector generation for offline CI and testing environments.",
+    ],
+    techStackTable: [
+      {
+        category: "Frontend",
+        technologies:
+          "Next.js 16 (App Router, Turbopack), React 19, TypeScript 5, Tailwind CSS 4, Radix UI, Motion (`motion`), Lucide React, `next-themes`",
+      },
+      {
+        category: "Backend & Infrastructure",
+        technologies:
+          "Next.js Server Actions & Route Handlers, Modular Monolith architecture, Vercel deployment, Node.js 20+",
+      },
+      {
+        category: "Database & Vector",
+        technologies:
+          "PostgreSQL (Neon Serverless), `pgvector` (`vector(768)`), Drizzle ORM, Drizzle Kit, PostgreSQL full-text search (`tsvector`)",
+      },
+      {
+        category: "AI & Embeddings",
+        technologies:
+          "Google Gemini API (`@google/genai`), `gemini-3.6-flash`, `gemini-3.1-flash-lite`, `gemini-embedding-001` (768-dim)",
+      },
+      {
+        category: "Documents & Storage",
+        technologies:
+          "`unpdf`, `mammoth`, `@vercel/blob`, local filesystem storage adapter",
+      },
+      {
+        category: "Auth & Security",
+        technologies:
+          "Auth.js (NextAuth v5), Google OAuth 2.0, Zod 4, custom sliding-window rate limiter, prompt boundary defense",
+      },
+      {
+        category: "Observability & Testing",
+        technologies:
+          "In-house RAG Evaluation suite, Golden Benchmark Datasets, Drizzle migration scripts, Vitest/Node test harnesses",
+      },
+    ],
+    coverImage: "/images/projects/satori/satori-cover-showcase.png",
+    thumbnail: "/images/projects/satori/satori-cover-showcase.png",
+    screenshots: [
+      "/images/projects/satori/01-product-dashboard.png",
+      "/images/projects/satori/02-product-chat.png",
+      "/images/projects/satori/03-product-knowledge.png",
+      "/images/projects/satori/04-product-chunk-inspector.png",
+      "/images/projects/satori/05-product-evaluations.png",
+      "/images/projects/satori/06-product-documents.png",
+      "/images/projects/satori/07-product-settings.png",
+    ],
+    galleryAspectRatio: "16/10",
+    technologies: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS 4",
+      "Gemini 3.6 Flash",
+      "pgvector",
+      "PostgreSQL",
+      "Drizzle ORM",
+    ],
+    liveUrl: "https://github.com/marcrommelagravante/Satori",
+    githubUrl: "https://github.com/marcrommelagravante/Satori",
     featured: true,
     isPlaceholder: false,
   },
