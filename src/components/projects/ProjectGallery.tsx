@@ -3,15 +3,17 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
-const AUTOPLAY_INTERVAL_MS = 3500;
+const AUTOPLAY_INTERVAL_MS = 4000;
 const SWIPE_THRESHOLD_PX = 40;
 
 export function ProjectGallery({
   images,
   title,
+  aspectRatio = "20/9",
 }: {
   images: string[];
   title: string;
+  aspectRatio?: "20/9" | "16/10" | "16/9";
 }) {
   const count = images.length;
   const isSingle = count <= 1;
@@ -36,7 +38,7 @@ export function ProjectGallery({
     [count, isSingle]
   );
 
-  // Autoplay every 3.5s; resets timer whenever activeIndex changes
+  // Autoplay every 4s; resets timer whenever activeIndex changes
   useEffect(() => {
     if (isSingle) return;
     const timer = window.setTimeout(() => {
@@ -81,6 +83,13 @@ export function ProjectGallery({
     }
   };
 
+  const aspectClass =
+    aspectRatio === "20/9"
+      ? "aspect-[20/9]"
+      : aspectRatio === "16/9"
+        ? "aspect-video"
+        : "aspect-16/10";
+
   return (
     <section
       aria-roledescription="carousel"
@@ -88,6 +97,7 @@ export function ProjectGallery({
       onKeyDown={handleKeyDown}
       className="mt-8 select-none"
     >
+      {/* Frame Container */}
       <div
         onPointerDown={handlePointerDown}
         onPointerUp={handlePointerUp}
@@ -95,7 +105,7 @@ export function ProjectGallery({
           pointerStartX.current = null;
           pointerStartY.current = null;
         }}
-        className="group relative aspect-16/10 w-full overflow-hidden rounded-lg border border-(--border) bg-(--surface) touch-pan-y"
+        className={`group relative ${aspectClass} w-full overflow-hidden rounded-xl border border-(--border) bg-[#121210] touch-pan-y`}
       >
         {/* Horizontal sliding track */}
         <div
@@ -111,7 +121,7 @@ export function ProjectGallery({
               aria-roledescription="slide"
               aria-label={`Image ${index + 1} of ${count}`}
               aria-hidden={index !== activeIndex}
-              className="relative h-full w-full shrink-0"
+              className="relative h-full w-full shrink-0 bg-[#121210]"
             >
               <Image
                 src={src}
@@ -120,7 +130,7 @@ export function ProjectGallery({
                 priority={index === 0}
                 draggable={false}
                 sizes="(max-width: 1200px) 100vw, 1152px"
-                className="object-cover select-none"
+                className="object-contain select-none"
               />
             </div>
           ))}
@@ -147,10 +157,16 @@ export function ProjectGallery({
             </button>
           </>
         )}
+      </div>
 
-        {/* Bottom dot indicators */}
-        {!isSingle && (
-          <div className="absolute bottom-3.5 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2 rounded-full border border-(--border)/80 bg-(--background)/80 px-3 py-1.5 backdrop-blur-sm">
+      {/* Indicator bar & counter below the image frame */}
+      {!isSingle && (
+        <div className="mt-3.5 flex items-center justify-between gap-3 px-1">
+          <div
+            role="tablist"
+            aria-label="Gallery slides"
+            className="flex items-center gap-1.5 overflow-x-auto py-1"
+          >
             {images.map((_, index) => {
               const isActive = index === activeIndex;
               return (
@@ -160,17 +176,21 @@ export function ProjectGallery({
                   onClick={() => goTo(index)}
                   aria-label={`Go to image ${index + 1}`}
                   aria-current={isActive ? "true" : undefined}
-                  className={`h-2 cursor-pointer rounded-full transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) ${
+                  className={`cursor-pointer rounded-full transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) ${
                     isActive
-                      ? "w-5 bg-(--foreground)"
-                      : "w-2 bg-(--muted)/50 hover:bg-(--muted)"
+                      ? "h-1.5 w-5 bg-(--foreground)"
+                      : "h-1.5 w-1.5 bg-(--border) hover:bg-(--muted)"
                   }`}
                 />
               );
             })}
           </div>
-        )}
-      </div>
+
+          <div className="shrink-0 font-mono text-xs tabular-nums text-(--muted)">
+            {String(activeIndex + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

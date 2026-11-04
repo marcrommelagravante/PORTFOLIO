@@ -32,6 +32,32 @@ export async function generateMetadata({
   });
 }
 
+function FormattedText({ text }: { text: string }) {
+  // Support inline **bold** and *italic* markdown markers cleanly
+  const parts = text.split(/(\*\*.*?\*\*|\*.*?\*)/g);
+  return (
+    <>
+      {parts.map((part, i) => {
+        if (part.startsWith("**") && part.endsWith("**")) {
+          return (
+            <strong key={i} className="font-semibold text-(--foreground)">
+              {part.slice(2, -2)}
+            </strong>
+          );
+        }
+        if (part.startsWith("*") && part.endsWith("*")) {
+          return (
+            <em key={i} className="italic text-(--foreground)">
+              {part.slice(1, -1)}
+            </em>
+          );
+        }
+        return <React.Fragment key={i}>{part}</React.Fragment>;
+      })}
+    </>
+  );
+}
+
 export default async function ProjectDetailPage({
   params,
 }: {
@@ -52,6 +78,10 @@ export default async function ProjectDetailPage({
       )
     )
   );
+
+  const overviewParagraphs = Array.isArray(project.overview)
+    ? project.overview
+    : [project.overview];
 
   return (
     <article className="py-14 sm:py-20">
@@ -88,26 +118,43 @@ export default async function ProjectDetailPage({
         </div>
       </header>
 
-      <ProjectGallery images={galleryImages} title={project.title} />
+      <ProjectGallery
+        images={galleryImages}
+        title={project.title}
+        aspectRatio={project.galleryAspectRatio}
+      />
 
-      <div className="mt-10 max-w-2xl space-y-8">
+      <div className="mt-12 max-w-3xl space-y-10">
         <section>
-          <h2 className="text-base font-semibold tracking-tight text-(--foreground)">
+          <h2 className="text-xl font-semibold tracking-tight text-(--foreground)">
             Overview
           </h2>
-          <p className="mt-3 text-sm leading-relaxed text-(--muted)">
-            {project.overview}
-          </p>
+          <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-(--muted)">
+            {overviewParagraphs.map((para, i) => (
+              <p key={i}>
+                <FormattedText text={para} />
+              </p>
+            ))}
+          </div>
+          <div className="mt-8 border-b border-(--border)" />
         </section>
 
         {project.features.length > 0 && (
           <section>
-            <h2 className="text-base font-semibold tracking-tight text-(--foreground)">
+            <h2 className="text-xl font-semibold tracking-tight text-(--foreground)">
               Features
             </h2>
-            <ul className="mt-3 list-inside list-disc space-y-2 text-sm leading-relaxed text-(--muted)">
-              {project.features.map((feat) => (
-                <li key={feat}>{feat}</li>
+            <ul className="mt-4 space-y-3.5 text-[15px] leading-relaxed text-(--muted)">
+              {project.features.map((feat, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span
+                    className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-(--foreground)/70"
+                    aria-hidden="true"
+                  />
+                  <span>
+                    <FormattedText text={feat} />
+                  </span>
+                </li>
               ))}
             </ul>
           </section>
@@ -115,28 +162,86 @@ export default async function ProjectDetailPage({
 
         {project.highlights.length > 0 && (
           <section>
-            <h2 className="text-base font-semibold tracking-tight text-(--foreground)">
+            <h2 className="text-xl font-semibold tracking-tight text-(--foreground)">
               Highlights
             </h2>
-            <ul className="mt-3 list-inside list-disc space-y-2 text-sm leading-relaxed text-(--muted)">
-              {project.highlights.map((item) => (
-                <li key={item}>{item}</li>
+            <ul className="mt-4 space-y-3.5 text-[15px] leading-relaxed text-(--muted)">
+              {project.highlights.map((item, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span
+                    className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-(--foreground)/70"
+                    aria-hidden="true"
+                  />
+                  <span>
+                    <FormattedText text={item} />
+                  </span>
+                </li>
               ))}
             </ul>
           </section>
         )}
 
-        {project.technologies.length > 0 && (
+        {project.techStackTable && project.techStackTable.length > 0 ? (
           <section>
-            <h2 className="text-base font-semibold tracking-tight text-(--foreground)">
-              Tech Stack
+            <h2 className="text-xl font-semibold tracking-tight text-(--foreground)">
+              Built with
             </h2>
-            <ul className="mt-3 list-inside list-disc space-y-2 text-sm leading-relaxed text-(--muted)">
-              {project.technologies.map((tech) => (
-                <li key={tech}>{tech}</li>
-              ))}
-            </ul>
+            <div className="mt-5 overflow-hidden rounded-xl border border-(--border) bg-(--surface)/20">
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-left text-sm">
+                  <thead>
+                    <tr className="border-b border-(--border) bg-(--surface)/60">
+                      <th
+                        scope="col"
+                        className="w-44 py-3.5 pr-4 pl-5 font-semibold text-(--foreground) sm:w-56 sm:pr-6 sm:pl-6"
+                      >
+                        Category
+                      </th>
+                      <th
+                        scope="col"
+                        className="py-3.5 pr-5 pl-4 font-semibold text-(--foreground) sm:pr-6 sm:pl-6"
+                      >
+                        Technologies
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-(--border)">
+                    {project.techStackTable.map((row) => (
+                      <tr
+                        key={row.category}
+                        className="transition-colors hover:bg-(--foreground)/[0.02]"
+                      >
+                        <td className="py-4 pr-4 pl-5 text-sm font-semibold text-(--foreground) align-top sm:pr-6 sm:pl-6">
+                          {row.category}
+                        </td>
+                        <td className="py-4 pr-5 pl-4 text-sm leading-relaxed text-(--muted) align-top sm:pr-6 sm:pl-6">
+                          {row.technologies}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </section>
+        ) : (
+          project.technologies.length > 0 && (
+            <section>
+              <h2 className="text-xl font-semibold tracking-tight text-(--foreground)">
+                Tech Stack
+              </h2>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {project.technologies.map((tech) => (
+                  <li
+                    key={tech}
+                    className="rounded-sm border border-(--border) px-2.5 py-1 font-mono text-xs text-(--foreground)"
+                  >
+                    {tech}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )
         )}
       </div>
     </article>

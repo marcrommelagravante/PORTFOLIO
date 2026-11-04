@@ -43,7 +43,7 @@ function CoverFrame({
       priority={index === 0}
       sizes="(min-width: 1024px) 380px, 100vw"
       onError={() => setFailed(true)}
-      className="rounded-[10px] object-cover"
+      className="rounded-[10px] object-contain bg-[#121210]"
     />
   );
 }
