@@ -162,35 +162,96 @@ export const portfolioProjects: PortfolioProject[] = [
     isPlaceholder: true,
   },
   {
-    slug: "project-three",
-    title: "[PROJECT 03 — MOBILE COMPANION APP]",
-    tag: "Mobile",
+    slug: "personamail",
+    title: "PersonaMail",
+    tag: "AI Email Assistant",
     summary:
-      "A short description of this cross-platform mobile application and how it helps users on the go.",
-    overview:
-      "[PROJECT OVERVIEW — Replace with the story behind your mobile application, its core user flow, and offline-first capabilities.]",
+      "A full-stack, relationship-aware AI email assistant and communication workspace that automatically adapts tone, formality, greetings, and message structure based on recipient dynamics.",
+    overview: [
+      "A full-stack, relationship-aware AI email assistant and communication workspace. It bridges the gap between generic AI chat prompts and real-world email dynamics by automatically adapting tone, formality, greetings, and message structure based on who you are messaging.",
+      "Users manage per-contact Adaptive Communication Profiles that store relationship roles, preferred tones, and conversational context. From there, users draft emails in Compose, refine rough thoughts in Improve, verify grammar and clarity in Review, and manage reusable templates—all powered by ultra-low-latency LLaMA 3.3 70B inference on Groq, with an inline fill-in tag system that eliminates AI hallucinations.",
+    ],
     features: [
-      "Cross-platform iOS and Android experience with native gestures",
-      "Offline-first local storage with automatic cloud sync",
-      "Push notifications and customizable daily reminders",
+      "**Adaptive Communication Profiles**: Store relationship dynamics (Professor, Client, Recruiter, Colleague, Friend), custom background notes, and per-contact tone preferences (Formal, Direct, Casual, Warm).",
+      "**One-Click AI Email Compose**: Converts brief bullet points or quick objectives into structured emails following a standard 7-part email anatomy (Subject, Greeting, Context, Core Message, Call to Action, Sign-off, Signature).",
+      "**Tone Rewriter & Improver**: Polishes rough, hasty Slack-style notes into relationship-tailored email drafts while strictly preserving the user's authentic voice.",
+      "**Message Review & Grammar Checker**: Catches syntax errors, spelling typos, and awkward phrasing before sending, maintaining professional standards without sounding robotic.",
+      "**Zero-Hallucination Variable Tag System (`PlaceholderHighlighter`)**: Prompts strictly forbid fabricating imaginary dates, numbers, or project names, instead generating bracketed tokens (`[Project Name]`, `[Client Name]`, `[Day of Week]`) rendered as interactive, high-contrast fill-in chips.",
+      "**Interactive Live Demo & Persona Switcher**: Unauthenticated visitors can test the adaptive AI engine on the landing page, switching recipient personas in real time before signing in.",
+      "**High-Density History & Detail Modals**: Searchable activity feed with type filter pills (*All*, *Compose*, *Improve*, *Review*), one-click clipboard copying, and accessible inspect dialogs (`role=\"dialog\"`, Esc key dismiss, body scroll lock).",
+      "**Adaptive Templates Library**: Reusable email templates that automatically calibrate variables and greetings to whichever contact is selected.",
+      "**Google OAuth 2.0 SSO**: Seamless login experience with animated account selection transitions, user profile preview cards, and auto-dismissing sign-out notifications.",
     ],
     highlights: [
-      "Shared 95% of business logic and types across mobile and web clients",
-      "Optimized list virtualization for smooth 60fps scrolling on mobile devices",
-      "Integrated Firebase Auth and cloud storage for seamless media uploads",
+      "**Dual-Authentication Architecture**: Decoupled cross-domain authentication between Vercel and Render utilizing both secure HTTP-only session cookies and `Authorization: Bearer` headers with anti-CSRF `state` parameter validation.",
+      "**Sub-Second AI Inference Pipeline**: Server-side Groq Cloud API integration running `llama-3.3-70b-versatile`, delivering near-instant draft generations while keeping private API keys isolated from the browser.",
+      "**Strict Tenant & Query Isolation**: Every database operation is strictly scoped to the authenticated `user_id` via SQLAlchemy 2.0 ORM, backed by Neon Serverless PostgreSQL with versioned Alembic database migrations.",
+      "**Bespoke Exaggerated Minimalism Design System**: Custom Tailwind CSS v4 design tokens (`#0F172A` primary, `#7CE3FF` accent), Geist typography, 8px spatial grid, GSAP `ScrollTrigger` horizontal canvas, and persistent dark/light theme switching.",
     ],
-    coverImage: "/images/projects/project-placeholder-3.svg",
+    techStackTable: [
+      {
+        category: "Frontend",
+        technologies:
+          "Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, GSAP 3 (`ScrollTrigger`), Lenis, Lucide React",
+      },
+      {
+        category: "Backend & Infrastructure",
+        technologies:
+          "FastAPI, Python 3.11+, SQLAlchemy 2.0, Pydantic v2, Uvicorn, Alembic",
+      },
+      {
+        category: "Database",
+        technologies:
+          "PostgreSQL via Neon (Serverless Postgres with connection pooling)",
+      },
+      {
+        category: "AI",
+        technologies:
+          "Groq Cloud API, Meta LLaMA 3.3 70B (`llama-3.3-70b-versatile`)",
+      },
+      {
+        category: "Authentication & Security",
+        technologies:
+          "Google OAuth 2.0, JWT (`python-jose`), Dual Cookie + Bearer Header Auth, CSRF State Verification",
+      },
+      {
+        category: "Deployment & Hosting",
+        technologies:
+          "Vercel (Frontend), Render (Backend), Neon (Database), GitHub Actions",
+      },
+    ],
+    coverImage: "/images/projects/personamail/personamail-cover.png",
+    thumbnail: "/images/projects/personamail/personamail-cover.png",
     screenshots: [
-      "/images/projects/project-placeholder-4.svg",
-      "/images/projects/project-placeholder-1.svg",
-      "/images/projects/project-placeholder-2.svg",
+      "/images/projects/personamail/personamail-01.png",
+      "/images/projects/personamail/personamail-02.png",
+      "/images/projects/personamail/personamail-03.png",
+      "/images/projects/personamail/personamail-04.png",
+      "/images/projects/personamail/personamail-05.png",
+      "/images/projects/personamail/personamail-06.png",
+      "/images/projects/personamail/personamail-07.png",
+      "/images/projects/personamail/personamail-08.png",
+      "/images/projects/personamail/personamail-09.png",
+      "/images/projects/personamail/personamail-10.png",
+      "/images/projects/personamail/personamail-11.png",
+      "/images/projects/personamail/personamail-12.png",
+      "/images/projects/personamail/personamail-13.png",
+      "/images/projects/personamail/personamail-14.png",
     ],
     galleryAspectRatio: "16/10",
-    technologies: ["React Native", "Expo", "TypeScript", "Firebase"],
-    liveUrl: "https://example.com",
+    technologies: [
+      "Next.js 16",
+      "FastAPI",
+      "Python",
+      "Groq AI",
+      "PostgreSQL",
+      "Tailwind CSS v4",
+      "TypeScript",
+    ],
+    liveUrl: "https://github.com/marcrommelagravante",
     githubUrl: "https://github.com/marcrommelagravante",
     featured: true,
-    isPlaceholder: true,
+    isPlaceholder: false,
   },
   {
     slug: "project-four",

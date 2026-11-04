@@ -33,8 +33,8 @@ export async function generateMetadata({
 }
 
 function FormattedText({ text }: { text: string }) {
-  // Support inline **bold** and *italic* markdown markers cleanly
-  const parts = text.split(/(\*\*.*?\*\*|\*.*?\*)/g);
+  // Support inline **bold**, `code`, and *italic* markdown markers cleanly
+  const parts = text.split(/(\*\*.*?\*\*|`.*?`|\*.*?\*)/g);
   return (
     <>
       {parts.map((part, i) => {
@@ -43,6 +43,16 @@ function FormattedText({ text }: { text: string }) {
             <strong key={i} className="font-semibold text-(--foreground)">
               {part.slice(2, -2)}
             </strong>
+          );
+        }
+        if (part.startsWith("`") && part.endsWith("`")) {
+          return (
+            <code
+              key={i}
+              className="rounded bg-(--surface) px-1.5 py-0.5 font-mono text-[13px] font-medium text-(--foreground) border border-(--border)/60"
+            >
+              {part.slice(1, -1)}
+            </code>
           );
         }
         if (part.startsWith("*") && part.endsWith("*")) {
@@ -215,7 +225,7 @@ export default async function ProjectDetailPage({
                           {row.category}
                         </td>
                         <td className="py-4 pr-5 pl-4 text-sm leading-relaxed text-(--muted) align-top sm:pr-6 sm:pl-6">
-                          {row.technologies}
+                          <FormattedText text={row.technologies} />
                         </td>
                       </tr>
                     ))}
