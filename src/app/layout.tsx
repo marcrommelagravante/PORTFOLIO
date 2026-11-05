@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import { ContactPanelProvider } from "@/components/contact/ContactPanelProvider";
+import { ContactPanel } from "@/components/contact/ContactPanel";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SideRail } from "@/components/layout/SideRail";
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -57,14 +59,17 @@ export default function RootLayout({
       </head>
       <body className="flex min-h-screen flex-col antialiased selection:bg-(--foreground) selection:text-(--background)">
         <ThemeProvider>
-          <SiteHeader />
-          <SideRail />
-          <div className="sidebar-content-offset flex flex-1 flex-col lg:pl-64">
-            <main className="mx-auto w-full max-w-4xl flex-1 px-6 sm:px-8">
-              {children}
-            </main>
-            <SiteFooter />
-          </div>
+          <ContactPanelProvider>
+            <SiteHeader />
+            <SideRail />
+            <div className="sidebar-content-offset flex flex-1 flex-col lg:pl-64">
+              <main className="mx-auto w-full max-w-4xl flex-1 px-6 sm:px-8">
+                {children}
+              </main>
+              <SiteFooter />
+            </div>
+            <ContactPanel />
+          </ContactPanelProvider>
         </ThemeProvider>
       </body>
     </html>

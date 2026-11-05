@@ -1,9 +1,12 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { siteConfig } from "@/content/site";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { MobileNavigation } from "./MobileNavigation";
 import { PageLoader } from "@/components/motion/PageLoader";
+import { SendMessageButton } from "@/components/contact/SendMessageButton";
 
 export function SiteHeader() {
   return (
@@ -19,6 +22,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
+          <SendMessageButton variant="mobile-header" />
           <MobileNavigation />
         </div>
       </div>

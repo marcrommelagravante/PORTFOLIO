@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { siteConfig } from "@/content/site";
 import { useTheme } from "@/components/theme/ThemeProvider";
 import { PageLoader } from "@/components/motion/PageLoader";
+import { SendMessageButton } from "@/components/contact/SendMessageButton";
 
 export type RailItemId =
   | "about"
@@ -186,7 +187,7 @@ export const RAIL_GROUPS: RailGroup[] = [
   },
   {
     id: "connect",
-    title: "Let's Connect",
+    title: "Let’s Work Together",
     items: [
       { id: "contact", label: "Contact", href: "/contact", icon: <MailIcon /> },
     ],
@@ -282,6 +283,13 @@ export function SideRail() {
             </span>
           )}
         </button>
+      </div>
+
+      {/* Send Message Button */}
+      <div className={`pt-3 pb-1 ${isCollapsed ? "px-2" : "px-3"}`}>
+        <SendMessageButton
+          variant={isCollapsed ? "rail-collapsed" : "rail"}
+        />
       </div>
 
       {/* Grouped Navigation */}

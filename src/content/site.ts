@@ -14,8 +14,32 @@ export type SiteConfig = {
   contactEmail?: string;
   linkedinUrl?: string;
   discordUrl?: string;
+  discordHandle?: string;
+  discordUserId?: string;
   facebookUrl?: string;
   resumeUrl?: string;
+  contactPage: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    ctaLabel: string;
+  };
+  contactForm: {
+    eyebrow: string;
+    title: string;
+    submitLabel: string;
+    submittingLabel: string;
+    helperText: string;
+    successTitle: string;
+    successBody: string;
+    errorMessage: string;
+    subject: string;
+    placeholders: {
+      name: string;
+      email: string;
+      message: string;
+    };
+  };
   about: {
     professionalBio: string[];
     currentStudyOrRole: string;
@@ -28,30 +52,50 @@ export type SiteConfig = {
  * Replace bracketed placeholders with approved personal details when ready.
  */
 export const siteConfig: SiteConfig = {
-  isTemplateMode: true,
-  fullName: "[FULL NAME]",
-  firstName: "[FIRST NAME]",
+  isTemplateMode: false,
+  fullName: "Marc Rommel Agravante",
+  firstName: "Marc",
   initials: "MRA.",
-  roleEyebrow: "[STUDY/ROLE] · [PROFESSIONAL FOCUS]",
-  heroHeadline: "Hi, I'm [FIRST NAME]. I build useful things for the web.",
+  roleEyebrow: "Computer Engineering Student · Aspiring Developer",
+  heroHeadline: "Hi, I'm Marc. I build useful things for the web.",
   shortIntroduction:
-    "[ONE OR TWO SENTENCES ABOUT THE OWNER'S INTEREST IN SOFTWARE, AI TOOLS, OR WEB APPLICATIONS.]",
+    "Computer Engineering student and developer passionate about building performant, accessible web applications and developer tools.",
   profilePhoto: "/images/profile-placeholder.svg",
-  profilePhotoAlt: "Placeholder portrait frame for [FULL NAME]",
-  locationFooterLine: "[LOCATION OR SHORT FOOTER LINE]",
+  profilePhotoAlt: "Portrait frame for Marc Rommel Agravante",
+  locationFooterLine: "Based in the Philippines · Available for opportunities",
   githubUsername: "marcrommelagravante",
   githubUrl: "https://github.com/marcrommelagravante",
-  // Leave optional links undefined until real URLs/files are provided.
-  // Expected formats:
-  //   contactEmail: "you@example.com"
-  //   linkedinUrl: "https://www.linkedin.com/in/your-handle"
-  //   discordUrl: "https://discord.com/users/<your-user-id>"
-  //   facebookUrl: "https://www.facebook.com/your-handle"
-  contactEmail: undefined,
-  linkedinUrl: undefined,
-  discordUrl: undefined,
-  facebookUrl: undefined,
+  contactEmail: "marcrommelagravante21@gmail.com",
+  linkedinUrl: "https://www.linkedin.com/in/marc-rommel-agravante-349628449",
+  discordHandle: "_xevo21",
+  discordUserId: "745242725267406898",
+  discordUrl: "https://discord.com/users/745242725267406898",
+  facebookUrl: "https://m.me/Xevoooo",
   resumeUrl: undefined,
+  contactPage: {
+    eyebrow: "Contact",
+    title: "Let’s Work Together",
+    intro:
+      "Have a project, an idea or a question? Send a message and it lands straight in my inbox, or pick any channel below.",
+    ctaLabel: "Send message →",
+  },
+  contactForm: {
+    eyebrow: "Send a message",
+    title: "Let’s talk",
+    submitLabel: "Send message",
+    submittingLabel: "Sending…",
+    helperText: "Goes straight to my inbox.",
+    successTitle: "Thanks, I got it.",
+    successBody: "Your message has been sent. I’ll get back to you soon.",
+    errorMessage:
+      "Couldn’t send that. Please try again, or use one of the channels on the Contact page.",
+    subject: "New message from portfolio",
+    placeholders: {
+      name: "Your name",
+      email: "you@example.com",
+      message: "Hi Marc, I’d like to build…",
+    },
+  },
   about: {
     professionalBio: [
       "[PROFESSIONAL BIOGRAPHY PARAGRAPH 1 — Replace with approved background summary as a Computer Engineering student and aspiring developer.]",

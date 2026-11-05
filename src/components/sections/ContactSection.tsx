@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { siteConfig } from "@/content/site";
 import {
@@ -8,75 +10,148 @@ import {
   DiscordIcon,
   EmailIcon,
   FacebookIcon,
+  GitHubIcon,
   LinkedInIcon,
+  ResumeIcon,
 } from "@/components/contact/ContactIcons";
+import { SendMessageButton } from "@/components/contact/SendMessageButton";
 import { isValidExternalUrl } from "@/lib/validation";
 
 export function ContactSection({
-  headingLevel = "h2",
+  headingLevel = "h1",
 }: {
   headingLevel?: "h1" | "h2";
 }) {
   const HeadingTag = headingLevel;
+
   const email = siteConfig.contactEmail?.trim();
-  const cards: ContactCardProps[] = [
-    {
-      label: "Email",
-      description: "Send me an email anytime.",
-      href: email ? `mailto:${email}` : undefined,
-      icon: <EmailIcon />,
-      external: false,
-    },
-    {
-      label: "LinkedIn",
-      description: "Connect and let's discuss opportunities.",
-      href: isValidExternalUrl(siteConfig.linkedinUrl)
-        ? siteConfig.linkedinUrl
-        : undefined,
-      icon: <LinkedInIcon />,
-      external: true,
-    },
-    {
-      label: "Discord",
-      description: "Chat with me directly.",
-      href: isValidExternalUrl(siteConfig.discordUrl)
-        ? siteConfig.discordUrl
-        : undefined,
-      icon: <DiscordIcon />,
-      external: true,
-    },
-    {
-      label: "Facebook",
-      description: "Say hi or follow along.",
-      href: isValidExternalUrl(siteConfig.facebookUrl)
-        ? siteConfig.facebookUrl
-        : undefined,
-      icon: <FacebookIcon />,
-      external: true,
-    },
+  const discordUrl = siteConfig.discordUrl?.trim();
+  const discordHandle = siteConfig.discordHandle?.trim();
+  const resumeUrl = siteConfig.resumeUrl?.trim();
+
+  // Six cards in strict order: Email, LinkedIn, Discord, Facebook, GitHub, Resume
+  // Unconfigured cards are filtered out so they do not render on a live page
+  const potentialCards: (ContactCardProps | null)[] = [
+    email
+      ? {
+          label: "Email",
+          description: "Opens your mail app",
+          href: `mailto:${email}`,
+          icon: <EmailIcon />,
+          tag: "↗",
+          external: false,
+          ariaLabel: "Email — Opens your mail app. (opens mail app)",
+        }
+      : null,
+    isValidExternalUrl(siteConfig.linkedinUrl)
+      ? {
+          label: "LinkedIn",
+          description: "Connect and message me",
+          href: siteConfig.linkedinUrl,
+          icon: <LinkedInIcon />,
+          tag: "↗",
+          external: true,
+          ariaLabel: "LinkedIn — Connect and message me. (opens in new tab)",
+        }
+      : null,
+    isValidExternalUrl(discordUrl)
+      ? {
+          label: "Discord",
+          description: discordHandle
+            ? `@${discordHandle.replace(/^@/, "")}`
+            : "Direct message on Discord",
+          href: discordUrl,
+          icon: <DiscordIcon />,
+          tag: "↗",
+          external: true,
+          copyValue: discordHandle,
+          ariaLabel: "Discord — Open profile and message me. (opens in new tab)",
+        }
+      : discordHandle
+        ? {
+            label: "Discord",
+            description: `@${discordHandle.replace(/^@/, "")}`,
+            icon: <DiscordIcon />,
+            tag: "Copy",
+            copyValue: discordHandle,
+            ariaLabel: "Discord — Copy my username. (copies to clipboard)",
+          }
+        : null,
+    isValidExternalUrl(siteConfig.facebookUrl)
+      ? {
+          label: "Facebook",
+          description: "Message me on Messenger",
+          href: siteConfig.facebookUrl,
+          icon: <FacebookIcon />,
+          tag: "↗",
+          external: true,
+          ariaLabel: "Facebook — Message me on Messenger. (opens in new tab)",
+        }
+      : null,
+    isValidExternalUrl(siteConfig.githubUrl)
+      ? {
+          label: "GitHub",
+          description: "Code, commits and projects",
+          href: siteConfig.githubUrl,
+          icon: <GitHubIcon />,
+          tag: "↗",
+          external: true,
+          ariaLabel: "GitHub — Code, commits and projects. (opens in new tab)",
+        }
+      : null,
+    resumeUrl
+      ? {
+          label: "Resume",
+          description: "Download my CV as a PDF",
+          href: resumeUrl,
+          download: true,
+          icon: <ResumeIcon />,
+          tag: "PDF",
+          ariaLabel: "Resume — Download my CV as a PDF. (downloads file)",
+        }
+      : null,
   ];
+
+  const cards = potentialCards.filter(
+    (card): card is ContactCardProps => card !== null
+  );
 
   return (
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="py-10 sm:py-12"
+      className="py-10 sm:py-16"
     >
-      <header>
+      {/* Hero */}
+      <header className="flex flex-col items-start">
+        <p className="font-mono text-xs uppercase tracking-wider text-(--muted)">
+          {siteConfig.contactPage.eyebrow}
+        </p>
+
         <HeadingTag
           id="contact-heading"
-          className="text-2xl font-semibold tracking-tight text-(--foreground) sm:text-3xl"
+          className="mt-3 text-4xl font-semibold tracking-tight leading-[1.08] text-(--foreground) sm:text-[44px]"
         >
-          Let&apos;s Work Together
+          {siteConfig.contactPage.title}
         </HeadingTag>
+
+        <p className="mt-4 max-w-[560px] text-base leading-relaxed text-(--muted)">
+          {siteConfig.contactPage.intro}
+        </p>
+
+        <div className="mt-8">
+          <SendMessageButton variant="hero" />
+        </div>
       </header>
 
-      <div className="mt-6 grid gap-5 sm:grid-cols-2">
-        {cards.map((card) => (
-          <ContactCard key={card.label} {...card} />
-        ))}
-      </div>
+      {/* Channel Grid */}
+      {cards.length > 0 && (
+        <div className="mt-12 grid gap-4 grid-cols-[repeat(auto-fill,minmax(250px,1fr))]">
+          {cards.map((card) => (
+            <ContactCard key={card.label} {...card} />
+          ))}
+        </div>
+      )}
     </section>
   );
 }
-

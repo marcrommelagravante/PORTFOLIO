@@ -10,6 +10,11 @@
   --device-border: #32312C;
   --device-fg: #EFECE4;
   --device-muted: #A09D94;
+  --sidebar-width: 14rem;
+}
+
+html[data-sidebar-collapsed="true"] {
+  --sidebar-width: 4rem;
 }
 
 @theme inline {
