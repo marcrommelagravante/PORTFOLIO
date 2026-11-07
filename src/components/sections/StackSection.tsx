@@ -43,7 +43,7 @@ export function StackSection({
                 isLast ? "border-b border-(--border)" : ""
               }`}
             >
-              {/* Left Column: Category & Outcome */}
+              {/* Left Column: Category */}
               <div className="basis-60 shrink-0 max-w-full">
                 <div className="flex items-baseline gap-2.5">
                   <CategoryHeadingTag className="text-base font-semibold tracking-tight text-(--foreground)">
@@ -53,9 +53,6 @@ export function StackSection({
                     {countString}
                   </span>
                 </div>
-                <p className="mt-1.5 text-[13.5px] leading-normal text-(--muted)">
-                  {group.outcome}
-                </p>
               </div>
 
               {/* Right Column: Technology Pills */}
