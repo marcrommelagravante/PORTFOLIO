@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 680" fill="none">
+  <defs>
+    <linearGradient id="twilight9" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3C434C"/>
+      <stop offset="45%" stop-color="#7B8794"/>
+      <stop offset="65%" stop-color="#C2B7A3"/>
+      <stop offset="100%" stop-color="#E8DBC5"/>
+    </linearGradient>
+    <linearGradient id="lake9" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#282D33"/>
+      <stop offset="100%" stop-color="#14171A"/>
+    </linearGradient>
+  </defs>
+  <!-- Twilight Sky -->
+  <rect width="960" height="380" fill="url(#twilight9)"/>
+  <!-- Distant Shoreline -->
+  <path d="M0 380 Q320 370 640 375 T960 380 V395 H0 Z" fill="#1C1F22"/>
+  <!-- Mirror Lake Water -->
+  <rect y="380" width="960" height="300" fill="url(#lake9)"/>
+  <!-- Minimalist Stone Cairn in Foreground Shallows -->
+  <g transform="translate(480, 480)">
+    <ellipse cx="0" cy="110" rx="90" ry="24" fill="#202428"/>
+    <ellipse cx="0" cy="75" rx="72" ry="20" fill="#2E3339"/>
+    <ellipse cx="2" cy="45" rx="54" ry="16" fill="#3D444C"/>
+    <ellipse cx="-1" cy="20" rx="36" ry="12" fill="#4F5761"/>
+    <ellipse cx="1" cy="0" rx="22" ry="9" fill="#646D78"/>
+  </g>
+  <!-- Water Ripple Lines -->
+  <line x1="320" y1="590" x2="640" y2="590" stroke="#7B8794" stroke-width="1.5" opacity="0.45"/>
+  <line x1="390" y1="610" x2="570" y2="610" stroke="#7B8794" stroke-width="1.5" opacity="0.3"/>
+</svg>

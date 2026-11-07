@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 680" fill="none">
+  <!-- Minimalist Museum / Gallery Room -->
+  <rect width="960" height="520" fill="#E8E4DA"/>
+  <!-- Polished Concrete Floor -->
+  <rect y="520" width="960" height="160" fill="#C5BFB2"/>
+  <line x1="0" y1="520" x2="960" y2="520" stroke="#9A9283" stroke-width="2"/>
+  <!-- Large Canvas on Wall -->
+  <rect x="260" y="80" width="440" height="340" fill="#31302C" stroke="#252421" stroke-width="6"/>
+  <circle cx="480" cy="250" r="100" fill="#E8E4DA" opacity="0.9"/>
+  <!-- Sculptural Bench on Floor -->
+  <polygon points="360,535 600,535 620,560 340,560" fill="#201F1B"/>
+  <rect x="375" y="560" width="14" height="40" fill="#1C1B17"/>
+  <rect x="570" y="560" width="14" height="40" fill="#1C1B17"/>
+  <!-- Light Beam Casting across Floor -->
+  <polygon points="780,0 960,0 960,680 580,680" fill="#FFFDF8" opacity="0.22"/>
+</svg>

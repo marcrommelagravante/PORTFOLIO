@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 680" fill="none">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2D2B26"/>
+      <stop offset="50%" stop-color="#3B3831"/>
+      <stop offset="100%" stop-color="#1F1E1A"/>
+    </linearGradient>
+    <linearGradient id="wall1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D6D1C4"/>
+      <stop offset="100%" stop-color="#B8B2A4"/>
+    </linearGradient>
+    <linearGradient id="sun1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EBE7DC" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#C8C2B3" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+  <!-- Background / Interior Void -->
+  <rect width="960" height="680" fill="url(#bg1)"/>
+  <!-- Minimalist Architectural Pillars & Shadows -->
+  <rect x="0" y="0" width="340" height="680" fill="url(#wall1)"/>
+  <rect x="340" y="0" width="70" height="680" fill="#24231F" opacity="0.65"/>
+  <path d="M340 0 L490 680 H340 Z" fill="#1C1B17" opacity="0.45"/>
+  <!-- Arch Silhouette -->
+  <path d="M480 680 V260 C480 140 560 60 680 60 C800 60 880 140 880 260 V680 Z" fill="#E8E4D8"/>
+  <path d="M520 680 V280 C520 180 580 110 680 110 C780 110 840 180 840 280 V680 Z" fill="#252420"/>
+  <!-- Angular Golden Hour Cast -->
+  <polygon points="120,0 280,0 440,680 220,680" fill="url(#sun1)" opacity="0.5"/>
+  <circle cx="680" cy="280" r="44" fill="#C98A4B" opacity="0.85"/>
+</svg>

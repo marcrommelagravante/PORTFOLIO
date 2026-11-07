@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 680" fill="none">
+  <defs>
+    <linearGradient id="canyon6" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#C47335"/>
+      <stop offset="40%" stop-color="#9C5223"/>
+      <stop offset="100%" stop-color="#54250C"/>
+    </linearGradient>
+  </defs>
+  <!-- Desert Sky -->
+  <rect width="960" height="680" fill="#EADBC8"/>
+  <!-- Flowing Sandstone Canyon Layers -->
+  <path d="M0 680 Q180 340 400 480 T800 320 T960 410 V680 H0 Z" fill="url(#canyon6)"/>
+  <path d="M0 680 Q240 460 520 560 T960 480 V680 H0 Z" fill="#7A3916"/>
+  <path d="M120 680 Q400 520 720 600 T960 560 V680 H0 Z" fill="#421D0A"/>
+  <!-- Minimalist Distant Arch in Sky -->
+  <circle cx="740" cy="190" r="60" fill="#F4EADB" opacity="0.8"/>
+  <path d="M740 680 L960 280 V680 Z" fill="#B06028" opacity="0.4"/>
+</svg>

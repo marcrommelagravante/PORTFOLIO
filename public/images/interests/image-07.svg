@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 680" fill="none">
+  <defs>
+    <linearGradient id="mist7" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#DADFD9"/>
+      <stop offset="60%" stop-color="#BAC2B9"/>
+      <stop offset="100%" stop-color="#929C91"/>
+    </linearGradient>
+  </defs>
+  <!-- Misty Pine Sky -->
+  <rect width="960" height="680" fill="url(#mist7)"/>
+  <!-- Layer 1: Distant Pine Silhouettes -->
+  <g fill="#7A8578" opacity="0.45">
+    <polygon points="120,440 100,520 140,520"/>
+    <polygon points="180,410 155,500 205,500"/>
+    <polygon points="260,380 230,490 290,490"/>
+    <polygon points="410,400 380,510 440,510"/>
+    <polygon points="560,370 530,480 590,480"/>
+    <polygon points="720,410 690,520 750,520"/>
+    <polygon points="840,390 810,500 870,500"/>
+  </g>
+  <!-- Mist Sheet -->
+  <rect y="470" width="960" height="120" fill="#CBD2CA" opacity="0.6"/>
+  <!-- Layer 2: Mid Trees -->
+  <g fill="#434D41">
+    <polygon points="80,310 40,460 120,460"/>
+    <polygon points="80,410 30,550 130,550"/>
+    <polygon points="320,260 270,430 370,430"/>
+    <polygon points="320,380 250,560 390,560"/>
+    <polygon points="640,290 590,450 690,450"/>
+    <polygon points="640,400 570,570 710,570"/>
+    <polygon points="880,320 830,480 930,480"/>
+  </g>
+  <!-- Foreground Forest Floor -->
+  <path d="M0 580 Q480 530 960 560 V680 H0 Z" fill="#202720"/>
+</svg>

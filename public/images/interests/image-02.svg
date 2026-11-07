@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 680" fill="none">
+  <defs>
+    <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#EBE7DC"/>
+      <stop offset="45%" stop-color="#DAD4C5"/>
+      <stop offset="100%" stop-color="#C2BCAF"/>
+    </linearGradient>
+    <linearGradient id="mtn2a" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6F6B61"/>
+      <stop offset="100%" stop-color="#47443D"/>
+    </linearGradient>
+    <linearGradient id="mtn2b" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#34322C"/>
+      <stop offset="100%" stop-color="#1E1D19"/>
+    </linearGradient>
+  </defs>
+  <!-- Atmospheric Sky -->
+  <rect width="960" height="680" fill="url(#sky2)"/>
+  <!-- Distant Sun / Orb -->
+  <circle cx="580" cy="220" r="85" fill="#D49A6A" opacity="0.6"/>
+  <!-- Distant Ridge Layer -->
+  <path d="M0 430 L160 330 L380 440 L580 290 L790 410 L960 300 V680 H0 Z" fill="#8C877B" opacity="0.65"/>
+  <!-- Mid Ridge Layer -->
+  <path d="M0 490 L220 380 L440 480 L680 360 L960 520 V680 H0 Z" fill="url(#mtn2a)"/>
+  <!-- Sharp Foreground Mountain Crest -->
+  <path d="M120 680 L380 420 L510 540 L720 380 L960 620 V680 H0 Z" fill="url(#mtn2b)"/>
+  <!-- Ambient Valley Mist -->
+  <path d="M0 550 Q480 490 960 540 V680 H0 Z" fill="#E2DDD0" opacity="0.3"/>
+</svg>
