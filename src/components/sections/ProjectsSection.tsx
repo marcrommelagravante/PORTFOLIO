@@ -13,9 +13,7 @@ export function ProjectsSection({
     <section
       id="projects"
       aria-labelledby="projects-heading"
-      className={`py-8 sm:py-10 ${
-        isStandalone ? "" : "border-b border-(--border)"
-      }`}
+      className="py-8 sm:py-10"
     >
       <ProjectsLedger
         projects={portfolioProjects}

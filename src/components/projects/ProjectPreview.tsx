@@ -78,11 +78,11 @@ export function ProjectPreview({
 
       {/* Meta block */}
       <div key={project.slug} className="animate-fade-rise px-1.5 pt-7">
-        <p className="font-mono text-xs tracking-wider text-(--muted) uppercase">
+        <p className="font-mono text-[11px] font-medium tracking-[0.18em] text-(--muted) uppercase">
           {`${padTwo(index + 1)} / ${padTwo(total)} · ${project.tag}`}
         </p>
 
-        <h3 className="mt-2 text-[28px] leading-tight font-semibold tracking-tight text-(--foreground)">
+        <h3 className="font-display mt-2 text-[28px] leading-[1.12] font-semibold tracking-[-0.015em] text-(--foreground)">
           {project.title}
         </h3>
 

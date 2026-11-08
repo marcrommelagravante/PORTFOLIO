@@ -170,14 +170,11 @@ export function ContactForm({ onClose }: { onClose: () => void }) {
   return (
     <div className="flex flex-1 flex-col">
       {/* Header */}
-      <div className="flex items-start justify-between gap-4 border-b border-(--border)/80 pb-6">
+      <div className="flex items-center justify-between gap-4 border-b border-(--border)/80 pb-6">
         <div>
-          <p className="font-mono text-xs uppercase tracking-wider text-(--muted)">
-            {siteConfig.contactForm.eyebrow}
-          </p>
           <h2
             id="contact-panel-title"
-            className="mt-1 text-[28px] font-semibold tracking-tight leading-tight text-(--foreground)"
+            className="font-display text-[28px] leading-[1.12] font-semibold tracking-[-0.015em] text-(--foreground)"
           >
             {siteConfig.contactForm.title}
           </h2>
@@ -199,7 +196,7 @@ export function ContactForm({ onClose }: { onClose: () => void }) {
           <h3
             ref={successHeadingRef}
             tabIndex={-1}
-            className="text-2xl font-semibold tracking-tight text-(--foreground) focus:outline-none"
+            className="font-display text-2xl leading-[1.15] font-semibold tracking-[-0.015em] text-(--foreground) focus:outline-none"
           >
             {siteConfig.contactForm.successTitle}
           </h3>

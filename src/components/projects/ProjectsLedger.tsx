@@ -64,19 +64,13 @@ export function ProjectsLedger({
   return (
     <div>
       {/* Section Header */}
-      <header className="animate-gallery-enter mb-10 max-w-2xl">
-        <p className="font-mono text-xs font-medium tracking-wider text-(--muted) uppercase">
-          {projectsSectionCopy.eyebrow}
-        </p>
+      <header className="animate-gallery-enter mb-8 max-w-2xl">
         <HeadingTag
           id="projects-heading"
-          className="mt-2.5 text-3xl font-semibold tracking-tight text-(--foreground) sm:text-4xl"
+          className="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-[40px]"
         >
           {projectsSectionCopy.title}
         </HeadingTag>
-        <p className="mt-3 text-base leading-relaxed text-(--muted)">
-          {projectsSectionCopy.description}
-        </p>
       </header>
 
       {/* Two-column Ledger + Sticky Preview */}

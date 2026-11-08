@@ -10,7 +10,7 @@ export function Hero() {
     <section
       id="home"
       aria-labelledby="hero-heading"
-      className="relative overflow-hidden border-b border-(--border) pt-8 pb-14 sm:pt-10 sm:pb-20 lg:min-h-[82vh] lg:pt-12 lg:pb-24"
+      className="relative overflow-hidden pt-8 pb-14 sm:pt-10 sm:pb-20 lg:min-h-[82vh] lg:pt-12 lg:pb-24"
     >
       {/* Oversized decorative background initials */}
       <div
@@ -47,10 +47,10 @@ export function Hero() {
         <div className="pb-2 lg:pb-6">
           <h1
             id="hero-heading"
-            className="font-display text-[clamp(2.75rem,5.2vw,4.65rem)] leading-[1.04] font-normal tracking-[-0.02em] text-(--foreground)"
+            className="font-display text-[clamp(2.75rem,5.2vw,4.65rem)] leading-[1.04] font-semibold tracking-[-0.02em] text-(--foreground)"
           >
             Hi, I&apos;m {siteConfig.firstName}.
-            <br />I build <em className="font-normal italic">useful</em> things
+            <br />I build <em className="font-semibold italic">useful</em> things
             <br />
             for the web.
           </h1>
@@ -61,7 +61,7 @@ export function Hero() {
 
           <div className="mt-10 flex items-center gap-5 sm:mt-14">
             <Link
-              href="/#about"
+              href="/#projects"
               className="group inline-flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"
             >
               <span className="border-b border-(--foreground)/50 pb-1 font-mono text-xs font-semibold tracking-[0.14em] text-(--foreground) uppercase transition-colors group-hover:border-(--foreground)">

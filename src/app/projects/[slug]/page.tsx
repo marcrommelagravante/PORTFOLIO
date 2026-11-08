@@ -105,7 +105,7 @@ export default async function ProjectDetailPage({
       <header className="mt-6 border-b border-(--border) pb-10">
         <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-start">
           <div className="max-w-2xl">
-            <h1 className="text-[clamp(1.85rem,3.5vw,2.75rem)] font-semibold tracking-tight text-(--foreground)">
+            <h1 className="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-[40px]">
               {project.title}
             </h1>
             <p className="mt-3 text-base leading-relaxed text-(--muted)">
@@ -136,7 +136,7 @@ export default async function ProjectDetailPage({
 
       <div className="mt-12 max-w-3xl space-y-10">
         <section>
-          <h2 className="text-xl font-semibold tracking-tight text-(--foreground)">
+          <h2 className="font-display text-2xl leading-[1.15] font-semibold tracking-[-0.015em] text-(--foreground)">
             Overview
           </h2>
           <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-(--muted)">
@@ -146,12 +146,11 @@ export default async function ProjectDetailPage({
               </p>
             ))}
           </div>
-          <div className="mt-8 border-b border-(--border)" />
         </section>
 
         {project.features.length > 0 && (
           <section>
-            <h2 className="text-xl font-semibold tracking-tight text-(--foreground)">
+            <h2 className="font-display text-2xl leading-[1.15] font-semibold tracking-[-0.015em] text-(--foreground)">
               Features
             </h2>
             <ul className="mt-4 space-y-3.5 text-[15px] leading-relaxed text-(--muted)">
@@ -172,7 +171,7 @@ export default async function ProjectDetailPage({
 
         {project.highlights.length > 0 && (
           <section>
-            <h2 className="text-xl font-semibold tracking-tight text-(--foreground)">
+            <h2 className="font-display text-2xl leading-[1.15] font-semibold tracking-[-0.015em] text-(--foreground)">
               Highlights
             </h2>
             <ul className="mt-4 space-y-3.5 text-[15px] leading-relaxed text-(--muted)">
@@ -193,7 +192,7 @@ export default async function ProjectDetailPage({
 
         {project.techStackTable && project.techStackTable.length > 0 ? (
           <section>
-            <h2 className="text-xl font-semibold tracking-tight text-(--foreground)">
+            <h2 className="font-display text-2xl leading-[1.15] font-semibold tracking-[-0.015em] text-(--foreground)">
               Built with
             </h2>
             <div className="mt-5 overflow-hidden rounded-xl border border-(--border) bg-(--surface)/20">
@@ -237,7 +236,7 @@ export default async function ProjectDetailPage({
         ) : (
           project.technologies.length > 0 && (
             <section>
-              <h2 className="text-xl font-semibold tracking-tight text-(--foreground)">
+              <h2 className="font-display text-2xl leading-[1.15] font-semibold tracking-[-0.015em] text-(--foreground)">
                 Tech Stack
               </h2>
               <ul className="mt-4 flex flex-wrap gap-2">

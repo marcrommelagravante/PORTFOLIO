@@ -124,20 +124,12 @@ export function ContactSection({
     >
       {/* Hero */}
       <header className="flex flex-col items-start">
-        <p className="font-mono text-xs uppercase tracking-wider text-(--muted)">
-          {siteConfig.contactPage.eyebrow}
-        </p>
-
         <HeadingTag
           id="contact-heading"
-          className="mt-3 text-4xl font-semibold tracking-tight leading-[1.08] text-(--foreground) sm:text-[44px]"
+          className="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-[40px]"
         >
           {siteConfig.contactPage.title}
         </HeadingTag>
-
-        <p className="mt-4 max-w-[560px] text-base leading-relaxed text-(--muted)">
-          {siteConfig.contactPage.intro}
-        </p>
 
         <div className="mt-8">
           <SendMessageButton variant="hero" />

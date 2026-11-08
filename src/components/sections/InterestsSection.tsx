@@ -258,23 +258,15 @@ export function InterestsSection({
       id="outside-the-ide"
       aria-labelledby="outside-the-ide-heading"
       onKeyDown={handleKeyDown}
-      className={`py-8 sm:py-10 ${
-        isStandalone ? "" : "border-b border-(--border)"
-      }`}
+      className="py-8 sm:py-10"
     >
       <header className="animate-gallery-enter max-w-2xl">
-        <p className="font-mono text-xs font-medium tracking-wider text-(--muted) uppercase">
-          {interestPageHeader.eyebrow}
-        </p>
         <HeadingTag
           id="outside-the-ide-heading"
-          className="mt-2.5 text-3xl font-semibold tracking-tight text-(--foreground) sm:text-4xl"
+          className="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-[40px]"
         >
           {interestPageHeader.heading}
         </HeadingTag>
-        <p className="mt-3 text-base leading-relaxed text-(--muted)">
-          {interestPageHeader.introduction}
-        </p>
       </header>
 
       <div

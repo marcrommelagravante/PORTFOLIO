@@ -18,13 +18,10 @@ export function StackSection({
       className={`py-10 sm:py-12 ${isStandalone ? "" : ""}`}
     >
       {/* Header */}
-      <header className="mb-11">
-        <p className="font-mono text-xs font-medium uppercase tracking-wider text-(--muted)">
-          {stackPageHeader.eyebrow}
-        </p>
+      <header className="mb-8">
         <HeadingTag
           id="stack-heading"
-          className="mt-2 text-4xl sm:text-[44px] font-semibold tracking-tight leading-[1.08] text-(--foreground)"
+          className="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-[40px]"
         >
           {stackPageHeader.title}
         </HeadingTag>

@@ -18,13 +18,12 @@ export function AboutSection({
     <section
       id="about"
       aria-labelledby="about-heading"
-      className={`py-10 sm:py-12 ${isStandalone ? "" : "border-b border-(--border)"
-        }`}
+      className="py-10 sm:py-12"
     >
       <header>
         <HeadingTag
           id="about-heading"
-          className="text-2xl font-semibold tracking-tight text-(--foreground) sm:text-3xl"
+          className="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-[40px]"
         >
           About Me
         </HeadingTag>
@@ -61,7 +60,7 @@ export function AboutSection({
         >
           <h2
             id="about-stack-heading"
-            className="text-2xl font-semibold tracking-tight text-(--foreground)"
+            className="font-display text-2xl leading-[1.15] font-normal tracking-[-0.015em] text-(--foreground)"
           >
             Stack
           </h2>

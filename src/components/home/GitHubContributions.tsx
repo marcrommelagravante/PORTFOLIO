@@ -29,7 +29,7 @@ export async function GitHubContributions() {
       <div className="flex items-baseline justify-between border-b border-(--border) pb-3.5">
         <h2
           id="github-heading"
-          className="text-2xl font-semibold tracking-tight text-(--foreground) sm:text-3xl"
+          className="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-[40px]"
         >
           GitHub
         </h2>
