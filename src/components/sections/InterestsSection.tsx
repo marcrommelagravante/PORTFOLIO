@@ -99,9 +99,11 @@ function CoverflowItem({
 export function InterestsSection({
   headingLevel = "h2",
   isStandalone = false,
+  className = "",
 }: {
   headingLevel?: "h1" | "h2";
   isStandalone?: boolean;
+  className?: string;
 }) {
   const HeadingTag = headingLevel;
   const count = interestGallery.length;
@@ -258,7 +260,7 @@ export function InterestsSection({
       id="outside-the-ide"
       aria-labelledby="outside-the-ide-heading"
       onKeyDown={handleKeyDown}
-      className="py-8 sm:py-10"
+      className={`pb-8 sm:pb-10 ${isStandalone ? "pt-0" : "pt-8 sm:pt-10"} ${className}`}
     >
       <header className="animate-gallery-enter max-w-2xl">
         <HeadingTag

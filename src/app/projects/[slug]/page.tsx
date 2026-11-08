@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { portfolioProjects } from "@/content/projects";
 import { ProjectGallery } from "@/components/projects/ProjectGallery";
+import { BackToHome } from "@/components/layout/BackToHome";
 import { createPageMetadata } from "@/lib/metadata";
 import { isValidExternalUrl } from "@/lib/validation";
 
@@ -94,13 +95,19 @@ export default async function ProjectDetailPage({
     : [project.overview];
 
   return (
-    <article className="py-14 sm:py-20">
-      <Link
-        href="/projects"
-        className="text-sm font-medium text-(--muted) transition-colors hover:text-(--foreground)"
-      >
-        ← Back to Projects
-      </Link>
+    <article className="py-10 sm:py-16">
+      <div className="flex flex-wrap items-center gap-3">
+        <BackToHome />
+        <span className="text-(--border)" aria-hidden="true">
+          /
+        </span>
+        <Link
+          href="/projects"
+          className="text-xs font-medium text-(--muted) transition-colors hover:text-(--foreground) sm:text-sm"
+        >
+          All Projects
+        </Link>
+      </div>
 
       <header className="mt-6 border-b border-(--border) pb-10">
         <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-start">

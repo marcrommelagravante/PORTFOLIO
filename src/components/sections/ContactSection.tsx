@@ -19,8 +19,12 @@ import { isValidExternalUrl } from "@/lib/validation";
 
 export function ContactSection({
   headingLevel = "h1",
+  isStandalone = false,
+  className = "",
 }: {
   headingLevel?: "h1" | "h2";
+  isStandalone?: boolean;
+  className?: string;
 }) {
   const HeadingTag = headingLevel;
 
@@ -120,7 +124,7 @@ export function ContactSection({
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="py-10 sm:py-16"
+      className={`pb-10 sm:pb-16 ${isStandalone ? "pt-0" : "pt-10 sm:pt-16"} ${className}`}
     >
       {/* Hero */}
       <header className="flex flex-col items-start">
