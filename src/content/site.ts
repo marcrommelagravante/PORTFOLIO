@@ -60,7 +60,7 @@ export const siteConfig: SiteConfig = {
   heroHeadline: "Hi, I'm Marc. I build useful things for the web.",
   shortIntroduction:
     "Computer Engineering student and developer passionate about building performant, accessible web applications and developer tools.",
-  profilePhoto: undefined,
+  profilePhoto: "/images/marc-hero-bw.png",
   profilePhotoAlt: "Black-and-white portrait of Marc Rommel Agravante",
   locationFooterLine: "© Marc Rommel Agravante 2026",
   githubUsername: "marcrommelagravante",

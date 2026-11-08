@@ -22,6 +22,8 @@ const MOBILE_ITEM_WIDTH = 300;
 const MOBILE_ITEM_HEIGHT = 215;
 const MOBILE_STEP_SIZE = 190;
 
+const AUTOPLAY_INTERVAL = 4000;
+
 function mod(n: number, m: number): number {
   return ((n % m) + m) % m;
 }
@@ -39,7 +41,7 @@ function CoverflowItem({
   stepSize,
   trackX,
   isActive,
-  onSelectOffset,
+  onSelect,
 }: {
   item: InterestGalleryItem;
   index: number;
@@ -47,7 +49,7 @@ function CoverflowItem({
   stepSize: number;
   trackX: MotionValue<number>;
   isActive: boolean;
-  onSelectOffset: (offsetPx: number) => void;
+  onSelect: () => void;
 }) {
   const totalWidth = count * stepSize;
 
@@ -72,18 +74,22 @@ function CoverflowItem({
       aria-roledescription={isActive ? "slide" : undefined}
       aria-label={isActive ? `Photo ${index + 1} of ${count}` : undefined}
       aria-hidden={!isActive ? "true" : undefined}
-      onClick={() => onSelectOffset(offset.get())}
+      onClick={(e) => {
+        e.stopPropagation();
+        onSelect();
+      }}
+      title="Click to shuffle"
       style={{
         x: offset,
         zIndex,
       }}
-      className="coverflow-li"
+      className="coverflow-li cursor-pointer"
     >
       <motion.img
         draggable={false}
         src={item.image}
         alt={item.alt || `Photo ${index + 1}`}
-        className="coverflow-item"
+        className="coverflow-item cursor-pointer"
         style={{
           transformPerspective: 600,
           x,
@@ -112,21 +118,15 @@ export function InterestsSection({
   const [active, setActive] = useState(0);
   const [interacted, setInteracted] = useState(false);
   const [stepSize, setStepSize] = useState(DESKTOP_STEP_SIZE);
-  const [isDragging, setIsDragging] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isTabVisible, setIsTabVisible] = useState(true);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [resetKey, setResetKey] = useState(0);
 
   const stepRef = useRef(0);
   const trackX = useMotionValue(0);
   const animationRef = useRef<ReturnType<typeof animate> | null>(null);
-
-  const dragStateRef = useRef<{
-    pointerId: number;
-    startX: number;
-    startTrackX: number;
-    lastX: number;
-    lastTime: number;
-    velocityX: number;
-    didDrag: boolean;
-  } | null>(null);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     const mql = window.matchMedia("(max-width: 640px)");
@@ -160,10 +160,55 @@ export function InterestsSection({
     (delta: number) => {
       if (isSingle || delta === 0) return;
       setInteracted(true);
+      setResetKey((k) => k + 1);
       animateToStep(stepRef.current + delta);
     },
     [animateToStep, isSingle]
   );
+
+  useEffect(() => {
+    const handleVisibility = () => {
+      setIsTabVisible(!document.hidden);
+    };
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
+  }, []);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mq.matches);
+    const onChange = () => setPrefersReducedMotion(mq.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  useEffect(() => {
+    if (
+      isSingle ||
+      isHovered ||
+      !isTabVisible ||
+      prefersReducedMotion
+    ) {
+      return;
+    }
+
+    const timer = setInterval(() => {
+      animateToStep(stepRef.current + 1);
+    }, AUTOPLAY_INTERVAL);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [
+    isSingle,
+    isHovered,
+    isTabVisible,
+    prefersReducedMotion,
+    resetKey,
+    animateToStep,
+  ]);
 
   if (count === 0) {
     return null;
@@ -174,84 +219,39 @@ export function InterestsSection({
     if (event.key === "ArrowLeft") {
       event.preventDefault();
       stepBy(-1);
-    } else if (event.key === "ArrowRight") {
+    } else if (
+      event.key === "ArrowRight" ||
+      event.key === " " ||
+      event.key === "Enter"
+    ) {
       event.preventDefault();
       stepBy(1);
     }
   };
 
-  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (isSingle || event.button !== 0) return;
-    animationRef.current?.stop();
-    event.currentTarget.setPointerCapture(event.pointerId);
-    dragStateRef.current = {
-      pointerId: event.pointerId,
-      startX: event.clientX,
-      startTrackX: trackX.get(),
-      lastX: event.clientX,
-      lastTime: performance.now(),
-      velocityX: 0,
-      didDrag: false,
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    if (isSingle || event.touches.length !== 1) return;
+    touchStartRef.current = {
+      x: event.touches[0].clientX,
+      y: event.touches[0].clientY,
     };
-    setIsDragging(true);
   };
 
-  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-    const state = dragStateRef.current;
-    if (!state || state.pointerId !== event.pointerId) return;
-
-    const dx = event.clientX - state.startX;
-    if (Math.abs(dx) > 4) {
-      state.didDrag = true;
+  const handleTouchEnd = (event: React.TouchEvent<HTMLDivElement>) => {
+    if (!touchStartRef.current || event.changedTouches.length !== 1) {
+      touchStartRef.current = null;
+      return;
     }
+    const dx = event.changedTouches[0].clientX - touchStartRef.current.x;
+    const dy = event.changedTouches[0].clientY - touchStartRef.current.y;
+    touchStartRef.current = null;
 
-    const now = performance.now();
-    const dt = now - state.lastTime;
-    if (dt > 0) {
-      state.velocityX = ((event.clientX - state.lastX) / dt) * 1000;
-      state.lastX = event.clientX;
-      state.lastTime = now;
-    }
-
-    const nextTrack = state.startTrackX + dx;
-    trackX.set(nextTrack);
-
-    const nearestStep = Math.round(-nextTrack / stepSize);
-    setActive(mod(nearestStep, count));
-  };
-
-  const finishDrag = (event: React.PointerEvent<HTMLDivElement>) => {
-    const state = dragStateRef.current;
-    if (!state || state.pointerId !== event.pointerId) return;
-
-    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-      event.currentTarget.releasePointerCapture(event.pointerId);
-    }
-
-    dragStateRef.current = null;
-    setIsDragging(false);
-
-    if (state.didDrag) {
-      setInteracted(true);
-      const projected = trackX.get() + state.velocityX * 0.12;
-      const nearestStep = Math.round(-projected / stepSize);
-      animateToStep(nearestStep);
-    }
-  };
-
-  const cancelDrag = () => {
-    if (!dragStateRef.current) return;
-    dragStateRef.current = null;
-    setIsDragging(false);
-    const nearestStep = Math.round(-trackX.get() / stepSize);
-    animateToStep(nearestStep);
-  };
-
-  const handleSelectOffset = (offsetPx: number) => {
-    if (dragStateRef.current?.didDrag) return;
-    const deltaSteps = Math.round(offsetPx / stepSize);
-    if (deltaSteps !== 0) {
-      stepBy(deltaSteps);
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+      if (dx < 0) {
+        stepBy(1);
+      } else {
+        stepBy(-1);
+      }
     }
   };
 
@@ -284,18 +284,21 @@ export function InterestsSection({
         aria-roledescription="carousel"
         aria-label="Personal interests photo coverflow"
         tabIndex={0}
+        onPointerEnter={(e) => {
+          if (e.pointerType === "mouse") setIsHovered(true);
+        }}
+        onPointerLeave={(e) => {
+          if (e.pointerType === "mouse") setIsHovered(false);
+        }}
         className="animate-gallery-enter mt-8 select-none focus-visible:outline-none sm:mt-10"
       >
         <div
-          onPointerDown={handlePointerDown}
-          onPointerMove={handlePointerMove}
-          onPointerUp={finishDrag}
-          onPointerCancel={cancelDrag}
-          className={`coverflow-mask ${
-            isDragging ? "cursor-grabbing" : "cursor-grab"
-          }`}
+          onClick={() => stepBy(1)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          className="coverflow-mask cursor-pointer"
         >
-          <ul className="coverflow-carousel">
+          <ul className="coverflow-carousel cursor-pointer">
             {interestGallery.map((item, index) => (
               <CoverflowItem
                 key={item.id}
@@ -305,7 +308,7 @@ export function InterestsSection({
                 stepSize={stepSize}
                 trackX={trackX}
                 isActive={index === active}
-                onSelectOffset={handleSelectOffset}
+                onSelect={() => stepBy(1)}
               />
             ))}
           </ul>
@@ -336,9 +339,14 @@ export function InterestsSection({
               </button>
             </div>
 
-            <p className="text-xs text-(--muted) select-none">
-              Drag or swipe to explore
-            </p>
+            <button
+              type="button"
+              onClick={() => stepBy(1)}
+              aria-label="Shuffle to next photo"
+              className="text-xs text-(--muted) transition-colors hover:text-(--foreground) cursor-pointer select-none focus-visible:outline-none focus-visible:underline"
+            >
+              Click to shuffle
+            </button>
           </div>
         )}
       </div>
@@ -365,6 +373,7 @@ function Stylesheet() {
           overflow: hidden;
           padding: 28px 0;
           touch-action: pan-y;
+          cursor: pointer;
         }
 
         .coverflow-carousel {
@@ -377,6 +386,7 @@ function Stylesheet() {
           list-style: none;
           margin: 0;
           padding: 0;
+          cursor: pointer;
         }
 
         .coverflow-li {
@@ -386,6 +396,7 @@ function Stylesheet() {
           width: ${DESKTOP_ITEM_WIDTH}px;
           height: ${DESKTOP_ITEM_HEIGHT}px;
           list-style: none;
+          cursor: pointer;
         }
 
         .coverflow-item {
@@ -397,6 +408,7 @@ function Stylesheet() {
           will-change: transform, opacity;
           display: block;
           user-select: none;
+          cursor: pointer;
         }
 
         @media (max-width: 640px) {

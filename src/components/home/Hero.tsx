@@ -83,7 +83,7 @@ export function Hero() {
 
         {/* Right Portrait Stage (empty picture slot first, ready to populate) */}
         <div className="relative mx-auto w-full max-w-[360px] sm:max-w-[420px] lg:mr-0 lg:ml-auto lg:max-w-[460px]">
-          <div className="relative aspect-[4/4.4] w-full">
+          <div className="relative aspect-[460/500] w-full">
             {/* Restrained soft neutral backing shape with curved bottom silhouette */}
             <svg
               aria-hidden="true"
@@ -92,20 +92,20 @@ export function Hero() {
               className="pointer-events-none absolute inset-0 h-full w-full text-(--watermark)"
             >
               <path
-                d="M118 220C118 175 154 140 198 140H392C425 140 450 166 450 199V392C450 412 436 429 417 434L172 492C112 506 52 496 34 482C18 470 22 440 36 408L118 220Z"
-                 fill="currentColor"
+                d="M88 228C88 192 116 166 154 166H255C280 166 295 150 305 132C315 114 332 104 360 104H396C428 104 450 126 450 158V340C450 374 430 398 394 412L220 468C175 482 120 486 68 486C30 486 14 456 30 420L88 298Z"
+                fill="currentColor"
               />
             </svg>
 
             {siteConfig.profilePhoto ? (
-              <div className="relative z-10 h-full w-full overflow-hidden rounded-b-[36px]">
+              <div className="relative z-10 h-full w-full">
                 <Image
                   src={siteConfig.profilePhoto}
                   alt={siteConfig.profilePhotoAlt}
                   fill
                   priority
                   sizes="(max-width: 768px) 360px, 460px"
-                  className="object-contain object-bottom grayscale contrast-105"
+                  className="object-contain object-bottom select-none"
                 />
               </div>
             ) : null}
