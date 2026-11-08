@@ -15,11 +15,11 @@ import {
 } from "@/content/interests";
 
 const DESKTOP_ITEM_WIDTH = 480;
-const DESKTOP_ITEM_HEIGHT = 340;
+const DESKTOP_ITEM_HEIGHT = 420;
 const DESKTOP_STEP_SIZE = 280;
 
 const MOBILE_ITEM_WIDTH = 300;
-const MOBILE_ITEM_HEIGHT = 215;
+const MOBILE_ITEM_HEIGHT = 300;
 const MOBILE_STEP_SIZE = 190;
 
 const AUTOPLAY_INTERVAL = 4000;
@@ -89,7 +89,7 @@ function CoverflowItem({
         draggable={false}
         src={item.image}
         alt={item.alt || `Photo ${index + 1}`}
-        className="coverflow-item cursor-pointer"
+        className={`coverflow-item cursor-pointer${item.isPlaceholder ? " coverflow-placeholder" : ""}`}
         style={{
           transformPerspective: 600,
           x,
@@ -395,20 +395,31 @@ function Stylesheet() {
           left: 0;
           width: ${DESKTOP_ITEM_WIDTH}px;
           height: ${DESKTOP_ITEM_HEIGHT}px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           list-style: none;
           cursor: pointer;
         }
 
         .coverflow-item {
-          width: ${DESKTOP_ITEM_WIDTH}px;
-          height: ${DESKTOP_ITEM_HEIGHT}px;
-          object-fit: cover;
+          width: auto;
+          height: auto;
+          max-width: ${DESKTOP_ITEM_WIDTH}px;
+          max-height: ${DESKTOP_ITEM_HEIGHT}px;
+          object-fit: contain;
           border-radius: 14px;
           box-shadow: 0 16px 45px rgba(0, 0, 0, 0.28);
           will-change: transform, opacity;
           display: block;
           user-select: none;
           cursor: pointer;
+        }
+
+        .coverflow-placeholder {
+          width: ${DESKTOP_ITEM_WIDTH}px;
+          height: 340px;
+          object-fit: cover;
         }
 
         @media (max-width: 640px) {
@@ -421,9 +432,13 @@ function Stylesheet() {
             height: ${MOBILE_ITEM_HEIGHT}px;
           }
           .coverflow-item {
-            width: ${MOBILE_ITEM_WIDTH}px;
-            height: ${MOBILE_ITEM_HEIGHT}px;
+            max-width: ${MOBILE_ITEM_WIDTH}px;
+            max-height: ${MOBILE_ITEM_HEIGHT}px;
             border-radius: 10px;
+          }
+          .coverflow-placeholder {
+            width: ${MOBILE_ITEM_WIDTH}px;
+            height: 215px;
           }
         }
       `}
