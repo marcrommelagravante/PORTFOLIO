@@ -2,79 +2,113 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/content/site";
-import { MagneticButton } from "@/components/motion/MagneticButton";
 
 export function Hero() {
+  const watermarkText = siteConfig.initials.replace(/\.$/, "");
+
   return (
     <section
       id="home"
       aria-labelledby="hero-heading"
-      className="border-b border-(--border) py-14 sm:py-20"
+      className="relative overflow-hidden border-b border-(--border) pt-8 pb-14 sm:pt-10 sm:pb-20 lg:min-h-[82vh] lg:pt-12 lg:pb-24"
     >
-      <div className="grid items-center gap-10 md:grid-cols-[1fr_240px] md:gap-12">
-        <div>
-          <p className="font-mono text-xs text-(--muted)">
+      {/* Oversized decorative background initials */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-14 -left-1 z-0 select-none sm:top-16 sm:-left-2 lg:top-14"
+      >
+        <span className="font-display block text-[clamp(5.5rem,17.5vw,16.5rem)] leading-[0.82] font-normal tracking-[-0.015em] text-(--watermark) uppercase">
+          {watermarkText}
+        </span>
+      </div>
+
+      {/* Top row: Eyebrow & Developer Badge */}
+      <div className="relative z-10 flex flex-wrap items-center justify-between gap-4">
+        <div className="flex items-center gap-3.5">
+          <span aria-hidden="true" className="h-px w-8 bg-(--muted)/60" />
+          <p className="font-mono text-[11px] tracking-[0.18em] text-(--muted) uppercase">
             {siteConfig.roleEyebrow}
           </p>
+        </div>
 
+        <div className="inline-flex -rotate-6 items-center gap-2.5 rounded-full border border-(--border) bg-(--background)/90 px-4 py-1.5 font-mono text-[10px] font-medium tracking-[0.16em] text-(--foreground) uppercase sm:mt-2 sm:mr-2 sm:text-[11px]">
+          <span aria-hidden="true" className="text-(--muted)">
+            &lt;/&gt;
+          </span>
+          <span>DEVELOPER</span>
+          <span aria-hidden="true" className="text-(--muted)">
+            ·
+          </span>
+        </div>
+      </div>
+
+      {/* Main Hero Grid: Left Editorial Copy, Right Portrait Stage */}
+      <div className="relative z-10 mt-12 grid items-end gap-12 sm:mt-20 lg:mt-16 lg:grid-cols-[1.08fr_0.92fr] lg:gap-8">
+        <div className="pb-2 lg:pb-6">
           <h1
             id="hero-heading"
-            className="mt-4 text-[clamp(2.25rem,4vw,3.5rem)] leading-[1.1] font-semibold tracking-tight text-(--foreground)"
+            className="font-display text-[clamp(2.75rem,5.2vw,4.65rem)] leading-[1.04] font-normal tracking-[-0.02em] text-(--foreground)"
           >
             Hi, I&apos;m {siteConfig.firstName}.
-            <br />I build useful things for the web.
+            <br />I build <em className="font-normal italic">useful</em> things
+            <br />
+            for the web.
           </h1>
 
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-(--muted)">
+          <p className="mt-7 max-w-[42ch] font-sans text-base leading-[1.65] text-(--muted) sm:text-[17px]">
             {siteConfig.shortIntroduction}
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <MagneticButton>
-              <Link
-                href="/projects"
-                className="inline-flex items-center justify-center rounded-md bg-(--foreground) px-5 py-2.5 text-sm font-medium text-(--background) transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
+          <div className="mt-10 flex items-center gap-5 sm:mt-14">
+            <Link
+              href="/#about"
+              className="group inline-flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"
+            >
+              <span className="border-b border-(--foreground)/50 pb-1 font-mono text-xs font-semibold tracking-[0.14em] text-(--foreground) uppercase transition-colors group-hover:border-(--foreground)">
+                MORE ABOUT ME
+              </span>
+              <span
+                aria-hidden="true"
+                className="font-mono text-sm text-(--foreground) transition-transform duration-200 group-hover:translate-x-1"
               >
-                Explore my work
-              </Link>
-            </MagneticButton>
-
-            <MagneticButton>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-md border border-(--border) bg-(--surface)/50 px-5 py-2.5 text-sm font-medium text-(--foreground) transition-colors hover:bg-(--surface) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
-              >
-                Contact
-              </Link>
-            </MagneticButton>
+                →
+              </span>
+            </Link>
+            <span
+              aria-hidden="true"
+              className="h-px w-24 bg-(--border) sm:w-40"
+            />
           </div>
         </div>
 
-        <div className="relative mx-auto w-45 md:w-60">
-          <span className="absolute -top-1 -right-2 z-10 rounded-full border border-(--border) bg-(--background)/95 px-3 py-1 font-mono text-xs font-medium text-(--foreground) shadow-xs backdrop-blur-xs">
-            {"// Developer"}
-          </span>
-
-          <div className="relative aspect-square w-full overflow-hidden rounded-full border border-(--border) bg-(--surface)">
-            {siteConfig.profilePhoto ? (
-              <Image
-                src={siteConfig.profilePhoto}
-                alt={siteConfig.profilePhotoAlt}
-                fill
-                priority
-                sizes="(max-width: 768px) 180px, 240px"
-                className="object-cover"
+        {/* Right Portrait Stage (empty picture slot first, ready to populate) */}
+        <div className="relative mx-auto w-full max-w-[360px] sm:max-w-[420px] lg:mr-0 lg:ml-auto lg:max-w-[460px]">
+          <div className="relative aspect-[4/4.4] w-full">
+            {/* Restrained soft neutral backing shape with curved bottom silhouette */}
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 460 500"
+              fill="none"
+              className="pointer-events-none absolute inset-0 h-full w-full text-(--watermark)"
+            >
+              <path
+                d="M118 220C118 175 154 140 198 140H392C425 140 450 166 450 199V392C450 412 436 429 417 434L172 492C112 506 52 496 34 482C18 470 22 440 36 408L118 220Z"
+                 fill="currentColor"
               />
-            ) : (
-              <div className="flex h-full flex-col items-center justify-center p-6 text-center">
-                <span className="font-mono text-2xl font-semibold text-(--foreground)">
-                  {siteConfig.initials}
-                </span>
-                <span className="mt-2 font-mono text-xs text-(--muted)">
-                  [PROFILE PHOTO]
-                </span>
+            </svg>
+
+            {siteConfig.profilePhoto ? (
+              <div className="relative z-10 h-full w-full overflow-hidden rounded-b-[36px]">
+                <Image
+                  src={siteConfig.profilePhoto}
+                  alt={siteConfig.profilePhotoAlt}
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 360px, 460px"
+                  className="object-contain object-bottom grayscale contrast-105"
+                />
               </div>
-            )}
+            ) : null}
           </div>
         </div>
       </div>

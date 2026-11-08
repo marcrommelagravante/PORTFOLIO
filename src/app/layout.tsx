@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bodoni_Moda, IBM_Plex_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { ContactPanelProvider } from "@/components/contact/ContactPanelProvider";
@@ -9,14 +9,23 @@ import { SideRail } from "@/components/layout/SideRail";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { createPageMetadata } from "@/lib/metadata";
 
-const geistSans = Geist({
+const bodoniModa = Bodoni_Moda({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
+const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
   variable: "--font-mono",
   display: "swap",
 });
@@ -52,7 +61,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable}`}
+      className={`${bodoniModa.variable} ${inter.variable} ${ibmPlexMono.variable}`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
@@ -63,7 +72,7 @@ export default function RootLayout({
             <SiteHeader />
             <SideRail />
             <div className="sidebar-content-offset flex flex-1 flex-col lg:pl-64">
-              <main className="mx-auto w-full max-w-4xl flex-1 px-6 sm:px-8">
+              <main className="mx-auto w-full max-w-6xl flex-1 px-6 sm:px-8 lg:px-12">
                 {children}
               </main>
               <SiteFooter />

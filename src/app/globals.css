@@ -1,15 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F3F1EA;
-  --surface: #E5E2D9;
-  --foreground: #33332F;
-  --muted: #6F6D66;
-  --border: #D0CEC5;
-  --device-bg: #22221F;
+  --background: #F4F1EA;
+  --surface: #F1EEE7;
+  --foreground: #171715;
+  --muted: #686761;
+  --watermark: #E8E4DC;
+  --border: #D8D4CB;
+  --device-bg: #222220;
   --device-border: #32312C;
-  --device-fg: #EFECE4;
-  --device-muted: #A09D94;
+  --device-fg: #F1EEE7;
+  --device-muted: #B8B5AC;
   --sidebar-width: 14rem;
 }
 
@@ -22,6 +23,7 @@ html[data-sidebar-collapsed="true"] {
   --color-surface: var(--surface);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
+  --color-watermark: var(--watermark);
   --color-border: var(--border);
   --color-device-bg: var(--device-bg);
   --color-device-border: var(--device-border);
@@ -30,10 +32,11 @@ html[data-sidebar-collapsed="true"] {
 }
 
 .dark {
-  --background: #171715;
-  --surface: #22221F;
-  --foreground: #EFECE4;
-  --muted: #A09D94;
+  --background: #191918;
+  --surface: #222220;
+  --foreground: #F1EEE7;
+  --muted: #B8B5AC;
+  --watermark: #242422;
   --border: #32312C;
 }
 
@@ -79,6 +82,10 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   transition: background-color 180ms ease, color 180ms ease;
+}
+
+.font-display {
+  font-family: var(--font-display), "Times New Roman", Georgia, serif;
 }
 
 .font-mono {
