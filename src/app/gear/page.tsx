@@ -7,7 +7,8 @@ import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
   title: toolkitPageHeader.heading,
-  description: toolkitPageHeader.description,
+  description:
+    "Showcase of the actual technology and devices used for work, study, and everyday use.",
   path: "/gear",
 });
 

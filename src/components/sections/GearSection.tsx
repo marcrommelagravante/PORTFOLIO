@@ -1,26 +1,6 @@
 import React from "react";
-import {
-  toolkitItems,
-  toolkitPageHeader,
-  type ToolkitItem,
-} from "@/content/gear";
+import { toolkitItems, toolkitPageHeader } from "@/content/gear";
 import { GearCard } from "@/components/gear/GearCard";
-
-const GRID_SPAN_BY_CLASS: Record<string, string> = {
-  "toolkit-monitor":
-    "sm:col-span-2 lg:col-span-1 lg:col-start-1 lg:row-start-1 lg:row-span-2",
-  "toolkit-system-unit": "lg:col-start-2 lg:row-start-1",
-  "toolkit-keyboard": "lg:col-start-2 lg:row-start-2",
-  "toolkit-headset": "lg:col-start-1 lg:row-start-3",
-  "toolkit-mouse": "lg:col-start-2 lg:row-start-3",
-};
-
-function getGridPlacementClass(item: ToolkitItem): string {
-  if (item.layoutClass && GRID_SPAN_BY_CLASS[item.layoutClass]) {
-    return GRID_SPAN_BY_CLASS[item.layoutClass];
-  }
-  return "";
-}
 
 export function GearSection({
   headingLevel = "h2",
@@ -38,20 +18,20 @@ export function GearSection({
     <section
       id="gear"
       aria-labelledby="gear-heading"
-      className={`pb-8 sm:pb-10 ${isStandalone ? "pt-0" : "pt-8 sm:pt-10"} ${className}`}
+      className={`pb-12 sm:pb-16 ${isStandalone ? "pt-0" : "pt-8 sm:pt-10"} ${className}`}
     >
-      <header className="animate-gallery-enter max-w-2xl">
+      <header className="animate-gallery-enter mb-8 max-w-2xl sm:mb-10">
         <HeadingTag
           id="gear-heading"
-          className="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-[40px]"
+          className="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-[42px]"
         >
           {toolkitPageHeader.heading}
         </HeadingTag>
       </header>
 
       <div
-        aria-label="The Toolkit equipment showcase"
-        className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-[1.3fr_1fr] lg:grid-rows-[255px_255px_255px]"
+        aria-label="My Gear equipment showcase"
+        className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6"
       >
         {toolkitItems.map((item, index) => (
           <GearCard
@@ -59,7 +39,6 @@ export function GearSection({
             item={item}
             index={index}
             headingLevel={cardHeadingLevel}
-            className={getGridPlacementClass(item)}
           />
         ))}
       </div>
