@@ -98,14 +98,14 @@ export const siteConfig: SiteConfig = {
   },
   about: {
     professionalBio: [
-      "[PROFESSIONAL BIOGRAPHY PARAGRAPH 1 — Replace with approved background summary as a Computer Engineering student and aspiring developer.]",
-      "[PROFESSIONAL BIOGRAPHY PARAGRAPH 2 — Replace with details on how you approach software engineering, problem solving, and building reliable web applications.]",
+      "I’m Marc Rommel O. Agravante, a Computer Engineering student at the University of Rizal System – Antipolo Campus. I’m working toward a career in software engineering, with a focus on full-stack development and AI-driven applications.",
+      "On every project, I start by understanding who it’s for and what problem it solves, then plan the architecture and tech stack around that. I use AI-assisted tools during implementation, while taking full responsibility for what ships—reviewing the code, testing functionality, database behavior, and security, and handling deployment and ongoing maintenance.",
     ],
-    currentStudyOrRole: "[CURRENT STUDY / ROLE PLACEHOLDER — e.g., Computer Engineering Student]",
+    currentStudyOrRole: "Computer Engineering Student",
     developmentInterests: [
-      "[DEVELOPMENT INTEREST 1 — e.g., Full-Stack Web Applications]",
-      "[DEVELOPMENT INTEREST 2 — e.g., AI-Assisted Developer Tools]",
-      "[DEVELOPMENT INTEREST 3 — e.g., Systems & Software Architecture]",
+      "Full-Stack Web Applications",
+      "AI-Driven Applications",
+      "Software Architecture",
     ],
   },
 };

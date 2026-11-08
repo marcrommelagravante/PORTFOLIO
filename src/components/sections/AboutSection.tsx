@@ -18,22 +18,25 @@ export function AboutSection({
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="py-10 sm:py-12"
+      className="pt-6 pb-12 sm:pt-8 sm:pb-16"
     >
       <header>
         <HeadingTag
           id="about-heading"
-          className="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-[40px]"
+          className="font-display text-2xl leading-[1.1] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-3xl"
         >
-          About Me
+          {siteConfig.fullName}
         </HeadingTag>
+        <p className="mt-2 font-mono text-xs font-medium tracking-[0.14em] text-(--muted) uppercase sm:text-[13px]">
+          {siteConfig.about.currentStudyOrRole}
+        </p>
       </header>
 
-      <div className="mt-6 space-y-5">
+      <div className="mt-6 max-w-3xl space-y-4">
         {siteConfig.about.professionalBio.map((paragraph, idx) => (
           <p
             key={idx}
-            className="text-base leading-relaxed text-(--foreground)/90"
+            className="text-base leading-[1.7] text-(--foreground)/90"
           >
             {paragraph}
           </p>

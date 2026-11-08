@@ -1,6 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import { InterestsSection } from "@/components/sections/InterestsSection";
+import { AboutSection } from "@/components/sections/AboutSection";
 import { BackToHome } from "@/components/layout/BackToHome";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -17,6 +18,7 @@ export default function OutsideTheIdePage() {
         <BackToHome />
       </div>
       <InterestsSection headingLevel="h1" isStandalone />
+      <AboutSection headingLevel="h2" />
     </div>
   );
 }
