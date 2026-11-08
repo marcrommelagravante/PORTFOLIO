@@ -9,7 +9,7 @@ import { PageLoader } from "@/components/motion/PageLoader";
 import { SendMessageButton } from "@/components/contact/SendMessageButton";
 
 export type RailItemId =
-  | "about"
+  | "home"
   | "projects"
   | "gear"
   | "outside-the-ide"
@@ -29,6 +29,24 @@ export type RailGroup = {
 };
 
 const SIDEBAR_STORAGE_KEY = "portfolio-sidebar-collapsed";
+
+function HomeIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-4.5 w-4.5 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+      <polyline points="9 22 9 12 15 12 15 22" />
+    </svg>
+  );
+}
 
 function UserIcon() {
   return (
@@ -151,7 +169,7 @@ export const RAIL_GROUPS: RailGroup[] = [
     id: "general",
     title: "General",
     items: [
-      { id: "about", label: "About Me", href: "/", icon: <UserIcon /> },
+      { id: "home", label: "Home", href: "/", icon: <HomeIcon /> },
     ],
   },
   {
@@ -179,9 +197,9 @@ export const RAIL_GROUPS: RailGroup[] = [
     items: [
       {
         id: "outside-the-ide",
-        label: "Beyond the IDE",
+        label: "More About Me",
         href: "/outside-the-ide",
-        icon: <CoffeeIcon />,
+        icon: <UserIcon />,
       },
     ],
   },
@@ -203,7 +221,7 @@ function getPathnameRailId(pathname: string): RailItemId {
   if (pathname.startsWith("/gear")) return "gear";
   if (pathname.startsWith("/outside-the-ide")) return "outside-the-ide";
   if (pathname.startsWith("/contact")) return "contact";
-  return "about";
+  return "home";
 }
 
 export function SideRail() {

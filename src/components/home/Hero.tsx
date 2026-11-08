@@ -61,7 +61,7 @@ export function Hero() {
 
           <div className="mt-10 flex items-center gap-5 sm:mt-14">
             <Link
-              href="/#projects"
+              href="/outside-the-ide"
               className="group inline-flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"
             >
               <span className="border-b border-(--foreground)/50 pb-1 font-mono text-xs font-semibold tracking-[0.14em] text-(--foreground) uppercase transition-colors group-hover:border-(--foreground)">

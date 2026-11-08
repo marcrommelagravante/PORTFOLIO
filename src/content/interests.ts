@@ -18,7 +18,7 @@ export type InterestGalleryItem = {
  * Editable header copy for the Beyond the IDE (/outside-the-ide) gallery page.
  */
 export const interestPageHeader: InterestPageHeader = {
-  eyebrow: "BEYOND THE IDE",
+  eyebrow: "MORE ABOUT ME",
   heading: "Life beyond the screen.",
   introduction:
     "Not everything happens in front of a code editor. Here's a little glimpse of the things I enjoy outside development.",
