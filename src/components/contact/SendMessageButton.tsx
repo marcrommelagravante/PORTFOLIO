@@ -15,22 +15,35 @@ export function SendMessageButton({
   className = "",
   children,
 }: SendMessageButtonProps) {
-  const { open } = useContactPanel();
+  const { isOpen, open, toggle } = useContactPanel();
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleOpen = (e: React.MouseEvent<HTMLButtonElement>) => {
     open(e.currentTarget);
+  };
+
+  const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+    toggle(e.currentTarget);
   };
 
   if (variant === "rail-collapsed") {
     return (
       <button
         type="button"
-        onClick={handleClick}
+        onClick={handleToggle}
         aria-label="Send message"
-        className={`group relative mx-auto flex h-11 w-11 cursor-pointer items-center justify-center rounded-xl border border-(--foreground) bg-(--foreground) text-(--background) transition-all duration-200 hover:border-(--border) hover:bg-(--surface) hover:text-(--foreground) active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) ${className}`}
+        aria-expanded={isOpen}
+        className={`group relative mx-auto flex h-11 w-11 cursor-pointer items-center justify-center rounded-xl border transition-all duration-200 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) ${
+          isOpen
+            ? "border-(--border) bg-(--surface) text-(--foreground)"
+            : "border-(--foreground) bg-(--foreground) text-(--background) hover:border-(--border) hover:bg-(--surface) hover:text-(--foreground)"
+        } ${className}`}
       >
         <span className="block motion-safe:group-hover:animate-[rail-send-fly_0.6s_ease-in-out_infinite_alternate]">
-          <PaperPlaneIcon className="h-4.5 w-4.5 shrink-0 origin-center transition-transform duration-300 ease-in-out motion-safe:group-hover:rotate-45 motion-safe:group-hover:scale-110" />
+          <PaperPlaneIcon
+            className={`h-4.5 w-4.5 shrink-0 origin-center transition-transform duration-300 ease-in-out motion-safe:group-hover:rotate-45 motion-safe:group-hover:scale-110 ${
+              isOpen ? "motion-safe:rotate-45" : ""
+            }`}
+          />
         </span>
         <span
           role="tooltip"
@@ -46,8 +59,13 @@ export function SendMessageButton({
     return (
       <button
         type="button"
-        onClick={handleClick}
-        className={`group flex min-h-[46px] w-full cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-xl border border-(--foreground) bg-(--foreground) px-4 text-sm font-medium text-(--background) transition-all duration-200 hover:border-(--border) hover:bg-(--surface) hover:text-(--foreground) active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) ${className}`}
+        onClick={handleToggle}
+        aria-expanded={isOpen}
+        className={`group flex min-h-[46px] w-full cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-xl border px-4 text-sm font-medium transition-all duration-200 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) ${
+          isOpen
+            ? "border-(--border) bg-(--surface) text-(--foreground)"
+            : "border-(--foreground) bg-(--foreground) text-(--background) hover:border-(--border) hover:bg-(--surface) hover:text-(--foreground)"
+        } ${className}`}
       >
         <span className="shrink-0">
           <span className="block motion-safe:group-hover:animate-[rail-send-fly_0.6s_ease-in-out_infinite_alternate]">
@@ -65,9 +83,12 @@ export function SendMessageButton({
     return (
       <button
         type="button"
-        onClick={handleClick}
+        onClick={handleToggle}
         aria-label="Send message"
-        className={`inline-flex h-9 w-9 items-center justify-center rounded-md border border-(--border) text-(--foreground) transition-colors hover:bg-(--surface) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) ${className}`}
+        aria-expanded={isOpen}
+        className={`inline-flex h-9 w-9 items-center justify-center rounded-md border border-(--border) text-(--foreground) transition-colors hover:bg-(--surface) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) ${
+          isOpen ? "bg-(--surface)" : ""
+        } ${className}`}
       >
         <PenIcon className="h-4 w-4 shrink-0" />
       </button>
@@ -78,7 +99,8 @@ export function SendMessageButton({
   return (
     <button
       type="button"
-      onClick={handleClick}
+      onClick={handleOpen}
+      aria-expanded={isOpen}
       className={`inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full bg-(--foreground) px-7 text-sm font-medium text-(--background) transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) sm:text-base ${className}`}
     >
       {children || (

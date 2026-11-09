@@ -16,12 +16,18 @@ export function ContactPanel() {
       setIsRendered(true);
       document.body.style.overflow = "hidden";
 
-      // Trigger enter animation on next tick
-      const frame = requestAnimationFrame(() => {
-        setIsVisible(true);
+      // Double RAF ensures the initial off-screen transform is committed before sliding out
+      let frame2 = 0;
+      const frame1 = requestAnimationFrame(() => {
+        frame2 = requestAnimationFrame(() => {
+          setIsVisible(true);
+        });
       });
 
-      return () => cancelAnimationFrame(frame);
+      return () => {
+        cancelAnimationFrame(frame1);
+        cancelAnimationFrame(frame2);
+      };
     } else if (isRendered) {
       setIsVisible(false);
       document.body.style.overflow = "";
@@ -30,9 +36,9 @@ export function ContactPanel() {
         setIsRendered(false);
         // Return focus to trigger button
         if (triggerRef.current) {
-          triggerRef.current.focus();
+          triggerRef.current.focus({ preventScroll: true });
         }
-      }, 200);
+      }, 320);
 
       return () => clearTimeout(timer);
     }
@@ -83,28 +89,31 @@ export function ContactPanel() {
 
   return (
     <div className="contact-panel-root">
-      {/* Scrim: covers page content right of the rail on desktop, full screen on mobile */}
+      {/* Scrim: sits at z-30 beneath SideRail (z-40) and the drawer (z-35) */}
       <div
         onClick={close}
         aria-hidden="true"
-        className={`fixed inset-y-0 right-0 left-0 z-40 bg-(--background)/60 backdrop-blur-xs transition-opacity duration-200 motion-reduce:transition-none lg:left-[calc(1.5rem+var(--sidebar-width,14rem)+0.5rem)] ${
-          isVisible ? "opacity-100" : "opacity-0"
+        className={`fixed inset-0 z-30 bg-(--background)/60 backdrop-blur-xs transition-opacity duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+          isVisible ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       />
 
-      {/* Slide-out modal panel */}
-      <div
-        ref={panelRef}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="contact-panel-title"
-        className={`fixed inset-0 z-50 flex w-full flex-col overflow-y-auto border-(--border) bg-(--background) p-6 transition-[transform,opacity,left] duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none sm:p-8 lg:top-6 lg:bottom-6 lg:left-[calc(1.5rem+var(--sidebar-width,14rem)+1rem)] lg:w-[440px] lg:max-w-[calc(100vw-var(--sidebar-width,14rem)-3rem)] lg:rounded-3xl lg:border lg:shadow-[0_30px_60px_-30px_rgba(0,0,0,0.45)] ${
-          isVisible
-            ? "opacity-100 translate-x-0"
-            : "pointer-events-none opacity-0 -translate-x-3"
-        }`}
-      >
-        <ContactForm onClose={close} />
+      {/* Clip stage: starts at the right edge of the sidebar on desktop so the drawer emerges from behind the rail */}
+      <div className="pointer-events-none fixed inset-0 z-35 [clip-path:inset(0)] lg:left-[calc(1.5rem+var(--sidebar-width,14rem))] lg:transition-[left] lg:duration-200 lg:ease-out">
+        {/* Slide-out drawer panel */}
+        <div
+          ref={panelRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="contact-panel-title"
+          className={`pointer-events-auto absolute inset-x-0 top-16 bottom-0 flex w-full flex-col overflow-y-auto rounded-t-3xl border-t border-(--border) bg-(--background) p-6 shadow-[12px_24px_48px_-24px_rgba(0,0,0,0.35)] transition-[translate,transform,opacity] duration-350 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none sm:p-8 lg:inset-x-auto lg:top-6 lg:bottom-6 lg:left-3 lg:my-auto lg:max-h-195 lg:w-[440px] lg:max-w-[calc(100vw-var(--sidebar-width,14rem)-3.75rem)] lg:rounded-3xl lg:border ${
+            isVisible
+              ? "translate-y-0 opacity-100 lg:translate-x-0"
+              : "pointer-events-none translate-y-full opacity-0 lg:translate-y-0 lg:-translate-x-[105%] lg:opacity-100"
+          }`}
+        >
+          <ContactForm onClose={close} />
+        </div>
       </div>
     </div>
   );

@@ -14,6 +14,7 @@ type ContactPanelContextType = {
   isOpen: boolean;
   open: (triggerElement?: HTMLElement | null) => void;
   close: () => void;
+  toggle: (triggerElement?: HTMLElement | null) => void;
   triggerRef: React.RefObject<HTMLElement | null>;
 };
 
@@ -27,6 +28,7 @@ export function ContactPanelProvider({
   const [isOpen, setIsOpen] = useState(false);
   const triggerRef = useRef<HTMLElement | null>(null);
   const pathname = usePathname();
+  const prevPathnameRef = useRef(pathname);
 
   const open = useCallback((triggerElement?: HTMLElement | null) => {
     if (triggerElement) {
@@ -45,13 +47,37 @@ export function ContactPanelProvider({
     // Focus restoration is handled by the panel upon closing or unmounting
   }, []);
 
-  // Support ?message=1 on /contact to auto-open
+  const toggle = useCallback((triggerElement?: HTMLElement | null) => {
+    setIsOpen((prev) => {
+      if (!prev) {
+        if (triggerElement) {
+          triggerRef.current = triggerElement;
+        } else if (
+          typeof document !== "undefined" &&
+          document.activeElement instanceof HTMLElement
+        ) {
+          triggerRef.current = document.activeElement;
+        }
+      }
+      return !prev;
+    });
+  }, []);
+
+  // Auto-close on route navigation; support ?message=1 on /contact to auto-open
   useEffect(() => {
+    const pathnameChanged = prevPathnameRef.current !== pathname;
+    prevPathnameRef.current = pathname;
+
     if (typeof window !== "undefined" && pathname === "/contact") {
       const params = new URLSearchParams(window.location.search);
       if (params.get("message") === "1") {
         setIsOpen(true);
+        return;
       }
+    }
+
+    if (pathnameChanged) {
+      setIsOpen(false);
     }
   }, [pathname]);
 
@@ -61,6 +87,7 @@ export function ContactPanelProvider({
         isOpen,
         open,
         close,
+        toggle,
         triggerRef,
       }}
     >

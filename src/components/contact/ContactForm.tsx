@@ -31,9 +31,9 @@ export function ContactForm({ onClose }: { onClose: () => void }) {
 
   useEffect(() => {
     if (status === "idle" || status === "error") {
-      nameInputRef.current?.focus();
+      nameInputRef.current?.focus({ preventScroll: true });
     } else if (status === "success") {
-      successHeadingRef.current?.focus();
+      successHeadingRef.current?.focus({ preventScroll: true });
     }
   }, [status]);
 
