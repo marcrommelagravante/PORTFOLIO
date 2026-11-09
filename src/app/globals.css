@@ -134,3 +134,12 @@ body {
 .animate-gallery-enter {
   animation: gallery-fade-up 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+
+@keyframes rail-send-fly {
+  from {
+    transform: translateY(0.1em);
+  }
+  to {
+    transform: translateY(-0.1em);
+  }
+}
