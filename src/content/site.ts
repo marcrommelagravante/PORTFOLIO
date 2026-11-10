@@ -109,3 +109,40 @@ export const siteConfig: SiteConfig = {
     ],
   },
 };
+
+/**
+ * Prototype allowlist for MROA Focus Shift page transitions.
+ * Add "/contact" or expand to all internal routes when ready for full rollout.
+ */
+export const transitionRoutes: readonly string[] = [
+  "/",
+  "/outside-the-ide",
+  "/about",
+];
+
+/**
+ * Shared route-to-title map for the MROA Focus Shift transition overlay.
+ */
+export const transitionTitles: Record<string, string> = {
+  "/": "HOME",
+  "/about": "MORE ABOUT ME",
+  "/outside-the-ide": "MORE ABOUT ME",
+  "/projects": "PROJECTS",
+  "/gear": "THE TOOLKIT",
+  "/stack": "STACK",
+  "/contact": "CONTACT",
+};
+
+/**
+ * Human-readable labels for the screen-reader aria-live announcement ("Navigated to ...").
+ */
+export const transitionLabels: Record<string, string> = {
+  "/": "Home",
+  "/about": "More About Me",
+  "/outside-the-ide": "More About Me",
+  "/projects": "Projects",
+  "/gear": "The Toolkit",
+  "/stack": "Stack",
+  "/contact": "Contact",
+};
+

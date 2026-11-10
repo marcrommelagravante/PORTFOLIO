@@ -60,6 +60,15 @@ section[id] {
   html[data-sidebar-collapsed="true"] .sidebar-content-offset {
     padding-left: 6rem;
   }
+
+  .transition-overlay-offset {
+    left: 16rem;
+    transition: left 200ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html[data-sidebar-collapsed="true"] .transition-overlay-offset {
+    left: 6rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
