@@ -111,13 +111,16 @@ export const siteConfig: SiteConfig = {
 };
 
 /**
- * Prototype allowlist for MROA Focus Shift page transitions.
- * Add "/contact" or expand to all internal routes when ready for full rollout.
+ * Enabled internal routes for MROA Focus Shift page transitions (all internal routes + /projects/[slug]).
  */
 export const transitionRoutes: readonly string[] = [
   "/",
-  "/outside-the-ide",
   "/about",
+  "/outside-the-ide",
+  "/projects",
+  "/gear",
+  "/stack",
+  "/contact",
 ];
 
 /**

@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import type { PortfolioProject } from "@/content/projects";
 import { ProjectThumb } from "@/components/projects/ProjectThumb";
+import { TransitionLink } from "@/components/transition/TransitionLink";
 
 const STATUS_LABELS: Record<NonNullable<PortfolioProject["status"]>, string> = {
   beta: "Beta",
@@ -87,7 +87,7 @@ export function ProjectRow({
   }
 
   return (
-    <Link
+    <TransitionLink
       href={`/projects/${project.slug}`}
       data-project-row
       onPointerEnter={handlePointerEnter}
@@ -95,7 +95,7 @@ export function ProjectRow({
       className={sharedClassName}
     >
       {innerContent}
-    </Link>
+    </TransitionLink>
   );
 }
 

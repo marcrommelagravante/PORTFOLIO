@@ -54,6 +54,7 @@ export function resolveCanonicalPath(pathname: string): string {
 export function isRouteAllowlisted(pathname: string): boolean {
   const clean = cleanPathname(pathname);
   const canonical = resolveCanonicalPath(pathname);
+  if (clean.startsWith("/projects/")) return true;
   return (
     transitionRoutes.includes(clean) || transitionRoutes.includes(canonical)
   );

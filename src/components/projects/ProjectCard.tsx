@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import type { PortfolioProject } from "@/content/projects";
+import { TransitionLink } from "@/components/transition/TransitionLink";
 
 export function ProjectCard({ project }: { project: PortfolioProject }) {
   return (
     <article className="group flex items-center gap-4 rounded-lg border border-(--border) bg-(--surface)/40 p-3.5 transition-colors hover:border-(--muted) sm:gap-5 sm:p-4">
-      <Link
+      <TransitionLink
         href={`/projects/${project.slug}`}
         tabIndex={-1}
         aria-hidden="true"
@@ -25,26 +25,26 @@ export function ProjectCard({ project }: { project: PortfolioProject }) {
             [PREVIEW]
           </div>
         )}
-      </Link>
+      </TransitionLink>
 
       <div className="min-w-0 flex-1">
         <div className="flex items-center justify-between gap-3">
           <h3 className="truncate text-base font-semibold tracking-tight text-(--foreground) sm:text-lg">
-            <Link
+            <TransitionLink
               href={`/projects/${project.slug}`}
               className="hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"
             >
               {project.title}
-            </Link>
+            </TransitionLink>
           </h3>
 
-          <Link
+          <TransitionLink
             href={`/projects/${project.slug}`}
             aria-label={`Open ${project.title}`}
             className="shrink-0 font-mono text-xs text-(--muted) transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-(--foreground)"
           >
             →
-          </Link>
+          </TransitionLink>
         </div>
 
         <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-(--muted)">

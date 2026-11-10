@@ -1,10 +1,10 @@
 import React from "react";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { portfolioProjects } from "@/content/projects";
 import { ProjectGallery } from "@/components/projects/ProjectGallery";
 import { BackToHome } from "@/components/layout/BackToHome";
+import { TransitionLink } from "@/components/transition/TransitionLink";
 import { createPageMetadata } from "@/lib/metadata";
 import { isValidExternalUrl } from "@/lib/validation";
 
@@ -101,12 +101,12 @@ export default async function ProjectDetailPage({
         <span className="text-(--border)" aria-hidden="true">
           /
         </span>
-        <Link
+        <TransitionLink
           href="/projects"
           className="text-xs font-medium text-(--muted) transition-colors hover:text-(--foreground) sm:text-sm"
         >
           All Projects
-        </Link>
+        </TransitionLink>
       </div>
 
       <header className="mt-6 border-b border-(--border) pb-10">

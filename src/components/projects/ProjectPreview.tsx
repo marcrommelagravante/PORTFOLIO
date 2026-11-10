@@ -2,11 +2,11 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import {
   projectsSectionCopy,
   type PortfolioProject,
 } from "@/content/projects";
+import { TransitionLink } from "@/components/transition/TransitionLink";
 
 function padTwo(n: number): string {
   return String(n).padStart(2, "0");
@@ -108,7 +108,7 @@ export function ProjectPreview({
 
         {!isSoon && (
           <div className="mt-6">
-            <Link
+            <TransitionLink
               href={`/projects/${project.slug}`}
               className="group/link inline-flex items-center gap-1.5 border-b border-(--foreground) pb-0.5 text-sm font-medium text-(--foreground) transition-colors hover:border-(--muted) hover:text-(--muted) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"
             >
@@ -119,7 +119,7 @@ export function ProjectPreview({
               >
                 →
               </span>
-            </Link>
+            </TransitionLink>
           </div>
         )}
       </div>
