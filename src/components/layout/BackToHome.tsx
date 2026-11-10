@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
+import { TransitionLink } from "@/components/transition/TransitionLink";
 
 export type BackToHomeProps = {
   className?: string;
@@ -13,7 +13,7 @@ export function BackToHome({
   label = "Home",
 }: BackToHomeProps) {
   return (
-    <Link
+    <TransitionLink
       href="/"
       className={`group inline-flex items-center gap-2 text-sm font-medium text-(--muted) transition-colors hover:text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) ${className}`}
     >
@@ -24,6 +24,6 @@ export function BackToHome({
         ←
       </span>
       <span>{label}</span>
-    </Link>
+    </TransitionLink>
   );
 }

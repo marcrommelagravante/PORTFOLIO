@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { siteConfig } from "@/content/site";
+import { TransitionLink } from "@/components/transition/TransitionLink";
 
 export function Hero() {
   const watermarkText = siteConfig.initials.replace(/\.$/, "");
@@ -60,7 +60,7 @@ export function Hero() {
           </p>
 
           <div className="mt-10 flex items-center gap-5 sm:mt-14">
-            <Link
+            <TransitionLink
               href="/outside-the-ide"
               className="group inline-flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"
             >
@@ -73,7 +73,7 @@ export function Hero() {
               >
                 →
               </span>
-            </Link>
+            </TransitionLink>
             <span
               aria-hidden="true"
               className="h-px w-24 bg-(--border) sm:w-40"

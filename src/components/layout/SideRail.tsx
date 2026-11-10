@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/content/site";
 import { useTheme } from "@/components/theme/ThemeProvider";
 import { PageLoader } from "@/components/motion/PageLoader";
 import { SendMessageButton } from "@/components/contact/SendMessageButton";
+import { TransitionLink } from "@/components/transition/TransitionLink";
 
 export type RailItemId =
   | "home"
@@ -275,13 +275,13 @@ export function SideRail() {
         }`}
       >
         {!isCollapsed && (
-          <Link
+          <TransitionLink
             href="/"
             aria-label={`${siteConfig.fullName} home`}
             className="inline-block text-lg font-bold tracking-tight text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"
           >
             <PageLoader initials={siteConfig.initials} />
-          </Link>
+          </TransitionLink>
         )}
 
         <button
@@ -346,7 +346,7 @@ export function SideRail() {
                         className="absolute top-1.5 bottom-1.5 left-0 w-1 rounded-r-full bg-(--foreground)"
                       />
                     )}
-                    <Link
+                    <TransitionLink
                       href={item.href}
                       aria-current={isActive ? "page" : undefined}
                       aria-label={isCollapsed ? item.label : undefined}
@@ -372,7 +372,7 @@ export function SideRail() {
                           {item.label}
                         </span>
                       )}
-                    </Link>
+                    </TransitionLink>
                   </li>
                 );
               })}

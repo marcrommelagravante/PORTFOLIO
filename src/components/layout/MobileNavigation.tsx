@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import { RAIL_GROUPS, type RailGroup } from "./SideRail";
+import { TransitionLink } from "@/components/transition/TransitionLink";
 
 export type NavItem = {
   label: string;
@@ -61,13 +61,13 @@ export function MobileNavigation({
             <ul className="flex flex-col gap-3">
               {items.map((item) => (
                 <li key={item.href}>
-                  <Link
+                  <TransitionLink
                     href={item.href}
                     onClick={() => setOpen(false)}
                     className="block py-1 text-sm font-medium text-(--foreground) hover:text-(--muted)"
                   >
                     {item.label}
-                  </Link>
+                  </TransitionLink>
                 </li>
               ))}
             </ul>
@@ -84,14 +84,14 @@ export function MobileNavigation({
                   <ul className="flex flex-col gap-1">
                     {group.items.map((item) => (
                       <li key={item.id}>
-                        <Link
+                        <TransitionLink
                           href={item.href}
                           onClick={() => setOpen(false)}
                           className="flex items-center gap-3 rounded-lg px-2 py-1.5 text-sm font-medium text-(--foreground) transition-colors hover:bg-(--surface)/60 hover:text-(--muted)"
                         >
                           {item.icon}
                           <span>{item.label}</span>
-                        </Link>
+                        </TransitionLink>
                       </li>
                     ))}
                   </ul>

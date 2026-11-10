@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { ContactPanelProvider } from "@/components/contact/ContactPanelProvider";
 import { ContactPanel } from "@/components/contact/ContactPanel";
+import { TransitionProvider } from "@/components/transition/TransitionProvider";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SideRail } from "@/components/layout/SideRail";
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -69,15 +70,17 @@ export default function RootLayout({
       <body className="flex min-h-screen flex-col antialiased selection:bg-(--foreground) selection:text-(--background)">
         <ThemeProvider>
           <ContactPanelProvider>
-            <SiteHeader />
-            <SideRail />
-            <div className="sidebar-content-offset flex flex-1 flex-col lg:pl-64">
-              <main className="mx-auto w-full max-w-6xl flex-1 px-6 sm:px-8 lg:px-12">
-                {children}
-              </main>
-              <SiteFooter />
-            </div>
-            <ContactPanel />
+            <TransitionProvider>
+              <SiteHeader />
+              <SideRail />
+              <div className="sidebar-content-offset flex flex-1 flex-col lg:pl-64">
+                <main className="mx-auto w-full max-w-6xl flex-1 px-6 sm:px-8 lg:px-12">
+                  {children}
+                </main>
+                <SiteFooter />
+              </div>
+              <ContactPanel />
+            </TransitionProvider>
           </ContactPanelProvider>
         </ThemeProvider>
       </body>
