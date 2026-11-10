@@ -14,7 +14,13 @@ type FormErrors = {
 
 type FormField = "name" | "email" | "message";
 
-export function ContactForm({ onClose }: { onClose: () => void }) {
+export function ContactForm({
+  onClose,
+  isOpen = true,
+}: {
+  onClose: () => void;
+  isOpen?: boolean;
+}) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -30,12 +36,18 @@ export function ContactForm({ onClose }: { onClose: () => void }) {
   const successHeadingRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
-    if (status === "idle" || status === "error") {
-      nameInputRef.current?.focus({ preventScroll: true });
-    } else if (status === "success") {
-      successHeadingRef.current?.focus({ preventScroll: true });
-    }
-  }, [status]);
+    if (!isOpen) return;
+
+    const timer = setTimeout(() => {
+      if (status === "idle" || status === "error") {
+        nameInputRef.current?.focus({ preventScroll: true });
+      } else if (status === "success") {
+        successHeadingRef.current?.focus({ preventScroll: true });
+      }
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [isOpen, status]);
 
   const validate = (data: typeof formData): FormErrors => {
     const errs: FormErrors = {};

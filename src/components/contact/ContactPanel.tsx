@@ -1,52 +1,33 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useContactPanel } from "./ContactPanelProvider";
 import { ContactForm } from "./ContactForm";
 
 export function ContactPanel() {
   const { isOpen, close, triggerRef } = useContactPanel();
-  const [isRendered, setIsRendered] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
+  const wasOpenRef = useRef(false);
 
-  // Handle open/close transitions and scroll lock
+  // Handle scroll lock and focus restoration on close
   useEffect(() => {
     if (isOpen) {
-      setIsRendered(true);
+      wasOpenRef.current = true;
       document.body.style.overflow = "hidden";
-
-      // Double RAF ensures the initial off-screen transform is committed before sliding out
-      let frame2 = 0;
-      const frame1 = requestAnimationFrame(() => {
-        frame2 = requestAnimationFrame(() => {
-          setIsVisible(true);
-        });
-      });
-
-      return () => {
-        cancelAnimationFrame(frame1);
-        cancelAnimationFrame(frame2);
-      };
-    } else if (isRendered) {
-      setIsVisible(false);
+    } else if (wasOpenRef.current) {
+      wasOpenRef.current = false;
       document.body.style.overflow = "";
-
-      const timer = setTimeout(() => {
-        setIsRendered(false);
-        // Return focus to trigger button
-        if (triggerRef.current) {
-          triggerRef.current.focus({ preventScroll: true });
-        }
-      }, 320);
-
-      return () => clearTimeout(timer);
+      triggerRef.current?.focus({ preventScroll: true });
     }
-  }, [isOpen, isRendered, triggerRef]);
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen, triggerRef]);
 
   // Handle Escape key and focus trap
   useEffect(() => {
-    if (!isRendered) return;
+    if (!isOpen) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -83,36 +64,38 @@ export function ContactPanel() {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isRendered, close]);
-
-  if (!isRendered) return null;
+  }, [isOpen, close]);
 
   return (
-    <div className="contact-panel-root">
+    <div
+      className="contact-panel-root"
+      inert={!isOpen || undefined}
+      aria-hidden={!isOpen}
+    >
       {/* Scrim: sits at z-30 beneath SideRail (z-40) and the drawer (z-35) */}
       <div
         onClick={close}
         aria-hidden="true"
-        className={`fixed inset-0 z-30 bg-(--background)/60 backdrop-blur-xs transition-opacity duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
-          isVisible ? "opacity-100" : "pointer-events-none opacity-0"
+        className={`fixed inset-0 z-30 bg-(--background)/60 backdrop-blur-xs transition-opacity duration-350 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none ${
+          isOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       />
 
       {/* Clip stage: starts at the right edge of the sidebar on desktop so the drawer emerges from behind the rail */}
-      <div className="pointer-events-none fixed inset-0 z-35 [clip-path:inset(0)] lg:left-[calc(1.5rem+var(--sidebar-width,14rem))] lg:transition-[left] lg:duration-200 lg:ease-out">
+      <div className="pointer-events-none fixed inset-0 z-35 overflow-hidden lg:left-[calc(1.5rem+var(--sidebar-width,14rem))] lg:transition-[left] lg:duration-200 lg:ease-out">
         {/* Slide-out drawer panel */}
         <div
           ref={panelRef}
           role="dialog"
           aria-modal="true"
           aria-labelledby="contact-panel-title"
-          className={`pointer-events-auto absolute inset-x-0 top-16 bottom-0 flex w-full flex-col overflow-y-auto rounded-t-3xl border-t border-(--border) bg-(--background) p-6 shadow-[12px_24px_48px_-24px_rgba(0,0,0,0.35)] transition-[translate,transform,opacity] duration-350 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none sm:p-8 lg:inset-x-auto lg:top-6 lg:bottom-6 lg:left-3 lg:my-auto lg:max-h-195 lg:w-[440px] lg:max-w-[calc(100vw-var(--sidebar-width,14rem)-3.75rem)] lg:rounded-3xl lg:border ${
-            isVisible
-              ? "translate-y-0 opacity-100 lg:translate-x-0"
-              : "pointer-events-none translate-y-full opacity-0 lg:translate-y-0 lg:-translate-x-[105%] lg:opacity-100"
+          className={`absolute inset-x-0 top-16 bottom-0 flex w-full flex-col overflow-y-auto rounded-t-3xl border-t border-(--border) bg-(--background) p-6 shadow-[12px_24px_48px_-24px_rgba(0,0,0,0.35)] will-change-[translate,transform,opacity] transition-[translate,transform,opacity] duration-400 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none sm:p-8 lg:inset-x-auto lg:top-6 lg:bottom-6 lg:left-3 lg:my-auto lg:max-h-195 lg:w-[440px] lg:max-w-[calc(100vw-var(--sidebar-width,14rem)-3.75rem)] lg:rounded-3xl lg:border ${
+            isOpen
+              ? "pointer-events-auto translate-x-0 translate-y-0 opacity-100 lg:translate-x-0"
+              : "pointer-events-none translate-x-0 translate-y-full opacity-0 lg:translate-y-0 lg:-translate-x-[105%] lg:opacity-100"
           }`}
         >
-          <ContactForm onClose={close} />
+          <ContactForm isOpen={isOpen} onClose={close} />
         </div>
       </div>
     </div>

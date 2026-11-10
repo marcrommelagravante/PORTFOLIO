@@ -71,8 +71,10 @@ export function ContactPanelProvider({
     if (typeof window !== "undefined" && pathname === "/contact") {
       const params = new URLSearchParams(window.location.search);
       if (params.get("message") === "1") {
-        setIsOpen(true);
-        return;
+        const frame = requestAnimationFrame(() => {
+          setIsOpen(true);
+        });
+        return () => cancelAnimationFrame(frame);
       }
     }
 

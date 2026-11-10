@@ -15,11 +15,7 @@ export function SendMessageButton({
   className = "",
   children,
 }: SendMessageButtonProps) {
-  const { isOpen, open, toggle } = useContactPanel();
-
-  const handleOpen = (e: React.MouseEvent<HTMLButtonElement>) => {
-    open(e.currentTarget);
-  };
+  const { isOpen, toggle } = useContactPanel();
 
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     toggle(e.currentTarget);
@@ -99,9 +95,9 @@ export function SendMessageButton({
   return (
     <button
       type="button"
-      onClick={handleOpen}
+      onClick={handleToggle}
       aria-expanded={isOpen}
-      className={`inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full bg-(--foreground) px-7 text-sm font-medium text-(--background) transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) sm:text-base ${className}`}
+      className={`inline-flex min-h-[52px] cursor-pointer items-center justify-center gap-2 rounded-full bg-(--foreground) px-7 text-sm font-medium text-(--background) transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) sm:text-base ${className}`}
     >
       {children || (
         <>
