@@ -216,7 +216,7 @@ export const RAIL_ITEMS: RailItem[] = RAIL_GROUPS.flatMap(
   (group) => group.items
 );
 
-function getPathnameRailId(pathname: string): RailItemId {
+export function getPathnameRailId(pathname: string): RailItemId {
   if (pathname.startsWith("/projects")) return "projects";
   if (pathname.startsWith("/gear")) return "gear";
   if (pathname.startsWith("/outside-the-ide")) return "outside-the-ide";
