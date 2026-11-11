@@ -236,3 +236,106 @@ body {
     transform: translateY(-0.1em);
   }
 }
+
+.rail-tactile-btn {
+  --rail-press: 4px;
+  --rail-ledge: #cbc6ba;
+  background-color: #faf8f3;
+  border: 1px solid var(--border);
+  box-shadow: 0 var(--rail-press) 0 0 var(--rail-ledge);
+  transition:
+    transform 35ms cubic-bezier(0.5, 0.7, 0.4, 1),
+    box-shadow 35ms cubic-bezier(0.5, 0.7, 0.4, 1),
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.dark .rail-tactile-btn {
+  --rail-ledge: #111110;
+  background-color: #282724;
+  border-color: #3a3833;
+}
+
+.rail-tactile-btn:hover,
+.rail-tactile-btn:focus-visible {
+  background-color: #fffdf9;
+  border-color: #c2bcb0;
+}
+
+.dark .rail-tactile-btn:hover,
+.dark .rail-tactile-btn:focus-visible {
+  background-color: #302f2b;
+  border-color: #494640;
+}
+
+.rail-tactile-btn[data-active="true"] {
+  --rail-ledge: #a9a397;
+  background-color: var(--watermark);
+  border-color: rgba(23, 23, 21, 0.4);
+}
+
+.dark .rail-tactile-btn[data-active="true"] {
+  --rail-ledge: #0b0b0a;
+  background-color: #34332e;
+  border-color: rgba(241, 238, 231, 0.35);
+}
+
+.rail-tactile-btn:active {
+  box-shadow: 0 0 0 0 var(--rail-ledge);
+  transform: translateY(var(--rail-press));
+}
+
+.rail-tactile-btn--sm {
+  --rail-press: 3px;
+}
+
+.rail-kinetic-rest {
+  display: block;
+  transform: translateY(0);
+  opacity: 1;
+  transition:
+    transform 0s 70ms,
+    opacity 140ms ease 70ms;
+}
+
+.rail-tactile-btn:hover .rail-kinetic-rest,
+.rail-tactile-btn:focus-visible .rail-kinetic-rest {
+  transform: translateY(100%);
+  opacity: 0;
+  transition:
+    transform 0s,
+    opacity 0s;
+}
+
+.rail-kinetic-char {
+  display: inline-block;
+  font-style: normal;
+  transform: translateY(-20px);
+  opacity: 0;
+  transition:
+    transform 140ms ease,
+    opacity 110ms ease;
+}
+
+.rail-tactile-btn:hover .rail-kinetic-char,
+.rail-tactile-btn:focus-visible .rail-kinetic-char {
+  transform: translateY(0);
+  opacity: 1;
+  transition:
+    transform 200ms ease,
+    opacity 200ms ease;
+  transition-delay: calc(var(--char-index, 0) * 35ms + 30ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rail-tactile-btn:hover .rail-kinetic-rest,
+  .rail-tactile-btn:focus-visible .rail-kinetic-rest {
+    transform: none;
+    opacity: 1;
+  }
+
+  .rail-kinetic-char {
+    display: none;
+  }
+}

@@ -283,7 +283,7 @@ export function SideRail() {
           onClick={toggleSidebar}
           aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
           aria-expanded={!isCollapsed}
-          className="group relative inline-flex h-8 w-8 items-center justify-center rounded-lg text-(--muted) transition-colors hover:bg-(--foreground)/8 hover:text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
+          className="rail-tactile-btn rail-tactile-btn--sm group relative inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg text-(--muted) hover:text-(--foreground) focus-visible:text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
         >
           <SidebarToggleIcon collapsed={isCollapsed} />
           {isCollapsed && (
@@ -328,33 +328,61 @@ export function SideRail() {
             >
               {group.title}
             </p>
-            <ul className="flex flex-col gap-0.5">
+            <ul className="flex flex-col gap-1">
               {group.items.map((item) => {
                 const isActive = activeId === item.id;
                 return (
-                  <li key={item.id} className="relative px-2.5">
+                  <li key={item.id} className="relative px-2.5 pb-1">
                     {isActive && (
                       <span
                         aria-hidden="true"
-                        className="absolute top-1.5 bottom-1.5 left-0 w-1 rounded-r-full bg-(--foreground)"
+                        className="absolute top-1.5 bottom-2.5 left-0 w-1 rounded-r-full bg-(--foreground)"
                       />
                     )}
                     <TransitionLink
                       href={item.href}
                       aria-current={isActive ? "page" : undefined}
                       aria-label={isCollapsed ? item.label : undefined}
-                      className={`group relative flex items-center rounded-xl text-sm transition-colors focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-(--foreground) ${isCollapsed
+                      data-active={isActive ? "true" : undefined}
+                      className={`rail-tactile-btn group relative flex items-center rounded-xl text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) ${isCollapsed
                           ? "justify-center p-2.5"
-                          : "gap-3 px-3 py-2"
+                          : ""
                         } ${isActive
-                          ? "bg-(--foreground)/8 font-semibold text-(--foreground)"
-                          : "font-normal text-(--muted) hover:bg-(--foreground)/5 hover:text-(--foreground)"
+                          ? "font-semibold text-(--foreground)"
+                          : "font-medium text-(--muted) hover:text-(--foreground) focus-visible:text-(--foreground)"
                         }`}
                     >
-                      {item.icon}
-                      {!isCollapsed && (
-                        <span className="truncate">{item.label}</span>
-                      )}
+                      <span
+                        className={`flex items-center overflow-hidden ${isCollapsed ? "" : "w-full gap-3 px-3 py-2"
+                          }`}
+                      >
+                        {item.icon}
+                        {!isCollapsed && (
+                          <span className="relative inline-flex min-w-0 flex-1 items-center">
+                            <span className="rail-kinetic-rest truncate">
+                              {item.label}
+                            </span>
+                            <span
+                              aria-hidden="true"
+                              className="pointer-events-none absolute inset-0 flex items-center whitespace-nowrap"
+                            >
+                              {Array.from(item.label).map((char, charIndex) => (
+                                <i
+                                  key={charIndex}
+                                  className="rail-kinetic-char"
+                                  style={
+                                    {
+                                      "--char-index": charIndex,
+                                    } as React.CSSProperties
+                                  }
+                                >
+                                  {char === " " ? "\u00A0" : char}
+                                </i>
+                              ))}
+                            </span>
+                          </span>
+                        )}
+                      </span>
                       {isCollapsed && (
                         <span
                           role="tooltip"
