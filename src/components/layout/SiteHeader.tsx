@@ -21,7 +21,7 @@ export function SiteHeader() {
         </TransitionLink>
 
         <div className="flex items-center gap-2">
-          <ThemeToggle />
+          <ThemeToggle variant="mobile-header" />
           <SendMessageButton variant="mobile-header" />
           <MobileNavigation />
         </div>

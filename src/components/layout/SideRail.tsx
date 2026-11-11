@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/content/site";
-import { useTheme } from "@/components/theme/ThemeProvider";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { PageLoader } from "@/components/motion/PageLoader";
 import { SendMessageButton } from "@/components/contact/SendMessageButton";
 import { TransitionLink } from "@/components/transition/TransitionLink";
@@ -226,7 +226,6 @@ function getPathnameRailId(pathname: string): RailItemId {
 
 export function SideRail() {
   const pathname = usePathname();
-  const { theme, toggleTheme } = useTheme();
   const activeId = getPathnameRailId(pathname);
   const [isCollapsed, setIsCollapsed] = useState(false);
 
@@ -258,21 +257,16 @@ export function SideRail() {
     });
   };
 
-  const themeLabel =
-    theme === "dark" ? "Switch to light theme" : "Switch to dark theme";
-
   return (
     <aside
       aria-label="Editorial side navigation"
-      className={`fixed top-6 bottom-6 left-6 z-40 my-auto hidden max-h-195 flex-col justify-between rounded-3xl border border-(--border) bg-(--surface)/55 py-5 backdrop-blur-xs transition-[width] duration-200 ease-out lg:flex ${
-        isCollapsed ? "w-16" : "w-56"
-      }`}
+      className={`fixed top-6 bottom-6 left-6 z-40 my-auto hidden max-h-195 flex-col justify-between rounded-3xl border border-(--border) bg-(--surface)/55 py-5 backdrop-blur-xs transition-[width] duration-200 ease-out lg:flex ${isCollapsed ? "w-16" : "w-56"
+        }`}
     >
       {/* Header */}
       <div
-        className={` flex items-center border-b border-(--border)/80 pb-4 ${
-          isCollapsed ? "justify-center px-2" : "justify-between px-5"
-        }`}
+        className={` flex items-center border-b border-(--border)/80 pb-4 ${isCollapsed ? "justify-center px-2" : "justify-between px-5"
+          }`}
       >
         {!isCollapsed && (
           <TransitionLink
@@ -320,9 +314,8 @@ export function SideRail() {
             key={group.id}
             className={
               groupIndex > 0
-                ? `border-t border-(--border)/60 ${
-                    isCollapsed ? "mt-2 pt-2" : "mt-2.5 pt-2.5"
-                  }`
+                ? `border-t border-(--border)/60 ${isCollapsed ? "mt-2 pt-2" : "mt-2.5 pt-2.5"
+                }`
                 : ""
             }
           >
@@ -350,15 +343,13 @@ export function SideRail() {
                       href={item.href}
                       aria-current={isActive ? "page" : undefined}
                       aria-label={isCollapsed ? item.label : undefined}
-                      className={`group relative flex items-center rounded-xl text-sm transition-colors focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-(--foreground) ${
-                        isCollapsed
+                      className={`group relative flex items-center rounded-xl text-sm transition-colors focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-(--foreground) ${isCollapsed
                           ? "justify-center p-2.5"
                           : "gap-3 px-3 py-2"
-                      } ${
-                        isActive
+                        } ${isActive
                           ? "bg-(--foreground)/8 font-semibold text-(--foreground)"
                           : "font-normal text-(--muted) hover:bg-(--foreground)/5 hover:text-(--foreground)"
-                      }`}
+                        }`}
                     >
                       {item.icon}
                       {!isCollapsed && (
@@ -383,60 +374,10 @@ export function SideRail() {
 
       {/* Footer Theme Toggle */}
       <div
-        className={`border-t border-(--border)/80 pt-4 ${
-          isCollapsed ? "px-2" : "px-5"
-        }`}
-      >
-        <button
-          type="button"
-          onClick={toggleTheme}
-          aria-label={themeLabel}
-          className={`group relative mx-auto flex items-center justify-center rounded-xl text-(--muted) transition-colors hover:bg-(--foreground)/8 hover:text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) ${
-            isCollapsed ? "p-2.5" : "gap-4 px-4 py-2"
+        className={`flex justify-center border-t border-(--border)/80 pt-4 ${isCollapsed ? "px-2" : "px-5"
           }`}
-        >
-          {(!isCollapsed || theme === "light") && (
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 24 24"
-              className={`h-4.5 w-4.5 transition-opacity ${
-                theme === "light"
-                  ? "text-(--foreground) opacity-100"
-                  : "opacity-45"
-              }`}
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.75"
-            >
-              <circle cx="12" cy="12" r="4" />
-              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
-            </svg>
-          )}
-          {(!isCollapsed || theme === "dark") && (
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 24 24"
-              className={`h-4.5 w-4.5 transition-opacity ${
-                theme === "dark"
-                  ? "text-(--foreground) opacity-100"
-                  : "opacity-45"
-              }`}
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.75"
-            >
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-            </svg>
-          )}
-          {isCollapsed && (
-            <span
-              role="tooltip"
-              className="pointer-events-none absolute top-1/2 left-full z-50 ml-3 -translate-y-1/2 whitespace-nowrap rounded-lg border border-(--border) bg-(--surface) px-2.5 py-1 text-xs font-medium text-(--foreground) opacity-0 shadow-sm transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
-            >
-              {themeLabel}
-            </span>
-          )}
-        </button>
+      >
+        <ThemeToggle variant={isCollapsed ? "rail-collapsed" : "rail"} />
       </div>
     </aside>
   );
