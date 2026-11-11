@@ -82,8 +82,8 @@ export function Hero() {
         </div>
 
         {/* Right Portrait Stage (empty picture slot first, ready to populate) */}
-        <div className="relative mx-auto w-full max-w-[360px] sm:max-w-[420px] lg:mr-0 lg:ml-auto lg:max-w-[460px]">
-          <div className="relative aspect-[460/500] w-full">
+        <div className="relative mx-auto w-full max-w-90 sm:max-w-105 lg:mr-0 lg:ml-auto lg:max-w-115">
+          <div className="relative aspect-460/500 w-full">
             {/* Restrained soft neutral backing shape with curved bottom silhouette */}
             <svg
               aria-hidden="true"

@@ -69,7 +69,7 @@ export function ContactCard({
   };
 
   const sharedClasses =
-    "group flex min-h-[150px] flex-col justify-between rounded-2xl border border-(--border) bg-(--surface)/40 p-[22px] text-left transition-colors duration-200 hover:border-(--foreground) hover:bg-(--foreground) hover:text-(--background) focus-visible:border-(--foreground) focus-visible:bg-(--foreground) focus-visible:text-(--background) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) cursor-pointer";
+    "group flex min-h-37.5 flex-col justify-between rounded-2xl border border-(--border) bg-(--surface)/40 p-5.5 text-left transition-colors duration-200 hover:border-(--foreground) hover:bg-(--foreground) hover:text-(--background) focus-visible:border-(--foreground) focus-visible:bg-(--foreground) focus-visible:text-(--background) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) cursor-pointer";
 
   const currentTag = copied ? "Copied" : href ? tag : copyValue ? "Copy" : tag;
 

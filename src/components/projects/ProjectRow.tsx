@@ -31,7 +31,7 @@ export function ProjectRow({
     onActivate(project.slug);
   };
 
-  const sharedClassName = `group relative flex items-center gap-4 py-[18px] transition-colors duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) lg:-mx-4 lg:rounded-[14px] lg:px-4 ${
+  const sharedClassName = `group relative flex items-center gap-4 py-4.5 transition-colors duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) lg:-mx-4 lg:rounded-[14px] lg:px-4 ${
     isActive
       ? "lg:bg-(--foreground)/7"
       : "lg:hover:bg-(--foreground)/4"
@@ -42,7 +42,7 @@ export function ProjectRow({
       {isActive && (
         <span
           aria-hidden="true"
-          className=" absolute inset-y-[22px] left-0 hidden w-[3px] rounded-r-full bg-(--foreground) lg:block"
+          className="absolute inset-y-5.5 left-0 hidden w-0.75 rounded-r-full bg-(--foreground) lg:block"
         />
       )}
 

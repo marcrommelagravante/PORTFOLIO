@@ -77,7 +77,7 @@ export function ProjectsLedger({
       <div className="flex flex-col items-start gap-14 lg:flex-row">
         <div
           data-collapse-after={COLLAPSE_AFTER}
-          className="w-full lg:flex-1 lg:basis-[460px]"
+          className="w-full lg:flex-1 lg:basis-115"
         >
           {/* Group Header */}
           <div className="flex items-baseline justify-between pb-3.5">

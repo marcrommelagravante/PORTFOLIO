@@ -350,7 +350,7 @@ export function SideRail() {
                       href={item.href}
                       aria-current={isActive ? "page" : undefined}
                       aria-label={isCollapsed ? item.label : undefined}
-                      className={`group relative flex items-center rounded-xl text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--foreground) ${
+                      className={`group relative flex items-center rounded-xl text-sm transition-colors focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-(--foreground) ${
                         isCollapsed
                           ? "justify-center p-2.5"
                           : "gap-3 px-3 py-2"

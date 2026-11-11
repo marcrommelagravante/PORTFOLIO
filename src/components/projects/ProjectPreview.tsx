@@ -64,10 +64,10 @@ export function ProjectPreview({
       aria-label="Selected project preview"
       aria-live="polite"
       aria-atomic="true"
-      className="sticky top-12 hidden flex-1 basis-[380px] lg:block"
+      className="sticky top-12 hidden flex-1 basis-95 lg:block"
     >
       {/* Dark device card in both themes */}
-      <div className="rounded-[22px] border border-(--device-border) bg-(--device-bg) p-[18px] shadow-[0_30px_60px_-28px_rgba(0,0,0,0.55)]">
+      <div className="rounded-[22px] border border-(--device-border) bg-(--device-bg) p-4.5 shadow-[0_30px_60px_-28px_rgba(0,0,0,0.55)]">
         <div
           key={project.slug}
           className="animate-crossfade relative aspect-16/10 w-full overflow-hidden rounded-[10px]"

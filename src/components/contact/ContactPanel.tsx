@@ -89,10 +89,10 @@ export function ContactPanel() {
           role="dialog"
           aria-modal="true"
           aria-labelledby="contact-panel-title"
-          className={`absolute inset-x-0 top-16 bottom-0 flex w-full flex-col overflow-y-auto rounded-t-3xl border-t border-(--border) bg-(--background) p-6 shadow-[12px_24px_48px_-24px_rgba(0,0,0,0.35)] will-change-[translate,transform,opacity] transition-[translate,transform,opacity] duration-400 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none sm:p-8 lg:inset-x-auto lg:top-6 lg:bottom-6 lg:left-3 lg:my-auto lg:max-h-195 lg:w-[440px] lg:max-w-[calc(100vw-var(--sidebar-width,14rem)-3.75rem)] lg:rounded-3xl lg:border ${
+          className={`absolute inset-x-0 top-16 bottom-0 flex w-full flex-col overflow-y-auto rounded-t-3xl border-t border-(--border) bg-(--background) p-6 shadow-[12px_24px_48px_-24px_rgba(0,0,0,0.35)] will-change-[translate,transform,opacity] transition-[translate,transform,opacity] duration-400 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none sm:p-8 lg:inset-x-auto lg:top-6 lg:bottom-6 lg:left-3 lg:my-auto lg:max-h-195 lg:w-110 lg:max-w-[calc(100vw-var(--sidebar-width,14rem)-3.75rem)] lg:rounded-3xl lg:border ${
             isOpen
               ? "pointer-events-auto translate-x-0 translate-y-0 opacity-100 lg:translate-x-0"
-              : "pointer-events-none translate-x-0 translate-y-full opacity-0 lg:translate-y-0 lg:-translate-x-[105%] lg:opacity-100"
+              : "pointer-events-none translate-x-0 translate-y-full opacity-0 lg:translate-y-0 lg:translate-x-[-105%] lg:opacity-100"
           }`}
         >
           <ContactForm isOpen={isOpen} onClose={close} />

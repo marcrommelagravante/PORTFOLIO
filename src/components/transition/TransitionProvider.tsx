@@ -13,6 +13,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { animate } from "motion/react";
 import { T } from "@/lib/transition-timing";
 import {
+  siteConfig,
   transitionLabels,
   transitionRoutes,
   transitionTitles,
@@ -40,6 +41,7 @@ const EASE_EXIT: [number, number, number, number] = [0.4, 0, 1, 1];
 const EASE_SWEEP: [number, number, number, number] = [0.65, 0, 0.35, 1];
 const EASE_ENTER: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const FAILSAFE_MS = 2000;
+const LOADER_FAILSAFE_MS = 5000;
 
 export function cleanPathname(pathname: string): string {
   return pathname.replace(/\/+$/, "") || "/";
@@ -165,10 +167,12 @@ export function TransitionProvider({
     useContactPanel();
 
   const [state, setState] = useState<TransitionState>("idle");
-  const [title, setTitle] = useState<string>("");
+  const [title, setTitle] = useState<string>(siteConfig.initials);
   const [announcement, setAnnouncement] = useState<string>("");
+  const [isInitialLoad, setIsInitialLoad] = useState<boolean>(false);
 
   const phaseRef = useRef<TransitionState>("idle");
+  const sessionLoaderActiveRef = useRef<boolean>(false);
   const currentPathnameRef = useRef<string>(pathname);
   const targetPathnameRef = useRef<string | null>(null);
   const targetHrefRef = useRef<string | null>(null);
@@ -182,6 +186,8 @@ export function TransitionProvider({
   const veilRef = useRef<HTMLDivElement | null>(null);
   const lineRef = useRef<HTMLDivElement | null>(null);
   const titleRef = useRef<HTMLParagraphElement | null>(null);
+  const loaderTrackRef = useRef<HTMLDivElement | null>(null);
+  const loaderBarRef = useRef<HTMLDivElement | null>(null);
 
   const overlayControlsRef = useRef<AnimationControl[]>([]);
   const groupControlsRef = useRef<AnimationControl[]>([]);
@@ -239,6 +245,14 @@ export function TransitionProvider({
       titleRef.current.style.transform = "translateY(12px)";
       titleRef.current.style.willChange = "";
     }
+    if (loaderTrackRef.current) {
+      loaderTrackRef.current.style.opacity = "0";
+      loaderTrackRef.current.style.willChange = "";
+    }
+    if (loaderBarRef.current) {
+      loaderBarRef.current.style.transform = "scaleX(0)";
+      loaderBarRef.current.style.willChange = "";
+    }
   }, []);
 
   const abortToIdle = useCallback(() => {
@@ -247,6 +261,11 @@ export function TransitionProvider({
     stopGroupAnimations();
     resetOverlayDOM();
     resetMainStyles();
+    if (typeof document !== "undefined") {
+      document.documentElement.removeAttribute("data-session-loading");
+    }
+    sessionLoaderActiveRef.current = false;
+    setIsInitialLoad(false);
     targetPathnameRef.current = null;
     targetHrefRef.current = null;
     minTitleElapsedRef.current = false;
@@ -302,6 +321,9 @@ export function TransitionProvider({
 
     const destinationPath =
       targetPathnameRef.current || currentPathnameRef.current;
+    const isLoader = sessionLoaderActiveRef.current;
+    const titleOutDuration = isLoader ? T.loaderTitleOut : T.titleOut;
+    const uncoverDuration = isLoader ? T.loaderUncover : T.uncover;
     updatePhase("entering");
 
     const veilEl = veilRef.current;
@@ -340,13 +362,17 @@ export function TransitionProvider({
       });
     }
 
-    // Stage 4: Title fades out over T.titleOut (360ms at x4)
+    // Stage 4: Title (and loader line if active) fades out
+    const loaderTrackEl = loaderTrackRef.current;
     if (titleEl) {
       const titleOutCtrl = animate<number>(1, 0, {
-        duration: T.titleOut / 1000,
+        duration: titleOutDuration / 1000,
         ease: EASE_ENTER,
         onUpdate: (v) => {
           titleEl.style.opacity = String(v);
+          if (isLoader && loaderTrackEl) {
+            loaderTrackEl.style.opacity = String(v);
+          }
         },
       });
       overlayControlsRef.current.push(titleOutCtrl);
@@ -363,7 +389,7 @@ export function TransitionProvider({
     }
 
     const uncoverCtrl = animate<number>(0, 1, {
-      duration: T.uncover / 1000,
+      duration: uncoverDuration / 1000,
       ease: EASE_SWEEP,
       onUpdate: (v) => {
         const height = overlayRef.current?.clientHeight ?? window.innerHeight;
@@ -377,17 +403,133 @@ export function TransitionProvider({
       onComplete: () => {
         // Release interaction immediately when the veil has lifted (~2,320ms)
         resetOverlayDOM();
+        const wasInitialLoad = sessionLoaderActiveRef.current;
+        sessionLoaderActiveRef.current = false;
+        setIsInitialLoad(false);
         targetPathnameRef.current = null;
         targetHrefRef.current = null;
         minTitleElapsedRef.current = false;
         routeReadyRef.current = false;
         updatePhase("idle");
         focusMainHeading();
-        setAnnouncement(getTransitionAnnouncement(destinationPath));
+        if (!wasInitialLoad) {
+          setAnnouncement(getTransitionAnnouncement(destinationPath));
+        }
       },
     });
     overlayControlsRef.current.push(uncoverCtrl);
   }, [resetOverlayDOM, stopGroupAnimations, updatePhase]);
+
+  // Run loader on initial visit and page refresh
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const root = document.documentElement;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (prefersReducedMotion) {
+      root.removeAttribute("data-session-loading");
+      return;
+    }
+
+    sessionLoaderActiveRef.current = true;
+    setIsInitialLoad(true);
+    setTitle(siteConfig.initials);
+    minTitleElapsedRef.current = false;
+    routeReadyRef.current = true;
+    updatePhase("covered");
+
+    const veilEl = veilRef.current;
+    const lineEl = lineRef.current;
+    const titleEl = titleRef.current;
+    const loaderTrackEl = loaderTrackRef.current;
+    const loaderBarEl = loaderBarRef.current;
+    const mainEl = document.querySelector("main");
+
+    if (veilEl) {
+      veilEl.style.willChange = "transform";
+      veilEl.style.transformOrigin = "bottom";
+      veilEl.style.transform = "scaleY(1)";
+    }
+    if (lineEl) {
+      lineEl.style.willChange = "transform, opacity";
+      lineEl.style.opacity = "0";
+      lineEl.style.transform = "translateY(0px)";
+    }
+    if (titleEl) {
+      titleEl.style.willChange = "transform, opacity";
+      titleEl.style.opacity = "0";
+      titleEl.style.transform = "translateY(12px)";
+    }
+    if (loaderTrackEl) {
+      loaderTrackEl.style.willChange = "opacity";
+      loaderTrackEl.style.opacity = "0";
+    }
+    if (loaderBarEl) {
+      loaderBarEl.style.willChange = "transform";
+      loaderBarEl.style.transform = "scaleX(0)";
+    }
+
+    if (mainEl) {
+      clearElementMotionStyles(mainEl);
+      const groups = getContentGroups(mainEl);
+      for (const groupEl of groups) {
+        groupEl.style.opacity = "0";
+        groupEl.style.transform = "translateY(12px)";
+      }
+    }
+
+    // Inline styles now hold the veil; remove pre-hydration attribute
+    root.removeAttribute("data-session-loading");
+
+    failsafeTimerRef.current = setTimeout(() => {
+      if (phaseRef.current !== "idle") {
+        abortToIdle();
+      }
+    }, LOADER_FAILSAFE_MS);
+
+    if (titleEl) {
+      const titleInCtrl = animate<number>(0, 1, {
+        delay: T.loaderDelay / 1000,
+        duration: T.loaderTitleIn / 1000,
+        ease: EASE_ENTER,
+        onUpdate: (v) => {
+          titleEl.style.opacity = String(v);
+          titleEl.style.transform = `translateY(${(1 - v) * 12}px)`;
+          if (loaderTrackEl) {
+            loaderTrackEl.style.opacity = String(v);
+          }
+        },
+      });
+      overlayControlsRef.current.push(titleInCtrl);
+    }
+
+    if (loaderBarEl) {
+      const barDelaySec = (T.loaderDelay + Math.round(T.loaderTitleIn * 0.35)) / 1000;
+      const barCtrl = animate<number>(0, 1, {
+        delay: barDelaySec,
+        duration: T.loaderBar / 1000,
+        ease: EASE_SWEEP,
+        onUpdate: (v) => {
+          loaderBarEl.style.transform = `scaleX(${v})`;
+        },
+        onComplete: () => {
+          titleTimerRef.current = setTimeout(() => {
+            minTitleElapsedRef.current = true;
+            tryProceedToEntering();
+          }, T.loaderHold);
+        },
+      });
+      overlayControlsRef.current.push(barCtrl);
+    } else {
+      titleTimerRef.current = setTimeout(() => {
+        minTitleElapsedRef.current = true;
+        tryProceedToEntering();
+      }, T.loaderDelay + T.loaderTitleIn + T.loaderBar + T.loaderHold);
+    }
+  }, [abortToIdle, tryProceedToEntering, updatePhase]);
 
   // Listen for browser back/forward (popstate)
   useEffect(() => {
@@ -734,10 +876,13 @@ export function TransitionProvider({
         state={state}
         title={title}
         announcement={announcement}
+        isFullViewport={isInitialLoad}
         overlayRef={overlayRef}
         veilRef={veilRef}
         lineRef={lineRef}
         titleRef={titleRef}
+        loaderTrackRef={loaderTrackRef}
+        loaderBarRef={loaderBarRef}
       />
     </TransitionContext.Provider>
   );

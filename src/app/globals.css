@@ -71,6 +71,90 @@ section[id] {
   }
 }
 
+html[data-session-loading="true"] [data-transition-overlay] {
+  top: 0 !important;
+  left: 0 !important;
+  z-index: 50 !important;
+  pointer-events: auto !important;
+}
+
+html[data-session-loading="true"] [data-transition-veil] {
+  transform: scaleY(1) !important;
+}
+
+html[data-session-loading="true"] main {
+  opacity: 0;
+}
+
+@keyframes mroa-theme-reveal {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0% 0);
+  }
+}
+
+@keyframes mroa-theme-line-sweep {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(var(--theme-sweep-height, 100vh));
+  }
+}
+
+[data-theme-sweep-line] {
+  opacity: 0;
+  transform: translateY(0px);
+}
+
+html[data-theme-sweeping="true"],
+html[data-theme-sweeping="true"] *,
+html[data-theme-sweeping="true"] *::before,
+html[data-theme-sweeping="true"] *::after {
+  transition-duration: 0s !important;
+}
+
+html[data-theme-sweeping="true"]::view-transition-group(root) {
+  animation: none;
+}
+
+html[data-theme-sweeping="true"]::view-transition-old(root),
+html[data-theme-sweeping="true"]::view-transition-new(root) {
+  mix-blend-mode: normal;
+  display: block;
+}
+
+html[data-theme-sweeping="true"]::view-transition-old(root) {
+  z-index: 1;
+  animation: none;
+}
+
+html[data-theme-sweeping="true"]::view-transition-new(root) {
+  z-index: 2;
+  animation: mroa-theme-reveal var(--theme-sweep-duration, 800ms) cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+html[data-theme-sweeping="true"] [data-theme-sweep-line] {
+  opacity: 1;
+  view-transition-name: theme-sweep-line;
+}
+
+html[data-theme-sweeping="true"]::view-transition-group(theme-sweep-line) {
+  z-index: 3;
+  animation: mroa-theme-line-sweep var(--theme-sweep-duration, 800ms) cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+html[data-theme-sweeping="true"]::view-transition-old(theme-sweep-line) {
+  display: none;
+}
+
+html[data-theme-sweeping="true"]::view-transition-new(theme-sweep-line) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

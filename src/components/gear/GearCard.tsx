@@ -68,7 +68,7 @@ export function GearCard({
           </p>
         ) : (
           // Reserve clean spacing to maintain consistent visual alignment
-          <div aria-hidden="true" className="h-[21px]" />
+          <div aria-hidden="true" className="h-5.25" />
         )}
       </div>
     </article>

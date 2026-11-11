@@ -54,7 +54,7 @@ export function StackSection({
 
               {/* Right Column: Technology Pills */}
               <ul
-                className="flex min-w-0 flex-1 basis-[360px] flex-wrap content-start gap-2.5 list-none p-0 m-0"
+                className="flex min-w-0 flex-1 basis-90 flex-wrap content-start gap-2.5 list-none p-0 m-0"
                 aria-label={`${group.label} technologies`}
               >
                 {group.items.map((tech) => (

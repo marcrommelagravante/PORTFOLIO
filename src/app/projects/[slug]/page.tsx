@@ -225,7 +225,7 @@ export default async function ProjectDetailPage({
                     {project.techStackTable.map((row) => (
                       <tr
                         key={row.category}
-                        className="transition-colors hover:bg-(--foreground)/[0.02]"
+                        className="transition-colors hover:bg-(--foreground)/2"
                       >
                         <td className="py-4 pr-4 pl-5 text-sm font-semibold text-(--foreground) align-top sm:pr-6 sm:pl-6">
                           {row.category}

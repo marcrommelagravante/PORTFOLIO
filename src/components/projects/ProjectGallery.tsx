@@ -85,7 +85,7 @@ export function ProjectGallery({
 
   const aspectClass =
     aspectRatio === "20/9"
-      ? "aspect-[20/9]"
+      ? "aspect-20/9"
       : aspectRatio === "16/9"
         ? "aspect-video"
         : "aspect-16/10";

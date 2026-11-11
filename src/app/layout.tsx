@@ -49,6 +49,13 @@ const themeInitScript = `
     if (sidebarCollapsed === "true") {
       document.documentElement.setAttribute("data-sidebar-collapsed", "true");
     }
+    var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!prefersReduced) {
+      document.documentElement.setAttribute("data-session-loading", "true");
+      setTimeout(function() {
+        document.documentElement.removeAttribute("data-session-loading");
+      }, 5000);
+    }
   } catch (e) {}
 })();
 `;

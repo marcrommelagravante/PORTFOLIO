@@ -63,10 +63,10 @@ export async function GitHubContributions() {
             style={{
               gridTemplateColumns: `repeat(${data.weeks.length}, minmax(0, 1fr))`,
             }}
-            className="grid w-full min-w-160 gap-[3px]"
+            className="grid w-full min-w-160 gap-0.75"
           >
             {data.weeks.map((week, colIdx) => (
-              <div key={colIdx} className="grid grid-rows-7 gap-[3px]">
+              <div key={colIdx} className="grid grid-rows-7 gap-0.75">
                 {week.map((day, rowIdx) =>
                   day ? (
                     <span
@@ -75,7 +75,7 @@ export async function GitHubContributions() {
                         day.count === 1 ? "" : "s"
                       } (${LEVEL_LABELS[day.level]})`}
                       aria-label={`${day.date}: ${day.count} contributions`}
-                      className={`block aspect-square w-full rounded-[2px] transition-opacity hover:opacity-80 ${
+                      className={`block aspect-square w-full rounded-xs transition-opacity hover:opacity-80 ${
                         LEVEL_CLASSES[day.level]
                       }`}
                     />

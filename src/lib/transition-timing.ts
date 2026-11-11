@@ -12,6 +12,12 @@ const base = {
   group: 180,
   groupDelay: 20,
   groupStagger: 40,
+  loaderDelay: 40,
+  loaderTitleIn: 200,
+  loaderBar: 320,
+  loaderHold: 70,
+  loaderTitleOut: 120,
+  loaderUncover: 260,
 } as const;
 
 export const T = Object.fromEntries(

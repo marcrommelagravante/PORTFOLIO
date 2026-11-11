@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MROA Loader and Theme Switch – Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --background:#F6F2EC; --surface:#ECE8DF; --foreground:#1B1A17; --muted:#5F5B54; --border:#D8D3C8;
+  --serif:'Bodoni Moda','Didot',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme]){ --background:#161513; --surface:#201F1C; --foreground:#EFEBE3; --muted:#A8A398; --border:#34322D; color-scheme:dark; }
+}
+[data-theme="dark"]{ --background:#161513; --surface:#201F1C; --foreground:#EFEBE3; --muted:#A8A398; --border:#34322D; color-scheme:dark; }
+[data-theme="light"]{ --background:#F6F2EC; --surface:#ECE8DF; --foreground:#1B1A17; --muted:#5F5B54; --border:#D8D3C8; color-scheme:light; }
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--background);color:var(--foreground);font-family:var(--sans)}
+.app{display:flex;min-height:100vh;padding:16px;gap:16px;background:var(--background);color:var(--foreground)}
+.rail{flex:none;width:260px;border:1px solid var(--border);border-radius:24px;background:var(--surface);padding:22px 16px;display:flex;flex-direction:column;gap:14px}
+.logo{font-family:var(--serif);font-size:24px;font-weight:500;padding:0 6px}
+.lbl{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:6px 6px 0}
+.rail button{min-height:44px;border:1px solid var(--border);border-radius:10px;background:transparent;color:var(--foreground);font-family:var(--mono);font-size:12px;cursor:pointer;text-align:left;padding:0 12px}
+.rail button.primary{background:var(--foreground);color:var(--background);border-color:var(--foreground)}
+.rail button[aria-pressed="true"]{background:var(--foreground);color:var(--background)}
+button:focus-visible{outline:2px solid var(--foreground);outline-offset:2px}
+.note{font-size:12px;line-height:1.5;color:var(--muted);padding:0 6px;margin:0}
+.main{flex:1;min-width:0;padding:56px 48px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 20px}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6vw,76px);line-height:1.04;letter-spacing:-.02em;margin:0}
+h1 em{font-style:italic}
+.lead{max-width:520px;font-size:17px;line-height:1.65;color:var(--muted);margin:24px 0 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:48px;max-width:900px}
+.card{border:1px solid var(--border);border-radius:16px;padding:18px;min-height:130px;display:flex;flex-direction:column;justify-content:flex-end;gap:6px}
+.card b{font-family:var(--serif);font-weight:500;font-size:20px}
+.card span{font-size:13px;color:var(--muted)}
+.foot{margin-top:48px;padding-top:20px;border-top:1px solid var(--border);max-width:900px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+/* loader */
+#loader{position:fixed;inset:0;z-index:100;pointer-events:none;display:none}
+#loader.on{display:block}
+#lveil{position:absolute;inset:0;background:var(--background);transform-origin:bottom}
+#lcenter{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px}
+#lword{display:flex;font-family:var(--serif);font-weight:400;font-size:clamp(56px,12vw,140px);line-height:1;letter-spacing:.02em;color:var(--foreground)}
+#lword span{opacity:0;display:block}
+#lrule{width:min(60%,320px);height:1px;background:var(--foreground);opacity:.5;transform:scaleX(0);transform-origin:left}
+#lsweep{position:absolute;left:0;right:0;top:0;height:1px;background:var(--foreground);opacity:0}
+/* theme sweep */
+#tline{position:fixed;left:0;right:0;top:0;height:1px;background:#fff;mix-blend-mode:difference;opacity:0;z-index:300;pointer-events:none}
+#themelayer{position:fixed;inset:0;overflow:hidden;z-index:200;pointer-events:none;background:var(--background);color:var(--foreground);font-family:var(--sans)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:820px){
+  .app{flex-direction:column;padding:12px}
+  .rail{width:100%}
+  .main{padding:32px 20px}
+}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <aside class="rail" aria-label="Demo controls">
+    <div class="logo">MROA</div>
+    <div class="lbl">Try the animations</div>
+    <button type="button" class="primary" id="replay">Replay loading animation</button>
+    <button type="button" id="theme">Switch theme (animated)</button>
+    <div class="lbl">Options</div>
+    <button type="button" id="slow" aria-pressed="false">Simulate slow load</button>
+    <button type="button" id="speed">Speed ×4 (default)</button>
+    <button type="button" id="rm" aria-pressed="false">Reduced motion</button>
+    <p class="note">Loading: shown on the first visit of a session. Theme: the new theme is revealed by a hairline sweeping down, like the page transition.</p>
+  </aside>
+  <main class="main">
+    <div><p class="eyebrow">Computer Engineering Student</p><h1>Hi, I’m Marc.<br><em>I build useful things for the web.</em></h1><p class="lead">This page stands in for your real site. Replay the loader, or switch the theme and watch the line pass over the page.</p></div>
+    <div class="cards"><div class="card"><b>Project one</b><span>Placeholder</span></div><div class="card"><b>Project two</b><span>Placeholder</span></div><div class="card"><b>Project three</b><span>Placeholder</span></div></div>
+    <div class="foot">Mock content for the demo</div>
+  </main>
+</div>
+
+<div id="loader" aria-hidden="true">
+  <div id="lveil"></div>
+  <div id="lcenter"><div id="lword"><span>M</span><span>R</span><span>O</span><span>A</span></div><div id="lrule"></div></div>
+  <div id="lsweep"></div>
+</div>
+<div id="tline" aria-hidden="true"></div>
+<div class="sr" role="status" aria-live="polite" id="live"></div>
+
+<script>
+(function(){
+  var root=document.documentElement, app=document.getElementById('app'), main=app.querySelector('.main'),
+      loader=document.getElementById('loader'), lveil=document.getElementById('lveil'), lcenter=document.getElementById('lcenter'),
+      lrule=document.getElementById('lrule'), lsweep=document.getElementById('lsweep'), letters=document.querySelectorAll('#lword span'),
+      tline=document.getElementById('tline'), live=document.getElementById('live');
+  var T=4, speeds=[4,2,1], speedNames={4:'Speed ×4 (default)',2:'Speed ×2',1:'Speed ×1 (fast)'}, si=0;
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var slowLoad=false, busyL=false, busyT=false;
+  // base timings in ms at x1, multiplied by T
+  var B={lw:150,ls:35,lrd:75,lr:225,lhold:400,lwo:90,lrev:200,lgd:25,grp:180,grpStep:40,theme:250,pulse:75};
+  var EASE_OUT='cubic-bezier(0.22,1,0.36,1)', EASE_IO='cubic-bezier(0.65,0,0.35,1)';
+
+  function groups(){ return Array.prototype.slice.call(main.children); }
+  function wait(ms){ return new Promise(function(r){ setTimeout(r, ms*T); }); }
+  function anim(el,kf,dur,ease,delay){
+    var a=el.animate(kf,{duration:dur*T,easing:ease||'linear',delay:(delay||0)*T,fill:'both'});
+    return a.finished.then(function(){ Object.keys(kf[kf.length-1]).forEach(function(k){ el.style[k]=kf[kf.length-1][k]; }); a.cancel(); }).catch(function(){});
+  }
+  function isDark(){ return getComputedStyle(root).colorScheme.indexOf('dark')===0; }
+
+  /* ---------- Loader ---------- */
+  async function playLoader(){
+    if(busyL||busyT) return; busyL=true;
+    loader.classList.add('on');
+    lveil.style.transform='scaleY(1)'; lcenter.style.opacity='1';
+    lrule.style.transform='scaleX(0)'; lrule.style.opacity='0.5'; lsweep.style.opacity='0';
+    letters.forEach(function(s){ s.style.opacity='0'; s.style.transform='translateY(12px)'; });
+    groups().forEach(function(g){ g.style.opacity='0'; g.style.transform='translateY(12px)'; });
+    try{
+      if(reduced){
+        await new Promise(function(r){ setTimeout(r,300); });
+        groups().forEach(function(g){ g.style.opacity='1'; g.style.transform='none'; });
+        await anim(loader,[{opacity:'1'},{opacity:'0'}],150/T,'linear');
+      }else{
+        letters.forEach(function(s,i){
+          anim(s,[{opacity:'0',transform:'translateY(12px)'},{opacity:'1',transform:'translateY(0)'}],B.lw,EASE_OUT,i*B.ls);
+        });
+        anim(lrule,[{transform:'scaleX(0)'},{transform:'scaleX(1)'}],B.lr,EASE_IO,B.lrd);
+        await wait(B.lhold);
+        if(slowLoad){            // not ready yet: the rule pulses quietly while waiting
+          for(var i=0;i<3;i++){ await anim(lrule,[{opacity:'0.5'},{opacity:'0.15'},{opacity:'0.5'}],B.pulse*4,'ease-in-out'); }
+        }
+        var H=window.innerHeight;
+        var v=anim(lveil,[{transform:'scaleY(1)'},{transform:'scaleY(0)'}],B.lrev,EASE_IO);
+        var l=anim(lsweep,[{opacity:'0.5',transform:'translateY(0px)'},{opacity:'0.5',transform:'translateY('+H+'px)'}],B.lrev,EASE_IO);
+        anim(lcenter,[{opacity:'1'},{opacity:'0'}],B.lwo,'linear');
+        groups().forEach(function(g,i){
+          anim(g,[{opacity:'0',transform:'translateY(12px)'},{opacity:'1',transform:'translateY(0)'}],B.grp,EASE_OUT,B.lgd+i*B.grpStep);
+        });
+        await Promise.all([v,l]);
+      }
+    }catch(e){ groups().forEach(function(g){ g.style.opacity='1'; g.style.transform='none'; }); }
+    loader.classList.remove('on'); loader.style.opacity='1'; lsweep.style.opacity='0';
+    live.textContent='Page loaded'; busyL=false;
+  }
+
+  /* ---------- Theme switch ---------- */
+  function applyTheme(t){ root.setAttribute('data-theme',t); }
+  async function switchTheme(){
+    if(busyT||busyL) return; busyT=true;
+    var next=isDark()?'light':'dark';
+    if(reduced){ applyTheme(next); live.textContent='Switched to '+next+' theme'; busyT=false; return; }
+    var H=window.innerHeight, sy=window.scrollY;
+    var layer=document.createElement('div'); layer.id='themelayer'; layer.setAttribute('data-theme',next); layer.setAttribute('aria-hidden','true');
+    var clone=app.cloneNode(true); clone.removeAttribute('id');
+    clone.querySelectorAll('[id]').forEach(function(n){ n.removeAttribute('id'); });
+    clone.querySelectorAll('button,a').forEach(function(n){ n.tabIndex=-1; });
+    clone.style.cssText='position:absolute;left:0;right:0;top:'+(-sy)+'px';
+    layer.appendChild(clone); layer.style.clipPath='inset(0 0 100% 0)';
+    document.body.appendChild(layer);
+    tline.style.opacity='0.7';
+    var d=B.theme*T;
+    var a=layer.animate([{clipPath:'inset(0 0 100% 0)'},{clipPath:'inset(0 0 0% 0)'}],{duration:d,easing:EASE_IO,fill:'both'});
+    var b=tline.animate([{transform:'translateY(0px)'},{transform:'translateY('+H+'px)'}],{duration:d,easing:EASE_IO,fill:'both'});
+    try{ await Promise.all([a.finished,b.finished]); }catch(e){}
+    applyTheme(next);
+    layer.remove(); a.cancel(); b.cancel(); tline.style.opacity='0';
+    live.textContent='Switched to '+next+' theme'; busyT=false;
+  }
+
+  /* ---------- Controls ---------- */
+  document.getElementById('replay').addEventListener('click',playLoader);
+  document.getElementById('theme').addEventListener('click',switchTheme);
+  document.getElementById('slow').addEventListener('click',function(e){
+    slowLoad=e.currentTarget.getAttribute('aria-pressed')!=='true'; e.currentTarget.setAttribute('aria-pressed',slowLoad);
+  });
+  var sp=document.getElementById('speed');
+  sp.addEventListener('click',function(){ si=(si+1)%speeds.length; T=speeds[si]; sp.textContent=speedNames[T]; });
+  var rm=document.getElementById('rm'); rm.setAttribute('aria-pressed',reduced);
+  rm.addEventListener('click',function(e){ reduced=e.currentTarget.getAttribute('aria-pressed')!=='true'; e.currentTarget.setAttribute('aria-pressed',reduced); });
+
+  // plays once when the page opens, after fonts are ready (no font flash)
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function(){ playLoader(); });
+})();
+</script>
+</body>
+</html>

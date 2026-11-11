@@ -12,7 +12,7 @@ export function ProjectThumb({ project }: { project: PortfolioProject }) {
   return (
     <div
       aria-hidden="true"
-      className="relative h-[52px] w-[76px] shrink-0 overflow-hidden rounded-lg bg-(--surface)"
+      className="relative h-13 w-19 shrink-0 overflow-hidden rounded-lg bg-(--surface)"
     >
       {src && !failed ? (
         <Image

@@ -220,14 +220,14 @@ export function ContactForm({
             <button
               type="button"
               onClick={handleReset}
-              className="flex min-h-[48px] flex-1 items-center justify-center rounded-full border border-(--border) bg-(--surface)/40 px-6 text-sm font-medium text-(--foreground) transition-colors hover:bg-(--surface) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
+              className="flex min-h-12 flex-1 items-center justify-center rounded-full border border-(--border) bg-(--surface)/40 px-6 text-sm font-medium text-(--foreground) transition-colors hover:bg-(--surface) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
             >
               Send another
             </button>
             <button
               type="button"
               onClick={onClose}
-              className="flex min-h-[48px] flex-1 items-center justify-center rounded-full bg-(--foreground) px-6 text-sm font-medium text-(--background) transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
+              className="flex min-h-12 flex-1 items-center justify-center rounded-full bg-(--foreground) px-6 text-sm font-medium text-(--background) transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
             >
               Close
             </button>
@@ -378,7 +378,7 @@ export function ContactForm({
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="flex min-h-[52px] w-full items-center justify-center rounded-full bg-(--foreground) px-7 text-sm font-medium text-(--background) transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) disabled:opacity-50"
+              className="flex min-h-13 w-full items-center justify-center rounded-full bg-(--foreground) px-7 text-sm font-medium text-(--background) transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) disabled:opacity-50"
             >
               {status === "submitting"
                 ? siteConfig.contactForm.submittingLabel
