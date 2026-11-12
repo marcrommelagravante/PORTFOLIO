@@ -54,7 +54,7 @@ section[id] {
   }
 
   .sidebar-content-offset {
-    transition: padding-left 200ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition: padding-left 300ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   html[data-sidebar-collapsed="true"] .sidebar-content-offset {
@@ -63,7 +63,7 @@ section[id] {
 
   .transition-overlay-offset {
     left: 16rem;
-    transition: left 200ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition: left 300ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   html[data-sidebar-collapsed="true"] .transition-overlay-offset {

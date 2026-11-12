@@ -37,10 +37,10 @@ const VARIANT_METRICS = {
     particleScale: 5.5,
   },
   "rail-collapsed": {
-    trackClass: "h-11 w-11 justify-center",
+    trackClass: "h-11 w-11",
     thumbClass: "h-9 w-9",
     iconClass: "h-4 w-4",
-    trackIconPadClass: "",
+    trackIconPadClass: "px-[13px]",
     travel: 0,
     particleScale: 5.5,
   },
@@ -175,9 +175,19 @@ export function ThemeToggle({
       onClick={handleToggle}
       whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
       style={trackStyle}
-      className={`group relative inline-flex shrink-0 cursor-pointer items-center rounded-full border border-(--border) p-[3px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) ${metrics.trackClass} ${className}`}
+      className={`group relative inline-flex shrink-0 cursor-pointer items-center rounded-full border border-(--border) p-[3px] transition-[width] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) ${metrics.trackClass} ${className}`}
     >
-      {!isCollapsed && (
+      {variant !== "mobile-header" ? (
+        <span
+          aria-hidden="true"
+          className={`pointer-events-none absolute inset-0 flex items-center justify-between overflow-hidden rounded-full text-(--muted)/70 transition-opacity duration-200 ${metrics.trackIconPadClass} ${
+            isCollapsed ? "opacity-0" : "opacity-100 delay-75"
+          }`}
+        >
+          <SunIcon className={metrics.iconClass} />
+          <MoonIcon className={metrics.iconClass} />
+        </span>
+      ) : (
         <span
           aria-hidden="true"
           className={`pointer-events-none absolute inset-0 flex items-center justify-between text-(--muted)/70 ${metrics.trackIconPadClass}`}

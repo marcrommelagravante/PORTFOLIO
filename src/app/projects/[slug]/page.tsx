@@ -143,7 +143,7 @@ export default async function ProjectDetailPage({
 
       <div className="mt-12 max-w-3xl space-y-10">
         <section>
-          <h2 className="font-display text-2xl leading-[1.15] font-semibold tracking-[-0.015em] text-(--foreground)">
+          <h2 className="font-display text-2xl leading-[1.15] font-bold tracking-[-0.015em] text-(--foreground)">
             Overview
           </h2>
           <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-(--muted)">
@@ -157,7 +157,7 @@ export default async function ProjectDetailPage({
 
         {project.features.length > 0 && (
           <section>
-            <h2 className="font-display text-2xl leading-[1.15] font-semibold tracking-[-0.015em] text-(--foreground)">
+            <h2 className="font-display text-2xl leading-[1.15] font-bold tracking-[-0.015em] text-(--foreground)">
               Features
             </h2>
             <ul className="mt-4 space-y-3.5 text-[15px] leading-relaxed text-(--muted)">
@@ -178,7 +178,7 @@ export default async function ProjectDetailPage({
 
         {project.highlights.length > 0 && (
           <section>
-            <h2 className="font-display text-2xl leading-[1.15] font-semibold tracking-[-0.015em] text-(--foreground)">
+            <h2 className="font-display text-2xl leading-[1.15] font-bold tracking-[-0.015em] text-(--foreground)">
               Highlights
             </h2>
             <ul className="mt-4 space-y-3.5 text-[15px] leading-relaxed text-(--muted)">
@@ -199,7 +199,7 @@ export default async function ProjectDetailPage({
 
         {project.techStackTable && project.techStackTable.length > 0 ? (
           <section>
-            <h2 className="font-display text-2xl leading-[1.15] font-semibold tracking-[-0.015em] text-(--foreground)">
+            <h2 className="font-display text-2xl leading-[1.15] font-bold tracking-[-0.015em] text-(--foreground)">
               Built with
             </h2>
             <div className="mt-5 overflow-hidden rounded-xl border border-(--border) bg-(--surface)/20">
@@ -243,7 +243,7 @@ export default async function ProjectDetailPage({
         ) : (
           project.technologies.length > 0 && (
             <section>
-              <h2 className="font-display text-2xl leading-[1.15] font-semibold tracking-[-0.015em] text-(--foreground)">
+              <h2 className="font-display text-2xl leading-[1.15] font-bold tracking-[-0.015em] text-(--foreground)">
                 Tech Stack
               </h2>
               <ul className="mt-4 flex flex-wrap gap-2">

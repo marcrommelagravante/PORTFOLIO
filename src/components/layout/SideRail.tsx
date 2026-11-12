@@ -155,11 +155,11 @@ function SidebarToggleIcon({ collapsed }: { collapsed: boolean }) {
     >
       <rect x="3" y="3" width="18" height="18" rx="2" />
       <path d="M9 3v18" />
-      {collapsed ? (
-        <path d="m13 9 3 3-3 3" />
-      ) : (
-        <path d="m16 9-3 3 3 3" />
-      )}
+      <path
+        d="m16 9-3 3 3 3"
+        className="origin-[14.5px_12px] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        style={{ transform: collapsed ? "rotate(180deg)" : "rotate(0deg)" }}
+      />
     </svg>
   );
 }
@@ -228,6 +228,7 @@ export function SideRail() {
   const pathname = usePathname();
   const activeId = getPathnameRailId(pathname);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [transitionsEnabled, setTransitionsEnabled] = useState(false);
 
   useEffect(() => {
     try {
@@ -240,6 +241,10 @@ export function SideRail() {
     } catch {
       // Ignore storage errors in restricted environments
     }
+    const frame = requestAnimationFrame(() => {
+      setTransitionsEnabled(true);
+    });
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   const toggleSidebar = () => {
@@ -257,33 +262,51 @@ export function SideRail() {
     });
   };
 
+  const easeTransition = transitionsEnabled
+    ? "duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+    : "duration-0";
+
   return (
     <aside
       aria-label="Editorial side navigation"
-      className={`fixed top-6 bottom-6 left-6 z-40 my-auto hidden max-h-195 flex-col justify-between rounded-3xl border border-(--border) bg-(--surface)/55 py-5 backdrop-blur-xs transition-[width] duration-200 ease-out lg:flex ${isCollapsed ? "w-16" : "w-56"
-        }`}
+      className={`fixed top-6 bottom-6 left-6 z-40 my-auto hidden max-h-195 w-(--sidebar-width) flex-col justify-between rounded-3xl border border-(--border) bg-(--surface)/55 py-5 backdrop-blur-xs lg:flex ${
+        transitionsEnabled ? `transition-[width] ${easeTransition}` : ""
+      }`}
     >
       {/* Header */}
       <div
-        className={` flex items-center border-b border-(--border)/80 pb-4 ${isCollapsed ? "justify-center px-2" : "justify-between px-5"
-          }`}
+        className={`flex items-center border-b border-(--border)/80 pb-4 ${
+          transitionsEnabled ? `transition-[padding] ${easeTransition}` : ""
+        } ${isCollapsed ? "px-[15px]" : "px-5"}`}
       >
-        {!isCollapsed && (
+        <div
+          aria-hidden={isCollapsed || undefined}
+          className={`min-w-0 flex-1 overflow-hidden ${
+            transitionsEnabled
+              ? `transition-[opacity,transform] ${easeTransition}`
+              : ""
+          } ${
+            isCollapsed
+              ? "pointer-events-none -translate-x-2 opacity-0"
+              : "translate-x-0 opacity-100"
+          }`}
+        >
           <TransitionLink
             href="/"
+            tabIndex={isCollapsed ? -1 : undefined}
             aria-label={`${siteConfig.fullName} home`}
-            className="inline-block text-lg font-bold tracking-tight text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"
+            className="inline-block text-lg font-bold tracking-tight whitespace-nowrap text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"
           >
             <PageLoader initials={siteConfig.initials} />
           </TransitionLink>
-        )}
+        </div>
 
         <button
           type="button"
           onClick={toggleSidebar}
           aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
           aria-expanded={!isCollapsed}
-          className="rail-tactile-btn rail-tactile-btn--sm group relative inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg text-(--muted) hover:text-(--foreground) focus-visible:text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
+          className="rail-tactile-btn rail-tactile-btn--sm group relative inline-flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-lg text-(--muted) hover:text-(--foreground) focus-visible:text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
         >
           <SidebarToggleIcon collapsed={isCollapsed} />
           {isCollapsed && (
@@ -298,7 +321,7 @@ export function SideRail() {
       </div>
 
       {/* Send Message Button */}
-      <div className={`pt-3 pb-1 ${isCollapsed ? "px-2" : "px-3"}`}>
+      <div className="px-2.5 pt-3 pb-1">
         <SendMessageButton
           variant={isCollapsed ? "rail-collapsed" : "rail"}
         />
@@ -313,21 +336,24 @@ export function SideRail() {
           <div
             key={group.id}
             className={
-              groupIndex > 0
-                ? `border-t border-(--border)/60 ${isCollapsed ? "mt-2 pt-2" : "mt-2.5 pt-2.5"
-                }`
-                : ""
+              groupIndex > 0 ? "mt-2 border-t border-(--border)/60 pt-2" : ""
             }
           >
-            <p
-              className={
+            <div
+              className={`grid ${
+                transitionsEnabled
+                  ? `transition-[grid-template-rows,opacity,margin] ${easeTransition}`
+                  : ""
+              } ${
                 isCollapsed
-                  ? "sr-only"
-                  : "mb-1 px-5 font-mono text-[10px] font-semibold tracking-wider text-(--muted) uppercase"
-              }
+                  ? "mb-0 grid-rows-[0fr] opacity-0"
+                  : "mb-1 grid-rows-[1fr] opacity-100"
+              }`}
             >
-              {group.title}
-            </p>
+              <p className="overflow-hidden px-5 font-mono text-[10px] font-semibold tracking-wider whitespace-nowrap text-(--muted) uppercase">
+                {group.title}
+              </p>
+            </div>
             <ul className="flex flex-col gap-1">
               {group.items.map((item) => {
                 const isActive = activeId === item.id;
@@ -344,22 +370,28 @@ export function SideRail() {
                       aria-current={isActive ? "page" : undefined}
                       aria-label={isCollapsed ? item.label : undefined}
                       data-active={isActive ? "true" : undefined}
-                      className={`rail-tactile-btn group relative flex items-center rounded-xl text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) ${isCollapsed
-                          ? "justify-center p-2.5"
-                          : ""
-                        } ${isActive
+                      className={`rail-tactile-btn group relative flex h-10 w-full items-center rounded-xl text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) ${
+                        isActive
                           ? "font-semibold text-(--foreground)"
                           : "font-medium text-(--muted) hover:text-(--foreground) focus-visible:text-(--foreground)"
-                        }`}
+                      }`}
                     >
-                      <span
-                        className={`flex items-center overflow-hidden ${isCollapsed ? "" : "w-full gap-3 px-3 py-2"
-                          }`}
-                      >
+                      <span className="flex h-full w-full items-center px-[11px]">
                         {item.icon}
-                        {!isCollapsed && (
-                          <span className="relative inline-flex min-w-0 flex-1 items-center">
-                            <span className="rail-kinetic-rest truncate">
+                        <span
+                          aria-hidden={isCollapsed || undefined}
+                          className={`grid min-w-0 flex-1 ${
+                            transitionsEnabled
+                              ? `transition-[grid-template-columns,opacity,margin,transform] ${easeTransition}`
+                              : ""
+                          } ${
+                            isCollapsed
+                              ? "pointer-events-none ml-0 grid-cols-[0fr] -translate-x-1.5 opacity-0"
+                              : "ml-3 grid-cols-[1fr] translate-x-0 opacity-100"
+                          }`}
+                        >
+                          <span className="relative flex min-w-0 items-center overflow-hidden">
+                            <span className="rail-kinetic-rest truncate whitespace-nowrap">
                               {item.label}
                             </span>
                             <span
@@ -381,7 +413,7 @@ export function SideRail() {
                               ))}
                             </span>
                           </span>
-                        )}
+                        </span>
                       </span>
                       {isCollapsed && (
                         <span
@@ -401,10 +433,7 @@ export function SideRail() {
       </nav>
 
       {/* Footer Theme Toggle */}
-      <div
-        className={`flex justify-center border-t border-(--border)/80 pt-4 ${isCollapsed ? "px-2" : "px-5"
-          }`}
-      >
+      <div className="flex justify-center border-t border-(--border)/80 px-2.5 pt-4">
         <ThemeToggle variant={isCollapsed ? "rail-collapsed" : "rail"} />
       </div>
     </aside>

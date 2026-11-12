@@ -21,57 +21,58 @@ export function SendMessageButton({
     toggle(e.currentTarget);
   };
 
-  if (variant === "rail-collapsed") {
+  if (variant === "rail" || variant === "rail-collapsed") {
+    const isCollapsed = variant === "rail-collapsed";
     return (
-      <button
-        type="button"
-        onClick={handleToggle}
-        aria-label="Send message"
-        aria-expanded={isOpen}
-        className={`group relative mx-auto flex h-11 w-11 cursor-pointer items-center justify-center rounded-xl border transition-all duration-200 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) ${
-          isOpen
-            ? "border-(--border) bg-(--surface) text-(--foreground)"
-            : "border-(--foreground) bg-(--foreground) text-(--background) hover:border-(--border) hover:bg-(--surface) hover:text-(--foreground)"
-        } ${className}`}
-      >
-        <span className="block motion-safe:group-hover:animate-[rail-send-fly_0.6s_ease-in-out_infinite_alternate]">
-          <PaperPlaneIcon
-            className={`h-4.5 w-4.5 shrink-0 origin-center transition-transform duration-300 ease-in-out motion-safe:group-hover:rotate-45 motion-safe:group-hover:scale-110 ${
-              isOpen ? "motion-safe:rotate-45" : ""
-            }`}
-          />
-        </span>
-        <span
-          role="tooltip"
-          className="pointer-events-none absolute top-1/2 left-full z-50 ml-3 -translate-y-1/2 whitespace-nowrap rounded-lg border border-(--border) bg-(--surface) px-2.5 py-1 text-xs font-medium text-(--foreground) opacity-0 shadow-sm transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+      <div className="relative w-full">
+        <button
+          type="button"
+          onClick={handleToggle}
+          aria-label={isCollapsed ? "Send message" : undefined}
+          aria-expanded={isOpen}
+          className={`group peer flex h-11 w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl border text-sm font-medium transition-all duration-200 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) ${
+            isOpen
+              ? "border-(--border) bg-(--surface) text-(--foreground)"
+              : "border-(--foreground) bg-(--foreground) text-(--background) hover:border-(--border) hover:bg-(--surface) hover:text-(--foreground)"
+          } ${className}`}
         >
-          Send message
-        </span>
-      </button>
-    );
-  }
-
-  if (variant === "rail") {
-    return (
-      <button
-        type="button"
-        onClick={handleToggle}
-        aria-expanded={isOpen}
-        className={`group flex min-h-11.5 w-full cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-xl border px-4 text-sm font-medium transition-all duration-200 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) ${
-          isOpen
-            ? "border-(--border) bg-(--surface) text-(--foreground)"
-            : "border-(--foreground) bg-(--foreground) text-(--background) hover:border-(--border) hover:bg-(--surface) hover:text-(--foreground)"
-        } ${className}`}
-      >
-        <span className="shrink-0">
-          <span className="block motion-safe:group-hover:animate-[rail-send-fly_0.6s_ease-in-out_infinite_alternate]">
-            <PaperPlaneIcon className="h-4.5 w-4.5 shrink-0 origin-center transition-transform duration-300 ease-in-out motion-safe:group-hover:translate-x-13 motion-safe:group-hover:rotate-45 motion-safe:group-hover:scale-110" />
+          <span className="shrink-0">
+            <span className="block motion-safe:group-hover:animate-[rail-send-fly_0.6s_ease-in-out_infinite_alternate]">
+              <PaperPlaneIcon
+                className={`h-4.5 w-4.5 shrink-0 origin-center transition-transform duration-300 ease-in-out motion-safe:group-hover:rotate-45 motion-safe:group-hover:scale-110 ${
+                  isCollapsed
+                    ? isOpen
+                      ? "motion-safe:rotate-45"
+                      : ""
+                    : "motion-safe:group-hover:translate-x-13"
+                }`}
+              />
+            </span>
           </span>
-        </span>
-        <span className="block whitespace-nowrap transition-transform duration-300 ease-in-out motion-safe:group-hover:translate-x-40">
-          Send message
-        </span>
-      </button>
+          <span
+            aria-hidden={isCollapsed || undefined}
+            className={`grid transition-[grid-template-columns,opacity,margin] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              isCollapsed
+                ? "pointer-events-none ml-0 grid-cols-[0fr] opacity-0"
+                : "ml-2 grid-cols-[1fr] opacity-100 delay-75"
+            }`}
+          >
+            <span className="overflow-hidden whitespace-nowrap">
+              <span className="block transition-transform duration-300 ease-in-out motion-safe:group-hover:translate-x-40">
+                Send message
+              </span>
+            </span>
+          </span>
+        </button>
+        {isCollapsed && (
+          <span
+            role="tooltip"
+            className="pointer-events-none absolute top-1/2 left-full z-50 ml-3 -translate-y-1/2 whitespace-nowrap rounded-lg border border-(--border) bg-(--surface) px-2.5 py-1 text-xs font-medium text-(--foreground) opacity-0 shadow-sm transition-opacity peer-hover:opacity-100 peer-focus-visible:opacity-100"
+          >
+            Send message
+          </span>
+        )}
+      </div>
     );
   }
 

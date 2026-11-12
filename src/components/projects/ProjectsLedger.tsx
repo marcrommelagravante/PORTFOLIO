@@ -11,10 +11,6 @@ import { ProjectPreview } from "@/components/projects/ProjectPreview";
 // Threshold for future inline collapse ("+ N more") if portfolioProjects exceeds 4 items.
 const COLLAPSE_AFTER = 4;
 
-function padTwo(n: number): string {
-  return String(n).padStart(2, "0");
-}
-
 export function ProjectsLedger({
   projects,
   headingLevel = "h2",
@@ -38,7 +34,6 @@ export function ProjectsLedger({
     projects.findIndex((p) => p.slug === activeSlug)
   );
   const activeProject = projects[activeIndex] ?? projects[0];
-  const paddedTotal = padTwo(total);
 
   const handleListKeyDown = (e: React.KeyboardEvent<HTMLUListElement>) => {
     if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
@@ -64,7 +59,7 @@ export function ProjectsLedger({
   return (
     <div>
       {/* Section Header */}
-      <header className="animate-gallery-enter mb-8 max-w-2xl">
+      <header className="animate-gallery-enter mb-3.5 max-w-2xl">
         <HeadingTag
           id="projects-heading"
           className="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-[40px]"
@@ -79,16 +74,6 @@ export function ProjectsLedger({
           data-collapse-after={COLLAPSE_AFTER}
           className="w-full lg:flex-1 lg:basis-115"
         >
-          {/* Group Header */}
-          <div className="flex items-baseline justify-between pb-3.5">
-            <span className="text-sm text-(--muted)">
-              {projectsSectionCopy.groupLabel}
-            </span>
-            <span className="font-mono text-xs text-(--muted)">
-              {paddedTotal}
-            </span>
-          </div>
-
           {/* Project Rows */}
           <ul
             ref={listRef}

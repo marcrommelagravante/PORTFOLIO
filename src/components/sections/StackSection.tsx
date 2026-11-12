@@ -18,7 +18,7 @@ export function StackSection({
       className={`py-10 sm:py-12 ${isStandalone ? "" : ""}`}
     >
       {/* Header */}
-      <header className="mb-8">
+      <header className="mb-3.5">
         <HeadingTag
           id="stack-heading"
           className="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-[40px]"
