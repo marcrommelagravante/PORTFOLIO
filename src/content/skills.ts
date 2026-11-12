@@ -21,7 +21,7 @@ export type ProjectTechStack = {
 export const stackPageHeader = {
   eyebrow: "Technical toolkit",
   title: "Stack",
-  description: "Curated technical toolkit and core technologies.",
+  description: "Languages, frameworks, and tools I use across projects.",
 };
 
 /**

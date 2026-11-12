@@ -59,7 +59,7 @@ export const siteConfig: SiteConfig = {
   roleEyebrow: "Computer Engineering Student",
   heroHeadline: "Hi, I'm Marc. I build useful things for the web.",
   shortIntroduction:
-    "Computer Engineering student and developer passionate about building performant, accessible web applications and developer tools.",
+    "I build full-stack web apps, AI tools, and interactive 3D software—focused on clean interfaces and software that holds up in real use.",
   profilePhoto: "/images/marc-hero-bw.png",
   profilePhotoAlt: "Black-and-white portrait of Marc Rommel Agravante",
   locationFooterLine: "© Marc Rommel Agravante 2026",
@@ -99,7 +99,7 @@ export const siteConfig: SiteConfig = {
   about: {
     professionalBio: [
       "I’m Marc Rommel O. Agravante, a Computer Engineering student at the University of Rizal System – Antipolo Campus. I’m working toward a career in software engineering, with a focus on full-stack development and AI-driven applications.",
-      "On every project, I start by understanding who it’s for and what problem it solves, then plan the architecture and tech stack around that. I use AI-assisted tools during implementation, while taking full responsibility for what ships—reviewing the code, testing functionality, database behavior, and security, and handling deployment and ongoing maintenance.",
+      "On every project, I start with who it’s for and what problem it needs to solve, then shape the architecture and stack around that. I use AI tools to move faster during implementation, but I own what ships: reviewing the code, testing edge cases, database behavior, and security, and handling deployment and maintenance.",
     ],
     currentStudyOrRole: "Computer Engineering Student",
     developmentInterests: [

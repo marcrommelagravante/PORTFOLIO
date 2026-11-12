@@ -6,7 +6,7 @@ import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Projects",
-  description: "Manually curated software and engineering projects.",
+  description: "Software and engineering projects by Marc Rommel Agravante.",
   path: "/projects",
 });
 

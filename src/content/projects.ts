@@ -28,7 +28,7 @@ export const projectsSectionCopy = {
   eyebrow: "SELECTED WORK",
   title: "Projects",
   description:
-    "A curated selection of web, mobile, and AI applications I've designed and built. Select a project to explore the case study.",
+    "Web, mobile, and AI applications I've designed and built. Select a project to read the case study.",
   groupLabel: "Personal projects",
   hint: "Hover a project to preview. Click to read the case study.",
   ctaLabel: "View Project",
@@ -36,8 +36,7 @@ export const projectsSectionCopy = {
 } as const;
 
 /**
- * Manually curated portfolio projects.
- * Replace placeholder entries with real project details and URLs before launch.
+ * Portfolio projects.
  */
 export const portfolioProjects: PortfolioProject[] = [
   {
@@ -45,25 +44,25 @@ export const portfolioProjects: PortfolioProject[] = [
     title: "AR-DUINO-M",
     tag: "Augmented Reality",
     summary:
-      "An interactive Augmented Reality electronics laboratory and digital twin simulator built for engineering and STEM students.",
+      "An Augmented Reality electronics lab and digital twin simulator for engineering and STEM students.",
     overview: [
-      "An interactive Augmented Reality electronics laboratory and digital twin simulator built for engineering and STEM students. It provides a risk-free 3D prototyping environment for learning breadboard wiring, microcontroller programming, and robotics without the danger of damaged components, equipment shortages, or high laboratory costs.",
-      "Students access printable or on-screen optical markers via the companion web platform and scan them with an Android device to spawn interactive 3D component twins with real-time pinouts. From there, learners assemble circuits on an 830-tie-point virtual breadboard with procedural jumper wires, review and compile C++ sketches inside an embedded Mock Arduino IDE, and test running hardware—from blinking LEDs and PWM potentiometer dimming to driving a fully wired L298N dual H-bridge RC car across physical floor planes.",
+      "Built for engineering and STEM classes, AR-DUINO-M gives students a 3D prototyping environment to practice breadboard wiring, microcontroller programming, and robotics without risking damaged parts or running into lab equipment shortages.",
+      "Students open optical markers on the companion web app (or print them out) and scan them with an Android phone to spawn 3D component twins with live pinouts. They wire circuits on an 830-tie-point virtual breadboard, inspect and compile C++ sketches in a built-in Mock Arduino IDE, and test their builds—from blinking LEDs and PWM potentiometer dimming to driving an L298N dual H-bridge RC car across real floor planes.",
     ],
     features: [
-      "**Interactive 3D breadboard wiring** with 830 magnetic snap-to-grid tie-points, terminal strips (*a–j*), and +/- power bus rails.",
-      "**Dynamic procedural jumper wire system** generating real-time Bezier curves with physics-based slack as components move.",
-      "**Optical AR Target Library** with 29 trackable electronic components across 6 categories (Microcontrollers, Sensors, Actuators, Displays, Inputs, Passives).",
-      "**Dual-screen web companion** displaying anti-glare, high-contrast tracking targets for instant camera detection without paper printing.",
-      "**In-app Mock Arduino IDE** with sketch inspection, syntax validation, compile animations, and firmware upload simulation.",
-      "**Real-time circuit simulation engine** calculating analog voltage dividers, ADC 10-bit conversions, PWM duty cycles, and LED states.",
-      "**Tabletop and floor AR driving mode** using AR Foundation plane detection and virtual on-screen joystick controls for an L298N-driven RC car.",
-      "**Interactive 9-step guided tutorial** with 3D world-space pointer arrows, glowing component highlights, and connection checkpoints.",
+      "**Interactive 3D breadboard**: 830 magnetic snap-to-grid tie-points, terminal strips (*a–j*), and +/- power bus rails.",
+      "**Procedural jumper wires**: Real-time Bezier curves that slacken and move as components shift.",
+      "**Optical AR Target Library**: 29 trackable electronic components across 6 categories (Microcontrollers, Sensors, Actuators, Displays, Inputs, Passives).",
+      "**Dual-screen web companion**: High-contrast tracking targets designed to be scanned directly off a laptop or monitor without printing.",
+      "**In-app Mock Arduino IDE**: Sketch inspection, syntax checks, compile states, and simulated firmware uploads.",
+      "**Real-time circuit simulation**: Computes analog voltage dividers, 10-bit ADC values, PWM duty cycles, and LED states.",
+      "**Tabletop and floor AR driving mode**: Uses AR Foundation plane detection and on-screen joystick controls to drive an L298N RC car.",
+      "**9-step guided tutorial**: 3D world-space pointer arrows, component highlights, and wiring checkpoints.",
     ],
     highlights: [
-      "**Authentic \"Wire → Code → Upload → Test\" loop**: Enforces the real-world embedded systems workflow by requiring students to wire the circuit, review the C++ sketch in the virtual IDE, and trigger firmware upload before hardware outputs activate.",
-      "**Hybrid AR pipeline**: Integrates PTC Vuforia Engine (11.4) for high-precision optical 2D marker recognition with Unity AR Foundation (6.3) and ARCore for 6-DoF spatial plane tracking and surface raycasting.",
-      "**100% offline standalone APK**: All 29 3D models, Vuforia dataset binaries, and circuit logic run entirely on-device with zero cloud latency, internet dependency, or subscription overhead.",
+      "**\"Wire → Code → Upload → Test\" loop**: Mirrors physical lab work by requiring students to wire the circuit, check the C++ sketch in the virtual IDE, and run a firmware upload before hardware outputs turn on.",
+      "**Hybrid AR pipeline**: Pairs PTC Vuforia Engine (11.4) for 2D optical marker recognition with Unity AR Foundation (6.3) and ARCore for 6-DoF plane tracking and surface raycasting.",
+      "**100% offline standalone APK**: All 29 3D models, Vuforia datasets, and circuit simulation logic run on-device without an internet connection or cloud backend.",
     ],
     techStackTable: [
       {
@@ -135,27 +134,27 @@ export const portfolioProjects: PortfolioProject[] = [
     title: "Satori",
     tag: "AI Knowledge Workspace",
     summary:
-      "A grounded AI knowledge and document intelligence workspace built for teams, organizations, and small businesses to ingest, vectorize, and search operational documents with verifiable source citations.",
+      "An AI document workspace for teams and small businesses to ingest, index, and query internal files with source citations.",
     overview: [
-      "A grounded AI knowledge and document intelligence workspace built for teams, organizations, and small businesses. It brings scattered operational documents—such as bylaws, handbooks, policies, and guidelines—into a single platform, eliminating manual file searching and cutting admin overhead so teams find verified answers instantly.",
-      "Files come in as PDFs, Word documents, and text files. Satori parses, cleans, chunks, and vectorizes them using Google Gemini embeddings stored directly in PostgreSQL with `pgvector`. From there, team members ask natural language questions in a multi-turn chat, inspect exact source passage citations with page numbers to eliminate AI hallucinations, generate analytical cross-document reports, and benchmark retrieval accuracy through a live RAG evaluation playground.",
+      "Satori gathers scattered internal files—bylaws, handbooks, policies, and operating guides—into one searchable workspace so teams can look up answers against their actual documents instead of digging through folders.",
+      "Uploaded PDF, Word, and text files are parsed, cleaned, chunked, and embedded with Google Gemini into PostgreSQL (`pgvector`). Team members can ask questions in a multi-turn chat, click inline citations to check the exact source passage and page number, generate cross-document reports, and test retrieval quality in a built-in RAG evaluation view.",
     ],
     features: [
-      "**Multi-Format Ingestion Pipeline**: Automated text extraction, sanitization, and sentence-aware chunking with sliding-window overlap for PDF, DOCX, and TXT files.",
-      "**Grounded Conversational RAG Chat**: Multi-turn chat powered by Google Gemini 3.6 Flash, maintaining conversation context with server-side history persistence in PostgreSQL.",
-      "**Verifiable Source Provenance**: Interactive inline citation chips (`[1]`, `[2]`) mapping every claim directly to exact source excerpts, document page numbers, and similarity scores.",
-      "**Scoped Document Queries**: Ability to target queries across the entire workspace knowledge base or constrain them to specific selected documents.",
-      "**Knowledge Hub & Category Browser**: Semantic search and exploration across organizational categories (*Policies & Procedures*, *Technical Docs*, *Reports & Analytics*) with vector index diagnostics.",
-      "**Automated AI Reports**: One-click generation of executive document summaries, cross-document policy comparisons, and structured gap analyses.",
-      "**RAG Evaluation Playground**: Dedicated experimentation suite tracking real-time telemetry: request latency (p50/p95), cumulative token usage, and automated retrieval accuracy benchmarks.",
-      "**Multi-Tenant Workspaces**: Team workspaces with role-based access control (`owner`, `admin`, `member`), one-click workspace switching, and automated default onboarding.",
-      "**Dark / Light Responsive Interface**: Accessible UI featuring custom Indigo/Violet design tokens, smooth scroll-reveal animations via Motion, and mobile-friendly layouts.",
+      "**Multi-format ingestion pipeline**: Text extraction, sanitization, and sentence-aware chunking with sliding-window overlap for PDF, DOCX, and TXT files.",
+      "**Grounded RAG chat**: Multi-turn chat using Google Gemini 3.6 Flash with server-side conversation history stored in PostgreSQL.",
+      "**Inline source citations**: Interactive citation chips (`[1]`, `[2]`) linking each claim to the source excerpt, page number, and similarity score.",
+      "**Scoped document queries**: Search across the full workspace knowledge base or restrict a question to selected files.",
+      "**Knowledge Hub & category browser**: Semantic search across organizational categories (*Policies & Procedures*, *Technical Docs*, *Reports & Analytics*) with vector index diagnostics.",
+      "**AI document reports**: Generates document summaries, cross-document policy comparisons, and gap analyses.",
+      "**RAG evaluation playground**: Tracks request latency (p50/p95), cumulative token usage, and automated retrieval accuracy benchmarks.",
+      "**Multi-tenant workspaces**: Role-based access control (`owner`, `admin`, `member`), workspace switching, and default onboarding setup.",
+      "**Dark / light responsive UI**: Built with Indigo/Violet design tokens, Motion scroll reveals, and mobile-ready layouts.",
     ],
     highlights: [
-      "**Custom RAG without Black-Box Abstractions**: Built from first principles directly on PostgreSQL with `pgvector` and `@google/genai`—completely avoiding bloated frameworks like LangChain while maintaining full control over chunking, cosine distance thresholds, and context construction.",
-      "**Zero-Trust Multi-Tenant Isolation**: Database and service-level tenant separation enforced on every single query and vector search through server-side authorization guards (`requireWorkspaceMember`).",
-      "**Defensive AI Engineering**: In-house prompt-injection sanitization boundaries, magic-byte file signature validation, and sliding-window rate limiters (60 req/min).",
-      "**Resilient Model Fallback Architecture**: Primary inference on `gemini-3.6-flash`, automatic failover to `gemini-3.1-flash-lite`, and deterministic local n-gram vector generation for offline CI and testing environments.",
+      "**Direct PostgreSQL + `pgvector` RAG pipeline**: Built directly on PostgreSQL (`pgvector`) and `@google/genai` without wrapper frameworks, keeping direct control over chunking, cosine distance thresholds, and prompt context assembly.",
+      "**Workspace-scoped tenant isolation**: Database and service-level separation enforced on every query and vector search via server-side authorization guards (`requireWorkspaceMember`).",
+      "**Input & API safeguards**: Prompt-injection sanitization boundaries, magic-byte file signature checks, and a sliding-window rate limiter (60 req/min).",
+      "**Model fallback & offline test vectors**: Uses `gemini-3.6-flash` as primary inference with automatic failover to `gemini-3.1-flash-lite`, plus deterministic local n-gram vectors for offline CI and tests.",
     ],
     techStackTable: [
       {
@@ -226,27 +225,27 @@ export const portfolioProjects: PortfolioProject[] = [
     title: "PersonaMail",
     tag: "AI Email Assistant",
     summary:
-      "A full-stack, relationship-aware AI email assistant and communication workspace that automatically adapts tone, formality, greetings, and message structure based on recipient dynamics.",
+      "A full-stack AI email assistant that adjusts tone, formality, greetings, and structure based on who you're writing to.",
     overview: [
-      "A full-stack, relationship-aware AI email assistant and communication workspace. It bridges the gap between generic AI chat prompts and real-world email dynamics by automatically adapting tone, formality, greetings, and message structure based on who you are messaging.",
-      "Users manage per-contact Adaptive Communication Profiles that store relationship roles, preferred tones, and conversational context. From there, users draft emails in Compose, refine rough thoughts in Improve, verify grammar and clarity in Review, and manage reusable templates—all powered by ultra-low-latency LLaMA 3.3 70B inference on Groq, with an inline fill-in tag system that eliminates AI hallucinations.",
+      "Writing to a professor, a client, or a teammate calls for different levels of formality. PersonaMail stores per-contact profiles—relationship role, preferred tone, and background context—so you don't have to re-explain who the recipient is every time you draft a message.",
+      "Users can draft new emails from bullet points in Compose, rewrite rough notes in Improve, check grammar and clarity in Review, and save reusable templates. Inference runs on LLaMA 3.3 70B via Groq, and missing specifics are output as bracketed fill-in tags (like `[Project Name]`) rather than guessed facts.",
     ],
     features: [
-      "**Adaptive Communication Profiles**: Store relationship dynamics (Professor, Client, Recruiter, Colleague, Friend), custom background notes, and per-contact tone preferences (Formal, Direct, Casual, Warm).",
-      "**One-Click AI Email Compose**: Converts brief bullet points or quick objectives into structured emails following a standard 7-part email anatomy (Subject, Greeting, Context, Core Message, Call to Action, Sign-off, Signature).",
-      "**Tone Rewriter & Improver**: Polishes rough, hasty Slack-style notes into relationship-tailored email drafts while strictly preserving the user's authentic voice.",
-      "**Message Review & Grammar Checker**: Catches syntax errors, spelling typos, and awkward phrasing before sending, maintaining professional standards without sounding robotic.",
-      "**Zero-Hallucination Variable Tag System (`PlaceholderHighlighter`)**: Prompts strictly forbid fabricating imaginary dates, numbers, or project names, instead generating bracketed tokens (`[Project Name]`, `[Client Name]`, `[Day of Week]`) rendered as interactive, high-contrast fill-in chips.",
-      "**Interactive Live Demo & Persona Switcher**: Unauthenticated visitors can test the adaptive AI engine on the landing page, switching recipient personas in real time before signing in.",
-      "**High-Density History & Detail Modals**: Searchable activity feed with type filter pills (*All*, *Compose*, *Improve*, *Review*), one-click clipboard copying, and accessible inspect dialogs (`role=\"dialog\"`, Esc key dismiss, body scroll lock).",
-      "**Adaptive Templates Library**: Reusable email templates that automatically calibrate variables and greetings to whichever contact is selected.",
-      "**Google OAuth 2.0 SSO**: Seamless login experience with animated account selection transitions, user profile preview cards, and auto-dismissing sign-out notifications.",
+      "**Contact communication profiles**: Saves relationship roles (Professor, Client, Recruiter, Colleague, Friend), background notes, and per-contact tone preferences (Formal, Direct, Casual, Warm).",
+      "**Structured email compose**: Turns short bullet points or goals into a 7-part email (Subject, Greeting, Context, Core Message, Call to Action, Sign-off, Signature).",
+      "**Tone rewriter & improver**: Rewrites quick, rough notes into drafts matched to the recipient's profile while keeping your original points.",
+      "**Message review & grammar check**: Flags syntax errors, typos, and awkward phrasing before you send.",
+      "**Bracketed placeholder tags (`PlaceholderHighlighter`)**: Prompts instruct the model not to invent dates, numbers, or project names, outputting interactive fill-in chips (`[Project Name]`, `[Client Name]`, `[Day of Week]`) instead.",
+      "**Live landing-page demo**: Visitors can test the persona switcher and draft output on the landing page before signing in.",
+      "**Searchable history & inspect modals**: Activity feed with type filters (*All*, *Compose*, *Improve*, *Review*), one-click copy, and keyboard-accessible dialogs (`role=\"dialog\"`, Esc dismiss, scroll lock).",
+      "**Reusable templates**: Email templates that adapt greetings and placeholder variables to the selected contact.",
+      "**Google OAuth 2.0 sign-in**: Account selection flow with profile preview cards and sign-out notifications.",
     ],
     highlights: [
-      "**Dual-Authentication Architecture**: Decoupled cross-domain authentication between Vercel and Render utilizing both secure HTTP-only session cookies and `Authorization: Bearer` headers with anti-CSRF `state` parameter validation.",
-      "**Sub-Second AI Inference Pipeline**: Server-side Groq Cloud API integration running `llama-3.3-70b-versatile`, delivering near-instant draft generations while keeping private API keys isolated from the browser.",
-      "**Strict Tenant & Query Isolation**: Every database operation is strictly scoped to the authenticated `user_id` via SQLAlchemy 2.0 ORM, backed by Neon Serverless PostgreSQL with versioned Alembic database migrations.",
-      "**Bespoke Exaggerated Minimalism Design System**: Custom Tailwind CSS v4 design tokens (`#0F172A` primary, `#7CE3FF` accent), Geist typography, 8px spatial grid, GSAP `ScrollTrigger` horizontal canvas, and persistent dark/light theme switching.",
+      "**Cross-domain dual auth**: Authenticates between the Vercel frontend and Render backend using both HTTP-only session cookies and `Authorization: Bearer` headers with anti-CSRF `state` verification.",
+      "**Server-side Groq inference**: Calls `llama-3.3-70b-versatile` through a FastAPI backend so drafts return quickly while API keys stay off the client.",
+      "**User-scoped database queries**: Scopes every query to the authenticated `user_id` via SQLAlchemy 2.0 ORM on Neon Serverless PostgreSQL with Alembic migrations.",
+      "**Custom Tailwind v4 & GSAP UI**: Uses `#0F172A` primary and `#7CE3FF` accent tokens, Geist typography, an 8px spacing grid, a GSAP `ScrollTrigger` horizontal section, and persistent dark/light themes.",
     ],
     techStackTable: [
       {
@@ -318,26 +317,26 @@ export const portfolioProjects: PortfolioProject[] = [
     title: "Salo sa Antipolo",
     tag: "Restaurant POS & Management",
     summary:
-      "A comprehensive, end-to-end Restaurant Management and Point-of-Sale (POS) system custom-built for Salo sa Antipolo's front-of-house staff, kitchen team, cashier counter, and restaurant management.",
+      "A real-time restaurant POS and floor management system built for Salo sa Antipolo's servers, kitchen crew, cashiers, and managers.",
     overview: [
-      "A comprehensive, end-to-end Restaurant Management and Point-of-Sale (POS) system custom-built for Salo sa Antipolo's front-of-house staff, kitchen team, cashier counter, and restaurant management. It consolidates tableside ordering, kitchen ticket fulfillment, cash & digital tender settlement, and floor operations into a unified real-time platform, eliminating paper chits, reducing order turnaround time, and preventing billing discrepancies during peak service hours.",
-      "Orders originate tableside from waiters on mobile devices or fast-track takeout counters. From there, tickets instantly propagate via Firebase Firestore real-time snapshot listeners to the kitchen and admin operations board for food prep and expo dispatch, sync to the cashier register for one-touch settlement with automated RA 9994 Senior Citizen/PWD discounts and VAT exemptions, and aggregate directly into live executive sales reports, table turnover analytics, and daily inventory limits.",
+      "Built for Salo sa Antipolo, this system connects tableside ordering, kitchen ticket fulfillment, cashier checkout, and floor management in one web app—replacing paper chits and manual bill calculation during busy shifts.",
+      "Waiters punch in dine-in or takeout orders on mobile devices at the table. Firebase Firestore `onSnapshot` listeners push those tickets straight to the kitchen display and operations board, sync bills to the cashier register with built-in RA 9994 Senior Citizen and RA 10754 PWD discount/VAT math, and update daily sales and stock counts.",
     ],
     features: [
-      "**Mobile-First Tableside Ordering**: Touch-optimized interface for floor staff with quick switching between **Dine-In** (table-assigned) and **Takeout** channels.",
-      "**Interactive Dining Floor Plan**: Real-time visual matrix displaying table occupancy states (`Available`, `Occupied`, `Preparing`, `Served`, `Walk-in`) across all dining zones with seating capacity tracking.",
-      "**Dynamic Menu & Serve Limit Controls**: Categorized dish catalog featuring live stock counters, daily serve caps (e.g., 50 servings/day limit on Pork Sisig), and automated lunch-hour gates (e.g., Bento specials restricted to 11:00 AM – 3:00 PM).",
-      "**Multi-Stage Kitchen & Operations Kanban**: Live operational display streaming tickets across all order lifecycle states (`Pending`, `Preparing`, `Served [Unpaid]`, `Paid [Unserved]`, `Served [Paid]`, `Completed`, `Cancelled`) with elapsed wait-time indicators.",
-      "**Omni-Channel Cashier Settlement POS**: Dedicated cashier terminal supporting Cash, GCash QR, Maya, and Debit/Credit Card tenders with automatic change computation and receipt printing.",
-      "**Automated Philippine Statutory Discounts**: One-touch legal compliance engine implementing RA 9994 (Senior Citizen) and RA 10754 (PWD) discounts (20% discount on qualified food items + automatic 12% VAT exemption).",
-      "**Settled Invoices Ledger & Audit History**: Shift summary banner displaying daily revenue, settled slips count, applied tax deductions, itemized receipts, and one-click CSV export for shift balancing.",
-      "**Admin Catalog & Floor Layout Management**: Centralized management consoles to add/edit menu items, configure prices, upload dish assets, adjust table seating capacities, and perform end-of-day table resets.",
-      "**Executive Revenue & Dish Analytics**: High-level business intelligence dashboard with custom date range filtering, volume and revenue sales leaderboards, and payment method share distribution.",
+      "**Mobile tableside ordering**: Touch-friendly waiter view with quick switching between Dine-In (table-assigned) and Takeout orders.",
+      "**Live dining floor plan**: Visual table map showing current states (`Available`, `Occupied`, `Preparing`, `Served`, `Walk-in`) across dining zones with seat counts.",
+      "**Menu stock & time-window limits**: Dish catalog with live stock counters, daily serve caps (such as 50 servings/day on Pork Sisig), and lunch-hour availability windows (such as Bento specials limited to 11:00 AM – 3:00 PM).",
+      "**Kitchen & operations Kanban**: Live ticket board tracking order states (`Pending`, `Preparing`, `Served [Unpaid]`, `Paid [Unserved]`, `Served [Paid]`, `Completed`, `Cancelled`) with elapsed wait-time timers.",
+      "**Multi-tender cashier POS**: Checkout terminal supporting Cash, GCash QR, Maya, and Debit/Credit Card payments with automatic change calculation and receipt printing.",
+      "**Philippine statutory discount math**: Applies RA 9994 (Senior Citizen) and RA 10754 (PWD) calculations (20% discount on eligible items plus 12% VAT exemption) in one tap.",
+      "**Settled invoices ledger**: Shift summary showing daily revenue, settled slip counts, tax deductions, itemized receipts, and CSV export for end-of-shift balancing.",
+      "**Menu & floor layout admin**: Admin views to add or edit dishes, update prices, upload photos, adjust table capacities, and reset tables at closing.",
+      "**Sales & dish analytics**: Revenue and order-volume breakdowns with custom date filters, top-selling dish rankings, and payment method shares.",
     ],
     highlights: [
-      "**Multi-Portal Role-Based Access Control (RBAC)**: Dedicated authentication barriers for Waiter, Cashier, and Admin portals powered by Firebase Auth, with strict client-side role guards (`rbac.js`, `admin-auth.js`), session integrity checks, and automatic route redirection.",
-      "**Event-Driven Realtime Synchronization**: Zero-polling architecture utilizing Google Cloud Firestore reactive listeners (`onSnapshot`) for instant, bi-directional cross-device state updates between dining floor servers, kitchen displays, and cashier counters within milliseconds.",
-      "**Production-Grade Statutory Compliance & Zero-Build Stack**: Native vanilla JavaScript (ES6+ Modules) and custom responsive CSS design system with zero bundler overhead, integrated with Philippine BIR/statutory discount calculation logic and deployed to global edge infrastructure via Firebase Hosting.",
+      "**Role-based portals (RBAC)**: Separate login flows and route guards (`rbac.js`, `admin-auth.js`) for Waiter, Cashier, and Admin views using Firebase Auth.",
+      "**Realtime Firestore sync**: Uses Cloud Firestore `onSnapshot` listeners instead of polling so floor tablets, kitchen screens, and cashier registers stay in sync across devices.",
+      "**Zero-build vanilla JS stack**: Written in native ES6 modules and custom CSS without a bundler, paired with Philippine statutory discount calculation logic and deployed on Firebase Hosting.",
     ],
     techStackTable: [
       {
