@@ -306,7 +306,7 @@ export function SideRail() {
           onClick={toggleSidebar}
           aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
           aria-expanded={!isCollapsed}
-          className="rail-tactile-btn rail-tactile-btn--sm group relative inline-flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-lg text-(--muted) hover:text-(--foreground) focus-visible:text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
+          className="group relative inline-flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-lg text-(--muted) transition-colors hover:bg-(--foreground)/8 hover:text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
         >
           <SidebarToggleIcon collapsed={isCollapsed} />
           {isCollapsed && (
@@ -336,7 +336,11 @@ export function SideRail() {
           <div
             key={group.id}
             className={
-              groupIndex > 0 ? "mt-2 border-t border-(--border)/60 pt-2" : ""
+              groupIndex > 0
+                ? `border-t border-(--border)/60 ${
+                    isCollapsed ? "mt-2 pt-2" : "mt-2.5 pt-2.5"
+                  }`
+                : ""
             }
           >
             <div
@@ -354,65 +358,42 @@ export function SideRail() {
                 {group.title}
               </p>
             </div>
-            <ul className="flex flex-col gap-1">
+            <ul className="flex flex-col gap-0.5">
               {group.items.map((item) => {
                 const isActive = activeId === item.id;
                 return (
-                  <li key={item.id} className="relative px-2.5 pb-1">
+                  <li key={item.id} className="relative px-2.5">
                     {isActive && (
                       <span
                         aria-hidden="true"
-                        className="absolute top-1.5 bottom-2.5 left-0 w-1 rounded-r-full bg-(--foreground)"
+                        className="absolute top-1.5 bottom-1.5 left-0 w-1 rounded-r-full bg-(--foreground)"
                       />
                     )}
                     <TransitionLink
                       href={item.href}
                       aria-current={isActive ? "page" : undefined}
                       aria-label={isCollapsed ? item.label : undefined}
-                      data-active={isActive ? "true" : undefined}
-                      className={`rail-tactile-btn group relative flex h-10 w-full items-center rounded-xl text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) ${
+                      className={`group relative flex items-center rounded-xl px-3 py-2 text-sm transition-colors focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-(--foreground) ${
                         isActive
-                          ? "font-semibold text-(--foreground)"
-                          : "font-medium text-(--muted) hover:text-(--foreground) focus-visible:text-(--foreground)"
+                          ? "bg-(--foreground)/8 font-semibold text-(--foreground)"
+                          : "font-normal text-(--muted) hover:bg-(--foreground)/5 hover:text-(--foreground)"
                       }`}
                     >
-                      <span className="flex h-full w-full items-center px-[11px]">
-                        {item.icon}
-                        <span
-                          aria-hidden={isCollapsed || undefined}
-                          className={`grid min-w-0 flex-1 ${
-                            transitionsEnabled
-                              ? `transition-[grid-template-columns,opacity,margin,transform] ${easeTransition}`
-                              : ""
-                          } ${
-                            isCollapsed
-                              ? "pointer-events-none ml-0 grid-cols-[0fr] -translate-x-1.5 opacity-0"
-                              : "ml-3 grid-cols-[1fr] translate-x-0 opacity-100"
-                          }`}
-                        >
-                          <span className="relative flex min-w-0 items-center overflow-hidden">
-                            <span className="rail-kinetic-rest truncate whitespace-nowrap">
-                              {item.label}
-                            </span>
-                            <span
-                              aria-hidden="true"
-                              className="pointer-events-none absolute inset-0 flex items-center whitespace-nowrap"
-                            >
-                              {Array.from(item.label).map((char, charIndex) => (
-                                <i
-                                  key={charIndex}
-                                  className="rail-kinetic-char"
-                                  style={
-                                    {
-                                      "--char-index": charIndex,
-                                    } as React.CSSProperties
-                                  }
-                                >
-                                  {char === " " ? "\u00A0" : char}
-                                </i>
-                              ))}
-                            </span>
-                          </span>
+                      {item.icon}
+                      <span
+                        aria-hidden={isCollapsed || undefined}
+                        className={`grid min-w-0 flex-1 ${
+                          transitionsEnabled
+                            ? `transition-[grid-template-columns,opacity,margin] ${easeTransition}`
+                            : ""
+                        } ${
+                          isCollapsed
+                            ? "pointer-events-none ml-0 grid-cols-[0fr] opacity-0"
+                            : "ml-3 grid-cols-[1fr] opacity-100"
+                        }`}
+                      >
+                        <span className="truncate whitespace-nowrap">
+                          {item.label}
                         </span>
                       </span>
                       {isCollapsed && (
