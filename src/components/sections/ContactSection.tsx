@@ -130,7 +130,7 @@ export function ContactSection({
       <header className="flex flex-col items-start">
         <HeadingTag
           id="contact-heading"
-          className="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-[40px]"
+          className="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-[2.5rem]"
         >
           {siteConfig.contactPage.title}
         </HeadingTag>

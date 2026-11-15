@@ -186,7 +186,7 @@ export function ContactForm({
         <div>
           <h2
             id="contact-panel-title"
-            className="font-display text-[28px] leading-[1.12] font-semibold tracking-[-0.015em] text-(--foreground)"
+            className="font-display text-[1.75rem] leading-[1.12] font-semibold tracking-[-0.015em] text-(--foreground)"
           >
             {siteConfig.contactForm.title}
           </h2>
@@ -256,7 +256,7 @@ export function ContactForm({
             <div>
               <label
                 htmlFor="contact-name"
-                className="block font-mono text-[11px] uppercase tracking-wider text-(--muted)"
+                className="block font-mono text-[0.6875rem] uppercase tracking-wider text-(--muted)"
               >
                 Name
               </label>
@@ -276,7 +276,7 @@ export function ContactForm({
                 aria-describedby={
                   touched.name && errors.name ? "name-error" : undefined
                 }
-                className="mt-1.5 h-12 w-full rounded-[10px] border border-(--border) bg-(--background) px-3.5 text-[15px] text-(--foreground) placeholder:text-(--muted)/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) read-only:opacity-60"
+                className="mt-1.5 h-12 w-full rounded-[0.625rem] border border-(--border) bg-(--background) px-3.5 text-[0.9375rem] text-(--foreground) placeholder:text-(--muted)/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) read-only:opacity-60"
               />
               {touched.name && errors.name && (
                 <p
@@ -293,7 +293,7 @@ export function ContactForm({
             <div>
               <label
                 htmlFor="contact-email"
-                className="block font-mono text-[11px] uppercase tracking-wider text-(--muted)"
+                className="block font-mono text-[0.6875rem] uppercase tracking-wider text-(--muted)"
               >
                 Email
               </label>
@@ -312,7 +312,7 @@ export function ContactForm({
                 aria-describedby={
                   touched.email && errors.email ? "email-error" : undefined
                 }
-                className="mt-1.5 h-12 w-full rounded-[10px] border border-(--border) bg-(--background) px-3.5 text-[15px] text-(--foreground) placeholder:text-(--muted)/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) read-only:opacity-60"
+                className="mt-1.5 h-12 w-full rounded-[0.625rem] border border-(--border) bg-(--background) px-3.5 text-[0.9375rem] text-(--foreground) placeholder:text-(--muted)/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) read-only:opacity-60"
               />
               {touched.email && errors.email && (
                 <p
@@ -329,7 +329,7 @@ export function ContactForm({
             <div>
               <label
                 htmlFor="contact-message"
-                className="block font-mono text-[11px] uppercase tracking-wider text-(--muted)"
+                className="block font-mono text-[0.6875rem] uppercase tracking-wider text-(--muted)"
               >
                 Message
               </label>
@@ -349,7 +349,7 @@ export function ContactForm({
                     ? "message-error"
                     : undefined
                 }
-                className="mt-1.5 w-full resize-y rounded-[10px] border border-(--border) bg-(--background) p-3.5 text-[15px] leading-relaxed text-(--foreground) placeholder:text-(--muted)/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) read-only:opacity-60"
+                className="mt-1.5 w-full resize-y rounded-[0.625rem] border border-(--border) bg-(--background) p-3.5 text-[0.9375rem] leading-relaxed text-(--foreground) placeholder:text-(--muted)/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) read-only:opacity-60"
               />
               {touched.message && errors.message && (
                 <p
@@ -384,7 +384,7 @@ export function ContactForm({
                 ? siteConfig.contactForm.submittingLabel
                 : `${siteConfig.contactForm.submitLabel} →`}
             </button>
-            <p className="mt-3 text-center text-[13px] text-(--muted)">
+            <p className="mt-3 text-center text-[0.8125rem] text-(--muted)">
               {siteConfig.contactForm.helperText}
             </p>
           </div>

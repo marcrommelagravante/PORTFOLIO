@@ -50,7 +50,7 @@ function FormattedText({ text }: { text: string }) {
           return (
             <code
               key={i}
-              className="rounded bg-(--surface) px-1.5 py-0.5 font-mono text-[13px] font-medium text-(--foreground) border border-(--border)/60"
+              className="rounded bg-(--surface) px-1.5 py-0.5 font-mono text-[0.8125rem] font-medium text-(--foreground) border border-(--border)/60"
             >
               {part.slice(1, -1)}
             </code>
@@ -112,7 +112,7 @@ export default async function ProjectDetailPage({
       <header className="mt-6 border-b border-(--border) pb-10">
         <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-start">
           <div className="max-w-2xl">
-            <h1 className="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-[40px]">
+            <h1 className="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-[2.5rem]">
               {project.title}
             </h1>
             <p className="mt-3 text-base leading-relaxed text-(--muted)">
@@ -146,7 +146,7 @@ export default async function ProjectDetailPage({
           <h2 className="font-display text-2xl leading-[1.15] font-bold tracking-[-0.015em] text-(--foreground)">
             Overview
           </h2>
-          <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-(--muted)">
+          <div className="mt-4 space-y-4 text-[0.9375rem] leading-relaxed text-(--muted)">
             {overviewParagraphs.map((para, i) => (
               <p key={i}>
                 <FormattedText text={para} />
@@ -160,7 +160,7 @@ export default async function ProjectDetailPage({
             <h2 className="font-display text-2xl leading-[1.15] font-bold tracking-[-0.015em] text-(--foreground)">
               Features
             </h2>
-            <ul className="mt-4 space-y-3.5 text-[15px] leading-relaxed text-(--muted)">
+            <ul className="mt-4 space-y-3.5 text-[0.9375rem] leading-relaxed text-(--muted)">
               {project.features.map((feat, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span
@@ -181,7 +181,7 @@ export default async function ProjectDetailPage({
             <h2 className="font-display text-2xl leading-[1.15] font-bold tracking-[-0.015em] text-(--foreground)">
               Highlights
             </h2>
-            <ul className="mt-4 space-y-3.5 text-[15px] leading-relaxed text-(--muted)">
+            <ul className="mt-4 space-y-3.5 text-[0.9375rem] leading-relaxed text-(--muted)">
               {project.highlights.map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span

@@ -24,7 +24,7 @@ function CoverFrame({
 
   if (!src || failed) {
     return (
-      <div className="flex h-full w-full flex-col items-center justify-center gap-1.5 rounded-[10px] border border-dashed border-(--device-border) p-6 text-center">
+      <div className="flex h-full w-full flex-col items-center justify-center gap-1.5 rounded-[0.625rem] border border-dashed border-(--device-border) p-6 text-center">
         <span className="font-mono text-xs tracking-wider text-(--device-fg) uppercase">
           {`Project ${padTwo(index + 1)}`}
         </span>
@@ -43,7 +43,7 @@ function CoverFrame({
       priority={index === 0}
       sizes="(min-width: 1024px) 380px, 100vw"
       onError={() => setFailed(true)}
-      className="rounded-[10px] object-contain bg-[#121210]"
+      className="rounded-[0.625rem] object-contain bg-[#121210]"
     />
   );
 }
@@ -67,10 +67,10 @@ export function ProjectPreview({
       className="sticky top-12 hidden flex-1 basis-95 lg:block"
     >
       {/* Dark device card in both themes */}
-      <div className="rounded-[22px] border border-(--device-border) bg-(--device-bg) p-4.5 shadow-[0_30px_60px_-28px_rgba(0,0,0,0.55)]">
+      <div className="rounded-[1.375rem] border border-(--device-border) bg-(--device-bg) p-4.5 shadow-[0_30px_60px_-28px_rgba(0,0,0,0.55)]">
         <div
           key={project.slug}
-          className="animate-crossfade relative aspect-16/10 w-full overflow-hidden rounded-[10px]"
+          className="animate-crossfade relative aspect-16/10 w-full overflow-hidden rounded-[0.625rem]"
         >
           <CoverFrame project={project} index={index} />
         </div>
@@ -78,15 +78,15 @@ export function ProjectPreview({
 
       {/* Meta block */}
       <div key={project.slug} className="animate-fade-rise px-1.5 pt-7">
-        <p className="font-mono text-[11px] font-medium tracking-[0.18em] text-(--muted) uppercase">
+        <p className="font-mono text-[0.6875rem] font-medium tracking-[0.18em] text-(--muted) uppercase">
           {`${padTwo(index + 1)} / ${padTwo(total)} · ${project.tag}`}
         </p>
 
-        <h3 className="font-display mt-2 text-[28px] leading-[1.12] font-semibold tracking-[-0.015em] text-(--foreground)">
+        <h3 className="font-display mt-2 text-[1.75rem] leading-[1.12] font-semibold tracking-[-0.015em] text-(--foreground)">
           {project.title}
         </h3>
 
-        <p className="mt-3 text-[15px] leading-relaxed text-(--muted)">
+        <p className="mt-3 text-[0.9375rem] leading-relaxed text-(--muted)">
           {project.summary}
         </p>
 

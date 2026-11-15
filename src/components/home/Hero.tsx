@@ -26,12 +26,12 @@ export function Hero() {
       <div className="relative z-10 flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3.5">
           <span aria-hidden="true" className="h-px w-8 bg-(--muted)/60" />
-          <p className="font-mono text-[11px] tracking-[0.18em] text-(--muted) uppercase">
+          <p className="font-mono text-[0.6875rem] tracking-[0.18em] text-(--muted) uppercase">
             {siteConfig.roleEyebrow}
           </p>
         </div>
 
-        <div className="inline-flex -rotate-6 items-center gap-2.5 rounded-full border border-(--border) bg-(--background)/90 px-4 py-1.5 font-mono text-[10px] font-medium tracking-[0.16em] text-(--foreground) uppercase sm:mt-2 sm:mr-2 sm:text-[11px]">
+        <div className="inline-flex -rotate-6 items-center gap-2.5 rounded-full border border-(--border) bg-(--background)/90 px-4 py-1.5 font-mono text-[0.625rem] font-medium tracking-[0.16em] text-(--foreground) uppercase sm:mt-2 sm:mr-2 sm:text-[0.6875rem]">
           <span aria-hidden="true" className="text-(--muted)">
             &lt;/&gt;
           </span>
@@ -55,7 +55,7 @@ export function Hero() {
             for the web.
           </h1>
 
-          <p className="mt-7 max-w-[42ch] font-sans text-base leading-[1.65] text-(--muted) sm:text-[17px]">
+          <p className="mt-7 max-w-[42ch] font-sans text-base leading-[1.65] text-(--muted) sm:text-[1.0625rem]">
             {siteConfig.shortIntroduction}
           </p>
 

@@ -62,7 +62,7 @@ export function ProjectsLedger({
       <header className="animate-gallery-enter mb-3.5 max-w-2xl">
         <HeadingTag
           id="projects-heading"
-          className="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-[40px]"
+          className="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-[2.5rem]"
         >
           {projectsSectionCopy.title}
         </HeadingTag>

@@ -14,8 +14,6 @@ import {
   type InterestGalleryItem,
 } from "@/content/interests";
 
-const DESKTOP_ITEM_WIDTH = 480;
-const DESKTOP_ITEM_HEIGHT = 420;
 const DESKTOP_STEP_SIZE = 280;
 
 const MOBILE_ITEM_WIDTH = 300;
@@ -57,11 +55,11 @@ function CoverflowItem({
     wrapOffset(index * stepSize + currentTrackX, totalWidth)
   );
 
-  const rotateY = useTransform(offset, [-280, 0, 280], [22, 0, -22]);
-  const scale = useTransform(offset, [-280, 0, 280], [0.72, 1, 0.72]);
+  const rotateY = useTransform(offset, [-stepSize, 0, stepSize], [22, 0, -22]);
+  const scale = useTransform(offset, [-stepSize, 0, stepSize], [0.72, 1, 0.72]);
   const x = useTransform(
     offset,
-    [-900, -280, 280, 900],
+    [-stepSize * 3.2, -stepSize, stepSize, stepSize * 3.2],
     ["60%", "0%", "0%", "-60%"]
   );
   const zIndex = useTransform(offset, (value) =>
@@ -131,14 +129,23 @@ export function InterestsSection({
   useEffect(() => {
     const mql = window.matchMedia("(max-width: 640px)");
     const updateSize = () => {
-      const nextStep = mql.matches ? MOBILE_STEP_SIZE : DESKTOP_STEP_SIZE;
+      const rootFontSize =
+        parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+      const rootScale = mql.matches ? 1 : rootFontSize / 16;
+      const nextStep = Math.round(
+        (mql.matches ? MOBILE_STEP_SIZE : DESKTOP_STEP_SIZE) * rootScale
+      );
       setStepSize(nextStep);
       animationRef.current?.stop();
       trackX.set(-stepRef.current * nextStep);
     };
     updateSize();
     mql.addEventListener("change", updateSize);
-    return () => mql.removeEventListener("change", updateSize);
+    window.addEventListener("resize", updateSize);
+    return () => {
+      mql.removeEventListener("change", updateSize);
+      window.removeEventListener("resize", updateSize);
+    };
   }, [trackX]);
 
   const animateToStep = useCallback(
@@ -265,7 +272,7 @@ export function InterestsSection({
       <header className="animate-gallery-enter max-w-2xl">
         <HeadingTag
           id="outside-the-ide-heading"
-          className="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-[40px]"
+          className="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-[2.5rem]"
         >
           {interestPageHeader.heading}
         </HeadingTag>
@@ -371,15 +378,15 @@ function Stylesheet() {
           justify-content: center;
           width: 100%;
           overflow: hidden;
-          padding: 28px 0;
+          padding: 1.75rem 0;
           touch-action: pan-y;
           cursor: pointer;
         }
 
         .coverflow-carousel {
           position: relative;
-          width: ${DESKTOP_ITEM_WIDTH}px;
-          height: ${DESKTOP_ITEM_HEIGHT}px;
+          width: 30rem;
+          height: 26.25rem;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -393,8 +400,8 @@ function Stylesheet() {
           position: absolute;
           top: 0;
           left: 0;
-          width: ${DESKTOP_ITEM_WIDTH}px;
-          height: ${DESKTOP_ITEM_HEIGHT}px;
+          width: 30rem;
+          height: 26.25rem;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -405,10 +412,10 @@ function Stylesheet() {
         .coverflow-item {
           width: auto;
           height: auto;
-          max-width: ${DESKTOP_ITEM_WIDTH}px;
-          max-height: ${DESKTOP_ITEM_HEIGHT}px;
+          max-width: 30rem;
+          max-height: 26.25rem;
           object-fit: contain;
-          border-radius: 14px;
+          border-radius: 0.875rem;
           box-shadow: 0 16px 45px rgba(0, 0, 0, 0.28);
           will-change: transform, opacity;
           display: block;
@@ -417,8 +424,8 @@ function Stylesheet() {
         }
 
         .coverflow-placeholder {
-          width: ${DESKTOP_ITEM_WIDTH}px;
-          height: 340px;
+          width: 30rem;
+          height: 21.25rem;
           object-fit: cover;
         }
 

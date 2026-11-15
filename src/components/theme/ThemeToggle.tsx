@@ -21,27 +21,27 @@ const NOISE_SVG_DATA_URI = `url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160'
 
 const VARIANT_METRICS = {
   "mobile-header": {
-    trackClass: "h-9 w-[66px]",
+    trackClass: "h-9 w-[4.125rem]",
     thumbClass: "h-7 w-7",
     iconClass: "h-3.5 w-3.5",
-    trackIconPadClass: "px-[10px]",
-    travel: 30,
+    trackIconPadClass: "px-[0.625rem]",
+    travel: "1.875rem",
     particleScale: 4.5,
   },
   rail: {
-    trackClass: "h-11 w-[74px]",
+    trackClass: "h-11 w-[4.625rem]",
     thumbClass: "h-9 w-9",
     iconClass: "h-4 w-4",
-    trackIconPadClass: "px-[13px]",
-    travel: 30,
+    trackIconPadClass: "px-[0.8125rem]",
+    travel: "1.875rem",
     particleScale: 5.5,
   },
   "rail-collapsed": {
     trackClass: "h-11 w-11",
     thumbClass: "h-9 w-9",
     iconClass: "h-4 w-4",
-    trackIconPadClass: "px-[13px]",
-    travel: 0,
+    trackIconPadClass: "px-[0.8125rem]",
+    travel: "0rem",
     particleScale: 5.5,
   },
 } as const;
@@ -175,7 +175,7 @@ export function ThemeToggle({
       onClick={handleToggle}
       whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
       style={trackStyle}
-      className={`group relative inline-flex shrink-0 cursor-pointer items-center rounded-full border border-(--border) p-[3px] transition-[width] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) ${metrics.trackClass} ${className}`}
+      className={`group relative inline-flex shrink-0 cursor-pointer items-center rounded-full border border-(--border) p-[0.1875rem] transition-[width] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground) ${metrics.trackClass} ${className}`}
     >
       {variant !== "mobile-header" ? (
         <span
@@ -200,7 +200,7 @@ export function ThemeToggle({
       <motion.span
         aria-hidden="true"
         initial={false}
-        animate={{ x: isCollapsed ? 0 : isDark ? metrics.travel : 0 }}
+        animate={{ x: isCollapsed ? "0rem" : isDark ? metrics.travel : "0rem" }}
         transition={
           prefersReducedMotion
             ? { duration: 0 }

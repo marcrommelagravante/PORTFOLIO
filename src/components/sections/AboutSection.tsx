@@ -27,7 +27,7 @@ export function AboutSection({
         >
           {siteConfig.fullName}
         </HeadingTag>
-        <p className="mt-2 font-mono text-xs font-medium tracking-[0.14em] text-(--muted) uppercase sm:text-[13px]">
+        <p className="mt-2 font-mono text-xs font-medium tracking-[0.14em] text-(--muted) uppercase sm:text-[0.8125rem]">
           {siteConfig.about.currentStudyOrRole}
         </p>
       </header>

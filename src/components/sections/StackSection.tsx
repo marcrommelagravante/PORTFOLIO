@@ -21,7 +21,7 @@ export function StackSection({
       <header className="mb-3.5">
         <HeadingTag
           id="stack-heading"
-          className="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-[40px]"
+          className="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.02em] text-(--foreground) sm:text-[2.5rem]"
         >
           {stackPageHeader.title}
         </HeadingTag>
@@ -60,7 +60,7 @@ export function StackSection({
                 {group.items.map((tech) => (
                   <li
                     key={tech}
-                    className="inline-flex items-center rounded-lg border border-(--border) bg-(--background) px-3.5 py-2 font-mono text-[12.5px] text-(--foreground)"
+                    className="inline-flex items-center rounded-lg border border-(--border) bg-(--background) px-3.5 py-2 font-mono text-[0.78125rem] text-(--foreground)"
                   >
                     {tech}
                   </li>

@@ -27,7 +27,7 @@ export function GearCard({
     >
       {/* Top row: Category badge */}
       <div className="relative z-10 flex w-full items-start justify-start">
-        <span className="inline-flex items-center rounded-full bg-[#4e5257] px-3.5 py-1 font-sans text-[11px] font-medium tracking-wide text-white shadow-xs dark:bg-[#34373b]">
+        <span className="inline-flex items-center rounded-full bg-[#4e5257] px-3.5 py-1 font-sans text-[0.6875rem] font-medium tracking-wide text-white shadow-xs dark:bg-[#34373b]">
           {item.category}
         </span>
       </div>
@@ -63,7 +63,7 @@ export function GearCard({
         </ItemHeading>
 
         {item.specs ? (
-          <p className="mt-1.5 font-sans text-xs tracking-wide text-(--muted) sm:text-[13px]">
+          <p className="mt-1.5 font-sans text-xs tracking-wide text-(--muted) sm:text-[0.8125rem]">
             {item.specs}
           </p>
         ) : (

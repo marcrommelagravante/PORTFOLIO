@@ -79,7 +79,7 @@ export function ContactCard({
         <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-(--surface) text-(--foreground) transition-colors duration-200 group-hover:bg-(--background) group-hover:text-(--foreground) group-focus-visible:bg-(--background) group-focus-visible:text-(--foreground)">
           {icon}
         </div>
-        <span className="font-mono text-[11px] text-(--muted) transition-colors duration-200 group-hover:text-(--background)/80 group-focus-visible:text-(--background)/80">
+        <span className="font-mono text-[0.6875rem] text-(--muted) transition-colors duration-200 group-hover:text-(--background)/80 group-focus-visible:text-(--background)/80">
           {currentTag}
         </span>
       </div>
@@ -88,7 +88,7 @@ export function ContactCard({
         <h2 className="text-base font-semibold tracking-tight text-(--foreground) transition-colors duration-200 group-hover:text-(--background) group-focus-visible:text-(--background)">
           {label}
         </h2>
-        <p className="mt-1 text-[13.5px] leading-snug text-(--muted) transition-colors duration-200 group-hover:text-(--background)/80 group-focus-visible:text-(--background)/80">
+        <p className="mt-1 text-[0.84375rem] leading-snug text-(--muted) transition-colors duration-200 group-hover:text-(--background)/80 group-focus-visible:text-(--background)/80">
           {description}
         </p>
       </div>

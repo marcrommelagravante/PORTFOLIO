@@ -277,7 +277,7 @@ export function SideRail() {
       <div
         className={`flex items-center border-b border-(--border)/80 pb-4 ${
           transitionsEnabled ? `transition-[padding] ${easeTransition}` : ""
-        } ${isCollapsed ? "px-[15px]" : "px-5"}`}
+        } ${isCollapsed ? "px-[calc(1rem-1px)]" : "px-5"}`}
       >
         <div
           aria-hidden={isCollapsed || undefined}
@@ -354,7 +354,7 @@ export function SideRail() {
                   : "mb-1 grid-rows-[1fr] opacity-100"
               }`}
             >
-              <p className="overflow-hidden px-5 font-mono text-[10px] font-semibold tracking-wider whitespace-nowrap text-(--muted) uppercase">
+              <p className="overflow-hidden px-5 font-mono text-[0.625rem] font-semibold tracking-wider whitespace-nowrap text-(--muted) uppercase">
                 {group.title}
               </p>
             </div>
