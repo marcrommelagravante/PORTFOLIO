@@ -80,6 +80,7 @@ export function SiteFooter() {
             <li>
               <a
                 href={siteConfig.resumeUrl}
+                download="Marc-Rommel-Agravante-Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-medium transition-colors hover:text-(--foreground) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"

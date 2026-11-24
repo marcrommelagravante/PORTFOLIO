@@ -46,6 +46,7 @@ export function AboutSection({
           <div className="pt-4">
             <a
               href={siteConfig.resumeUrl}
+              download="Marc-Rommel-Agravante-Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-md bg-(--foreground) px-5 py-2.5 text-sm font-medium text-(--background) transition-opacity hover:opacity-90"

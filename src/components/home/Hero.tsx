@@ -5,6 +5,7 @@ import { TransitionLink } from "@/components/transition/TransitionLink";
 
 export function Hero() {
   const watermarkText = siteConfig.initials.replace(/\.$/, "");
+  const hasResume = Boolean(siteConfig.resumeUrl?.trim());
 
   return (
     <section
@@ -59,7 +60,27 @@ export function Hero() {
             {siteConfig.shortIntroduction}
           </p>
 
-          <div className="mt-10 flex items-center gap-5 sm:mt-14">
+          <div className="mt-10 flex flex-wrap items-center gap-6 sm:mt-14">
+            {hasResume && (
+              <a
+                href={siteConfig.resumeUrl}
+                download="Marc-Rommel-Agravante-Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"
+              >
+                <span className="border-b border-(--foreground)/50 pb-1 font-mono text-xs font-semibold tracking-[0.14em] text-(--foreground) uppercase transition-colors group-hover:border-(--foreground)">
+                  DOWNLOAD CV
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="font-mono text-sm text-(--foreground) transition-transform duration-200 group-hover:translate-y-0.5"
+                >
+                  ↓
+                </span>
+              </a>
+            )}
+
             <TransitionLink
               href="/outside-the-ide"
               className="group inline-flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--foreground)"
@@ -74,9 +95,10 @@ export function Hero() {
                 →
               </span>
             </TransitionLink>
+
             <span
               aria-hidden="true"
-              className="h-px w-24 bg-(--border) sm:w-40"
+              className="hidden h-px w-16 bg-(--border) sm:inline-block sm:w-24"
             />
           </div>
         </div>

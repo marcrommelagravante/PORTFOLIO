@@ -108,7 +108,7 @@ export function ContactSection({
           label: "Resume",
           description: "Download my CV as a PDF",
           href: resumeUrl,
-          download: true,
+          download: "Marc-Rommel-Agravante-Resume.pdf",
           icon: <ResumeIcon />,
           tag: "PDF",
           ariaLabel: "Resume — Download my CV as a PDF. (downloads file)",

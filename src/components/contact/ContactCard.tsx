@@ -8,7 +8,7 @@ export type ContactCardProps = {
   icon: React.ReactNode;
   tag?: string;
   href?: string;
-  download?: boolean;
+  download?: boolean | string;
   external?: boolean;
   copyValue?: string;
   ariaLabel?: string;
@@ -126,7 +126,7 @@ export function ContactCard({
     <a
       href={href}
       onClick={copyValue ? handleCopy : undefined}
-      download={download ? true : undefined}
+      download={download || undefined}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
       aria-label={ariaLabel || defaultAriaLabel}
