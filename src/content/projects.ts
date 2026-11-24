@@ -401,4 +401,86 @@ export const portfolioProjects: PortfolioProject[] = [
     featured: true,
     isPlaceholder: false,
   },
+  {
+    slug: "pahina",
+    title: "PAHINA",
+    tag: "Book Café & Reading Room",
+    summary:
+      "An editorial neighborhood book-café web experience pairing a 39-item specialty coffee and comfort-food catalog with a curated, 6-genre in-café reading room.",
+    overview: [
+      "Named after the Tagalog word for \"page,\" PAHINA is an editorial web experience designed for a boutique neighborhood coffee shop and in-café reading room built around unhurried mornings, good pours, and shared shelves.",
+      "Visitors can browse a 39-item specialty drink and comfort-food menu with sticky category filters, open accessible Tasting Sheet dialogs to toggle SMOL, MOYEN, and GRANDE serving sizes with live PHP pricing, explore drink-to-book pairings across six curated reading shelves, and inspect the café's architectural material swatches and flippable stationery calling card.",
+    ],
+    features: [
+      "**Interactive 39-item menu explorer**: Sticky category filter bar (*Coffee*, *Non-Coffee*, *Frappuccino*, *Pasta*, *Pizza*, *Fries*) with a `House Picks` signature filter toggle and live item counter (`39 / 39`).",
+      "**Tasting Sheet dialogs & size switcher**: Accessible modal sheets (`role=\"dialog\"`) and inline drink controls to switch between `SMOL (12oz Hot)`, `MOYEN (16oz Iced)`, and `GRANDE (22oz Iced)` with live `₱` price updates.",
+      "**Drink-to-shelf reading pairings**: Links each signature pour and espresso classic directly to its recommended Reading Room shelf anchor (such as `/reading-room#shelf-fiction`).",
+      "**Six Curated Shelves genre inspector**: Interactive shelf guide covering *Fiction*, *Romance*, *Mystery*, *Philosophy*, *Poetry*, and *Nonfiction* with reading mood notes, pacing cues, and café pairings.",
+      "**4-step Reading Room guide**: Interactive stepper (*01 Browse the shelves*, *02 Choose a book*, *03 Read comfortably at your table*, *04 Return before leaving*) explaining the no-checkout, trust-based reading flow.",
+      "**Architectural material swatch inspector**: Interactive palette explorer on the About page detailing the café's four core interior materials (*Paper White* `#F4F1EA`, *Powder Blue* `#B9D0E0`, *Warm Oak* `#C8A986`, and *Deep Ink Linen* `#41474D`).",
+      "**Flippable stationery calling card**: Two-sided interactive calling card on the Visit page with keyboard and pointer flip controls alongside a structured visit directory.",
+      "**5-page editorial layout & motion**: Magazine-inspired compositions across Home, Menu, Reading Room, About, and Visit with scroll-progress indicators, masked headings, and radial-feathered photography.",
+    ],
+    highlights: [
+      "**WCAG 2.1 dialog & keyboard accessibility**: Custom `useDialogA11y` hook handling focus trapping, `Escape` dismissal, body scroll locking, focus restoration, `aria-pressed` filter states, and `prefers-reduced-motion` fallbacks.",
+      "**Schema.org JSON-LD & dynamic social cards**: Generates structured `CafeOrCoffeeShop`, `Menu`, `MenuSection`, multi-size PHP `Offer`, `WebSite`, and `BreadcrumbList` schemas alongside dynamic `ImageResponse` OpenGraph and Twitter images.",
+      "**Tailwind CSS v4 editorial design system**: Built with Next.js 16 (App Router, Turbopack) and React 19 using `--color-paper` and `--color-powder` tokens, inscribed radial CSS mask feathering (`.feather-oval`, `.feather-tight`), and self-hosted *Bodoni Moda*, *Instrument Serif*, and *Manrope* typography.",
+    ],
+    techStackTable: [
+      {
+        category: "Frontend",
+        technologies:
+          "Next.js 16 (App Router, Turbopack), React 19, TypeScript 5, Tailwind CSS 4",
+      },
+      {
+        category: "Animation & Interaction",
+        technologies:
+          "Framer Motion 14, custom cubic-bezier easing tokens, scroll-linked reveal primitives, 3D calling card flip",
+      },
+      {
+        category: "Typography & Design System",
+        technologies:
+          "Google Fonts (`next/font/google`: *Bodoni Moda*, *Instrument Serif*, *Manrope*), Paper & Powder Blue CSS custom tokens, inscribed radial CSS mask feathering, Lucide React",
+      },
+      {
+        category: "Accessibility",
+        technologies:
+          "Custom WCAG 2.1 `useDialogA11y` modal focus-trap hook, keyboard navigation, `aria-pressed` filter controls, `prefers-reduced-motion` safeguards",
+      },
+      {
+        category: "SEO & Metadata",
+        technologies:
+          "Schema.org JSON-LD (`CafeOrCoffeeShop`, `Menu`, `MenuItem` multi-size `Offer`, `WebSite`, `BreadcrumbList`), dynamic `opengraph-image` & `twitter-image`, dynamic `sitemap.ts` & `robots.ts`",
+      },
+      {
+        category: "Deployment & Hosting",
+        technologies: "Vercel Edge Network, Next.js Image Optimization",
+      },
+    ],
+    coverImage: "/images/projects/pahina/pahina-cover.png",
+    thumbnail: "/images/projects/pahina/pahina-cover.png",
+    screenshots: [
+      "/images/projects/pahina/pahina-01.png",
+      "/images/projects/pahina/pahina-02.png",
+      "/images/projects/pahina/pahina-03.png",
+      "/images/projects/pahina/pahina-04.png",
+      "/images/projects/pahina/pahina-05.png",
+      "/images/projects/pahina/pahina-06.png",
+      "/images/projects/pahina/pahina-07.png",
+      "/images/projects/pahina/pahina-08.png",
+    ],
+    galleryAspectRatio: "16/10",
+    technologies: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS 4",
+      "Framer Motion",
+      "Schema.org JSON-LD",
+    ],
+    liveUrl: "https://pahina-phi.vercel.app/",
+    githubUrl: "https://github.com/marcrommelagravante/PAHINA",
+    featured: true,
+    isPlaceholder: false,
+  },
 ];

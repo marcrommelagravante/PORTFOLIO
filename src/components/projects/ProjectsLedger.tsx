@@ -7,16 +7,19 @@ import {
 } from "@/content/projects";
 import { ProjectRow } from "@/components/projects/ProjectRow";
 import { ProjectPreview } from "@/components/projects/ProjectPreview";
+import { TransitionLink } from "@/components/transition/TransitionLink";
 
-// Threshold for future inline collapse ("+ N more") if portfolioProjects exceeds 4 items.
+// Threshold for homepage collapse ("+ N more" redirects to /projects) if portfolioProjects exceeds 4 items.
 const COLLAPSE_AFTER = 4;
 
 export function ProjectsLedger({
   projects,
   headingLevel = "h2",
+  showAll = false,
 }: {
   projects: PortfolioProject[];
   headingLevel?: "h1" | "h2";
+  showAll?: boolean;
 }) {
   const HeadingTag = headingLevel;
   const total = projects.length;
@@ -28,6 +31,12 @@ export function ProjectsLedger({
   if (total === 0) {
     return null;
   }
+
+  const isCollapsed = !showAll && total > COLLAPSE_AFTER;
+  const hiddenCount = Math.max(0, total - COLLAPSE_AFTER);
+  const visibleProjects = isCollapsed
+    ? projects.slice(0, COLLAPSE_AFTER)
+    : projects;
 
   const activeIndex = Math.max(
     0,
@@ -80,7 +89,7 @@ export function ProjectsLedger({
             onKeyDown={handleListKeyDown}
             className="border-b border-(--border)"
           >
-            {projects.map((project) => (
+            {visibleProjects.map((project) => (
               <li
                 key={project.slug}
                 className="border-t border-(--border)"
@@ -93,6 +102,18 @@ export function ProjectsLedger({
               </li>
             ))}
           </ul>
+
+          {isCollapsed && (
+            <div className="mt-5 flex justify-center">
+              <TransitionLink
+                href="/projects"
+                aria-label={`View all ${total} projects`}
+                className="inline-flex items-center gap-1.5 rounded-full border border-(--border) bg-(--surface)/50 px-5.5 py-2.75 font-mono text-xs text-(--foreground) transition-colors hover:border-(--muted) hover:bg-(--surface) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--foreground)"
+              >
+                <span>{`+ ${hiddenCount} more`}</span>
+              </TransitionLink>
+            </div>
+          )}
         </div>
 
         <ProjectPreview

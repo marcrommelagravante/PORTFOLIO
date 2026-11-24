@@ -20,6 +20,7 @@ export function ProjectsSection({
       <ProjectsLedger
         projects={portfolioProjects}
         headingLevel={headingLevel}
+        showAll={isStandalone}
       />
     </section>
   );
