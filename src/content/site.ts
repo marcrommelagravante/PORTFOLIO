@@ -71,7 +71,7 @@ export const siteConfig: SiteConfig = {
   discordUserId: "745242725267406898",
   discordUrl: "https://discord.com/users/745242725267406898",
   facebookUrl: "https://m.me/Xevoooo",
-  resumeUrl: undefined,
+  resumeUrl: "/files/resume.pdf",
   contactPage: {
     eyebrow: "Contact",
     title: "Let’s Work Together",

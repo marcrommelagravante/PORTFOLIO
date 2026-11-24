@@ -483,4 +483,81 @@ export const portfolioProjects: PortfolioProject[] = [
     featured: true,
     isPlaceholder: false,
   },
+  {
+    slug: "mroa-portfolio",
+    title: "MROA Portfolio",
+    tag: "Developer Portfolio",
+    summary:
+      "An editorial developer portfolio and case-study archive featuring live GitHub contribution telemetry, custom route transitions, and an interactive project ledger.",
+    overview: [
+      "Built as a centralized engineering showcase, MROA Portfolio presents full-stack, AI, and 3D software case studies through a typographic ledger paired with a live sticky preview stage.",
+      "The site integrates an ISR-cached GitHub GraphQL contribution heatmap with an automatic public HTML parser fallback, a deterministic route-transition state machine (MROA Focus Shift), a slide-over contact drawer backed by Web3Forms, and a single-column ATS résumé download.",
+    ],
+    features: [
+      "**Interactive project ledger & sticky preview**: Two-column keyboard-navigable project directory (`ArrowUp` / `ArrowDown`) with a live dark-surface device preview panel.",
+      "**Deep-dive case study routes (`/projects/[slug]`)**: Static-generated project pages with swipeable image carousels, feature breakdowns, architecture highlights, and stack tables.",
+      "**Live GitHub contribution heatmap**: Server-rendered 53-week activity matrix using the GitHub GraphQL API with hourly ISR revalidation (`revalidate: 3600`).",
+      "**MROA Focus Shift route transitions**: Custom page-transition provider coordinating curtain overlays, monogram loader states, and screen-reader `aria-live` route announcements.",
+      "**Slide-over contact drawer & form**: Global contact panel and standalone `/contact` route using Web3Forms with honeypot spam filtering and field validation.",
+      "**Beyond the IDE & Toolkit directories**: Interactive Coverflow personal gallery (`/outside-the-ide`) and workstation hardware breakdown (`/gear`).",
+      "**Persistent dark / light theme engine**: CSS custom-property design tokens with instant theme switching and zero-flash hydration.",
+      "**ATS-friendly résumé integration**: Direct one-click download for the single-column PDF résumé from the About section.",
+    ],
+    highlights: [
+      "**Dual-path GitHub telemetry**: Queries the official GitHub GraphQL API when `GITHUB_TOKEN` is present and automatically falls back to parsing verified public contribution DOM cells with zero client token exposure.",
+      "**WCAG 2.1 keyboard & motion accessibility**: Full keyboard roving focus across project rows and carousels, `aria-live=\"polite\"` route and preview announcements, and strict `prefers-reduced-motion` fallbacks.",
+      "**Centralized type-safe content architecture**: Separates all biography, project case studies, stack matrices, and hardware specs into typed TypeScript modules (`src/content/*`) with zero hardcoded view copy.",
+    ],
+    techStackTable: [
+      {
+        category: "Frontend",
+        technologies:
+          "Next.js 15 (App Router), React 19, TypeScript 5.8, Tailwind CSS 4",
+      },
+      {
+        category: "Animation & Interaction",
+        technologies:
+          "Motion (`motion` / Framer Motion 14), MROA Focus Shift transition state machine, magnetic button physics, Coverflow 3D carousel",
+      },
+      {
+        category: "APIs & Integrations",
+        technologies:
+          "GitHub GraphQL API, Public GitHub Contribution DOM Parser fallback, Web3Forms REST API, Next.js ISR (`revalidate: 3600`)",
+      },
+      {
+        category: "Accessibility & SEO",
+        technologies:
+          "WCAG 2.1 keyboard navigation, `aria-live` route & preview regions, `prefers-reduced-motion` safeguards, dynamic OpenGraph metadata",
+      },
+      {
+        category: "Deployment & Hosting",
+        technologies:
+          "Vercel Edge Network, Next.js Static & ISR Hybrid Rendering, GitHub Actions",
+      },
+    ],
+    coverImage: "/images/projects/mroa-portfolio/mroa-cover.png",
+    thumbnail: "/images/projects/mroa-portfolio/mroa-cover.png",
+    screenshots: [
+      "/images/projects/mroa-portfolio/mroa-01.png",
+      "/images/projects/mroa-portfolio/mroa-02.png",
+      "/images/projects/mroa-portfolio/mroa-03.png",
+      "/images/projects/mroa-portfolio/mroa-04.png",
+      "/images/projects/mroa-portfolio/mroa-05.png",
+      "/images/projects/mroa-portfolio/mroa-06.png",
+      "/images/projects/mroa-portfolio/mroa-07.png",
+    ],
+    galleryAspectRatio: "16/10",
+    technologies: [
+      "Next.js 15",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS 4",
+      "Framer Motion",
+      "GitHub GraphQL API",
+    ],
+    liveUrl: "https://mroa.vercel.app/",
+    githubUrl: "https://github.com/marcrommelagravante/PORTFOLIO",
+    featured: true,
+    isPlaceholder: false,
+  },
 ];

@@ -227,4 +227,74 @@ export const projectTechStacks: ProjectTechStack[] = [
       },
     ],
   },
+  {
+    slug: "pahina",
+    title: "PAHINA",
+    tag: "Book Café & Reading Room",
+    liveUrl: "https://pahina-phi.vercel.app/",
+    categories: [
+      {
+        category: "Frontend",
+        technologies:
+          "Next.js 16 (App Router, Turbopack), React 19, TypeScript 5, Tailwind CSS 4",
+      },
+      {
+        category: "Animation & Interaction",
+        technologies:
+          "Framer Motion 14, custom cubic-bezier easing tokens, scroll-linked reveal primitives, 3D calling card flip",
+      },
+      {
+        category: "Typography & Design System",
+        technologies:
+          "Google Fonts (`next/font/google`: *Bodoni Moda*, *Instrument Serif*, *Manrope*), Paper & Powder Blue CSS custom tokens, inscribed radial CSS mask feathering, Lucide React",
+      },
+      {
+        category: "Accessibility",
+        technologies:
+          "Custom WCAG 2.1 `useDialogA11y` modal focus-trap hook, keyboard navigation, `aria-pressed` filter controls, `prefers-reduced-motion` safeguards",
+      },
+      {
+        category: "SEO & Metadata",
+        technologies:
+          "Schema.org JSON-LD (`CafeOrCoffeeShop`, `Menu`, `MenuItem` multi-size `Offer`, `WebSite`, `BreadcrumbList`), dynamic `opengraph-image` & `twitter-image`, dynamic `sitemap.ts` & `robots.ts`",
+      },
+      {
+        category: "Deployment & Hosting",
+        technologies: "Vercel Edge Network, Next.js Image Optimization",
+      },
+    ],
+  },
+  {
+    slug: "mroa-portfolio",
+    title: "MROA Portfolio",
+    tag: "Developer Portfolio",
+    liveUrl: "https://mroa.vercel.app/",
+    categories: [
+      {
+        category: "Frontend",
+        technologies:
+          "Next.js 15 (App Router), React 19, TypeScript 5.8, Tailwind CSS 4",
+      },
+      {
+        category: "Animation & Interaction",
+        technologies:
+          "Motion (`motion` / Framer Motion 14), MROA Focus Shift transition state machine, magnetic button physics, Coverflow 3D carousel",
+      },
+      {
+        category: "APIs & Integrations",
+        technologies:
+          "GitHub GraphQL API, Public GitHub Contribution DOM Parser fallback, Web3Forms REST API, Next.js ISR (`revalidate: 3600`)",
+      },
+      {
+        category: "Accessibility & SEO",
+        technologies:
+          "WCAG 2.1 keyboard navigation, `aria-live` route & preview regions, `prefers-reduced-motion` safeguards, dynamic OpenGraph metadata",
+      },
+      {
+        category: "Deployment & Hosting",
+        technologies:
+          "Vercel Edge Network, Next.js Static & ISR Hybrid Rendering, GitHub Actions",
+      },
+    ],
+  },
 ];
