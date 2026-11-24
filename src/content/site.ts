@@ -66,7 +66,7 @@ export const siteConfig: SiteConfig = {
   githubUsername: "marcrommelagravante",
   githubUrl: "https://github.com/marcrommelagravante",
   contactEmail: "marcrommelagravante21@gmail.com",
-  linkedinUrl: "https://www.linkedin.com/in/marc-rommel-agravante-349628449",
+  linkedinUrl: "https://www.linkedin.com/in/marc-rommel-agravante",
   discordHandle: "_xevo21",
   discordUserId: "745242725267406898",
   discordUrl: "https://discord.com/users/745242725267406898",
